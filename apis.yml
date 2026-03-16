@@ -1,0 +1,44 @@
+aid: continuous-delivery-foundation
+name: Continuous Delivery Foundation
+description: >-
+  The Continuous Delivery Foundation (CDF) is a Linux Foundation project supporting open source projects for continuous delivery and DevOps practices. It hosts Jenkins, Tekton, Spinnaker, and related tools that enable organizations to build, test, and deploy software faster and more reliably.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - CI/CD
+  - DevOps
+  - Automation
+  - Linux Foundation
+created: '2026-03-16'
+modified: '2026-03-16'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/continuous-delivery-foundation/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: continuous-delivery-foundation:continuous-delivery-foundation-api
+    name: Continuous Delivery Foundation API
+    description: >-
+      Programmatic access to CDF continuous delivery project resources, pipeline APIs, and DevOps automation tools.
+    humanURL: https://cd.foundation/projects/
+    tags:
+  - CI/CD
+  - DevOps
+  - Automation
+  - Linux Foundation
+    properties:
+      - type: Documentation
+        url: https://cd.foundation/projects/
+common:
+  - type: Documentation
+    name: Continuous Delivery Foundation Documentation
+    description: Official documentation for Continuous Delivery Foundation.
+    url: https://cd.foundation/projects/
+  - type: GitHubOrg
+    name: Continuous Delivery Foundation GitHub
+    description: Source code and repositories for Continuous Delivery Foundation.
+    url: https://github.com/cdfoundation
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
