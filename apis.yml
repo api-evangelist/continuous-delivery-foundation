@@ -23,10 +23,10 @@ apis:
       Programmatic access to CDF continuous delivery project resources, pipeline APIs, and DevOps automation tools.
     humanURL: https://cd.foundation/projects/
     tags:
-  - CI/CD
-  - DevOps
-  - Automation
-  - Linux Foundation
+      - CI/CD
+      - DevOps
+      - Automation
+      - Linux Foundation
     properties:
       - type: Documentation
         url: https://cd.foundation/projects/
