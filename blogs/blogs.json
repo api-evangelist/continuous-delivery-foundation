@@ -1,0 +1,13 @@
+{
+  "repo": "continuous-delivery-foundation",
+  "feeds": [
+    {
+      "source": "https://cd.foundation/blog/",
+      "feed_url": "https://cd.foundation/feed/",
+      "saved": 10,
+      "title": "CD Foundation"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:26:05Z"
+}
