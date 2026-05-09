@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://cd.foundation/blog/",
-      "feed_url": "https://cd.foundation/feed/",
-      "saved": 10,
-      "title": "CD Foundation"
+      "feed_url": "https://cd.foundation/blog/feed/",
+      "title": "Blog Archives - CD Foundation",
+      "saved": 2
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-03T23:26:05Z"
+  "post_count": 12,
+  "fetched": "2026-05-09T20:17:51Z"
 }
