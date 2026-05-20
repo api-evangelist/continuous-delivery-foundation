@@ -186,6 +186,8 @@ apis:
         url: https://github.com/tektoncd
 
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/cdeliveryfdn
   - type: Website
     url: https://cd.foundation/
   - type: Projects
