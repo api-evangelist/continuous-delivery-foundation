@@ -2,12 +2,20 @@
   "repo": "continuous-delivery-foundation",
   "feeds": [
     {
-      "source": "https://cd.foundation/blog/",
+      "source": "https://cd.foundation/blog/feed/",
       "feed_url": "https://cd.foundation/blog/feed/",
-      "title": "Blog Archives - CD Foundation",
-      "saved": 4
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://cd.foundation/projects/",
+      "feed_url": "https://cd.foundation/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 16,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 19,
+  "fetched": "2026-06-01T23:35:02Z"
 }
