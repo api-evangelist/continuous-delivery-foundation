@@ -7,9 +7,21 @@ description: >-
   Spinnaker, Screwdriver, Ortelius, JayeX, and was previously the home of
   Tekton (now a CNCF graduated project) and other CD-focused tooling.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/continuous-delivery-foundation.png
 tags:
   - Automation
   - CI/CD
