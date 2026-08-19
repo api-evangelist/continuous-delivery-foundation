@@ -32,7 +32,7 @@ created: '2026-03-16'
 modified: '2026-04-28'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/continuous-delivery-foundation/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
   - aid: continuous-delivery-foundation:cdevents
     name: CDEvents Specification
