@@ -27,6 +27,12 @@ tags:
   - CI/CD
   - DevOps
   - Linux Foundation
+  - Open-Source
+tags_raw:
+  - Automation
+  - CI/CD
+  - DevOps
+  - Linux Foundation
   - Open Source
 created: '2026-03-16'
 modified: '2026-04-28'
@@ -45,6 +51,12 @@ apis:
       maintained at github.com/cdevents/spec.
     humanURL: https://cdevents.dev/
     tags:
+      - CDEvents
+      - CI/CD
+      - CloudEvents
+      - Event
+      - Specification
+    tags_raw:
       - CDEvents
       - CI/CD
       - CloudEvents
@@ -98,6 +110,12 @@ apis:
       - CD
       - Cloud
       - Deployment
+      - Multi-Cloud
+      - Spinnaker
+    tags_raw:
+      - CD
+      - Cloud
+      - Deployment
       - Multi-cloud
       - Spinnaker
     properties:
@@ -119,6 +137,12 @@ apis:
       coordinate complex CD workflows across multiple repositories.
     humanURL: https://screwdriver.cd/
     tags:
+      - Builds
+      - CD
+      - CI/CD
+      - Pipelines
+      - Screwdriver
+    tags_raw:
       - Build
       - CD
       - CI/CD
@@ -165,6 +189,11 @@ apis:
       teams.
     humanURL: https://jayex.io/
     tags:
+      - CI/CD
+      - Cloud-Native
+      - Developer Tools
+      - Platform
+    tags_raw:
       - CI/CD
       - Cloud Native
       - Developer Tools
