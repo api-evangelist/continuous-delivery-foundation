@@ -121,7 +121,7 @@ apis:
       - CD
       - Cloud
       - Deployment
-      - Multi-cloud
+      - Multi-Cloud
       - Spinnaker
     tags_raw:
       - CD
