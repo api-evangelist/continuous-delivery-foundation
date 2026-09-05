@@ -1,0 +1,170 @@
+generated: '2026-09-05'
+method: derived
+source: >-
+  openapi/continuous-delivery-foundation-screwdriver-openapi.json (226 component schemas, 152
+  operations), openapi/continuous-delivery-foundation-spinnaker-openapi.json (36 component
+  schemas, 288 operations), openapi/continuous-delivery-foundation-jayex-jx-api-openapi.json (249
+  CRD definitions), json-schema/cdevents/ (49 event schemas)
+note: >-
+  Four separate entity graphs, not one. There is no shared CDF domain model — the only vocabulary
+  that crosses project boundaries is CDEvents, and it crosses as an EVENT type, not as a shared
+  entity. Relationships below are derived from id-reference fields and $ref links actually present
+  in the contracts; where a contract does not name a relationship, none is asserted.
+domains:
+  - domain: Screwdriver
+    source: openapi/continuous-delivery-foundation-screwdriver-openapi.json
+    id_style: numeric surrogate ids, no prefixes
+    note: >-
+      226 component schemas, but many are auto-generated request/response wrappers named Model1..
+      ModelN rather than domain entities — a real contract-quality gap. The entity graph below is
+      read from id-reference FIELDS, which are unambiguous.
+    entities:
+      - name: pipeline
+        relationships:
+          - {type: has_many, target: event, via: pipelineId}
+          - {type: has_many, target: job, via: pipelineId}
+          - {type: has_many, target: token, via: pipelineId}
+          - {type: has_many, target: secret, via: pipelineId}
+          - {type: has_many, target: stage, via: pipelineId}
+          - {type: belongs_to, target: pipeline, via: configPipelineId, note: external config pipeline}
+          - {type: has_many, target: pipeline, via: childPipelines}
+          - {type: has_one, target: event, via: lastEventId}
+      - name: event
+        relationships:
+          - {type: belongs_to, target: pipeline, via: pipelineId}
+          - {type: has_many, target: build, via: eventId}
+          - {type: belongs_to, target: event, via: parentEventId}
+          - {type: belongs_to, target: event, via: groupEventId}
+      - name: build
+        relationships:
+          - {type: belongs_to, target: event, via: eventId}
+          - {type: belongs_to, target: job, via: jobId}
+          - {type: belongs_to, target: build, via: parentBuildId}
+      - name: job
+        relationships:
+          - {type: belongs_to, target: pipeline, via: pipelineId}
+          - {type: belongs_to, target: job, via: prParentJobId}
+          - {type: has_one, target: buildCluster, via: buildCluster}
+      - name: template
+        relationships:
+          - {type: has_many, target: templateVersion, via: templateId}
+          - {type: has_many, target: tag, via: templateId}
+      - name: collection
+        relationships:
+          - {type: has_many, target: pipeline, via: pipelineIds}
+      - name: token
+        relationships:
+          - {type: belongs_to, target: pipeline, via: pipelineId}
+          - {type: belongs_to, target: user, via: userId}
+      - name: secret
+        relationships:
+          - {type: belongs_to, target: pipeline, via: pipelineId}
+      - name: buildCluster
+      - name: command
+        note: namespaced by namespace + name rather than by id
+      - name: banner
+      - name: user
+        relationships:
+          - {type: has_many, target: collection, via: userId}
+          - {type: has_one, target: settings, via: settings}
+    id_fields_observed:
+      id: 26
+      pipelineId: 9
+      templateId: 8
+      scopeId: 3
+      eventId: 3
+      userId: 2
+      templateVersionId: 2
+      buildId: 2
+      jobId: 2
+      parentBuildId: 2
+      parentEventId: 2
+      groupEventId: 2
+  - domain: Spinnaker
+    source: openapi/continuous-delivery-foundation-spinnaker-openapi.json
+    id_style: application name + resource name, mostly path-scoped rather than id-referenced
+    note: >-
+      Only 36 component schemas for 288 operations — most request and response bodies are typed as
+      free-form objects, so the entity graph must be read from PATH structure rather than from
+      schemas. That is itself the finding.
+    entities:
+      - name: application
+        note: "the root scoping entity — 58 operations take {application} as a path parameter"
+        relationships:
+          - {type: has_many, target: pipeline, via: "/applications/{application}/pipelines"}
+          - {type: has_many, target: pipelineConfig, via: "/applications/{application}/pipelineConfigs"}
+          - {type: has_many, target: task, via: "/applications/{application}/tasks"}
+          - {type: has_many, target: serverGroup, via: "/applications/{application}/serverGroups"}
+          - {type: has_many, target: cluster, via: "/applications/{application}/clusters"}
+          - {type: has_one, target: deliveryConfig, via: "/managed/application/{application}/config"}
+      - name: deliveryConfig
+        schema: DeliveryConfig
+        relationships:
+          - {type: has_many, target: environment, via: environments}
+      - name: environment
+        schema: Environment
+        relationships:
+          - {type: has_many, target: environmentArtifactPin, via: pin}
+          - {type: has_many, target: environmentArtifactVeto, via: veto}
+          - {type: has_many, target: constraintState, via: constraints}
+      - name: account
+        schema: Account
+        relationships:
+          - {type: has_one, target: accountDetails, via: AccountDetails}
+          - {type: has_one, target: accountDefinition, via: AccountDefinition}
+      - name: cloudEvent
+        schema: CloudEvent
+        note: the inbound CDEvents payload type — see asyncapi/
+      - name: notification
+        schema: Notification
+      - name: pipelineTemplate
+  - domain: JayeX
+    source: openapi/continuous-delivery-foundation-jayex-jx-api-openapi.json
+    id_style: Kubernetes — namespace + name, with ObjectMeta on every type
+    note: >-
+      249 definitions in the jenkins_io.v1 group. This is a declarative Kubernetes CRD model, so
+      relationships are expressed as embedded specs and object references rather than as foreign
+      keys; the document declares no HTTP paths at all.
+    entities:
+      - {name: App}
+      - {name: Environment}
+      - {name: PipelineActivity}
+      - {name: Release}
+      - {name: SourceRepository}
+      - {name: Team}
+      - {name: User}
+      - {name: Workflow}
+    note_types: sample of the jenkins.io/v1 CRD kinds; the full type list is in the harvested document
+  - domain: CDEvents
+    source: json-schema/cdevents/
+    id_style: subject/predicate/version event type URIs (dev.cdevents.<subject>.<predicate>.<M.m.p>)
+    note: >-
+      Not an entity graph but a SUBJECT graph. Every event carries a context (id, source, type,
+      timestamp, chain_id) and a subject typed to one of the vocabulary's subjects. This is the
+      only vocabulary shared across CDF projects.
+    subjects:
+      - {name: pipelineRun, predicates: [queued, started, finished]}
+      - {name: taskRun, predicates: [queued, started, finished]}
+      - {name: build, predicates: [queued, started, finished]}
+      - {name: artifact, predicates: [packaged, published, signed, downloaded, deleted]}
+      - {name: repository, predicates: [created, modified, deleted]}
+      - {name: branch, predicates: [created, deleted]}
+      - {name: change, predicates: [created, updated, reviewed, merged, abandoned]}
+      - {name: environment, predicates: [created, modified, deleted]}
+      - {name: service, predicates: [deployed, upgraded, rolledback, removed, published]}
+      - {name: testCaseRun, predicates: [queued, started, finished, skipped]}
+      - {name: testSuiteRun, predicates: [queued, started, finished]}
+      - {name: testOutput, predicates: [published]}
+      - {name: incident, predicates: [detected, reported, resolved]}
+      - {name: ticket, predicates: [created, updated, closed]}
+      - {name: approval, predicates: [created, updated, closed]}
+    catalog: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+cross_domain:
+  - relationship: Spinnaker consumes CDEvents
+    evidence: >-
+      POST /webhooks/cdevents/{source} in the Spinnaker Gate contract takes a CloudEvent body —
+      "Endpoint for posting webhooks to Spinnaker's CDEvents webhook service".
+    from: Spinnaker
+    to: CDEvents
+  - relationship: Screwdriver and Jenkins emit no CDEvents in any published contract
+    evidence: no cdevents path or type appears in either harvested contract

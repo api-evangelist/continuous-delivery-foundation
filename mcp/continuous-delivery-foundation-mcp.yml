@@ -1,0 +1,133 @@
+generated: '2026-09-05'
+method: searched
+status: published
+source: >-
+  https://github.com/jenkinsci/mcp-server-plugin and https://plugins.jenkins.io/mcp-server/
+note: >-
+  The Continuous Delivery Foundation runs no MCP server of its own. Jenkins — the CDF project with
+  the largest install base — ships an OFFICIAL one as a first-party plugin in the jenkinsci
+  organization: the MCP Server plugin, built on the MCP Java SDK 0.17.2 against MCP specification
+  2025-06-18. It is self-hosted by design: the server runs inside the operator's own Jenkins
+  controller and answers on that controller's host, so there is no vendor-hosted URL to call and
+  no anonymous tools/list to introspect. The tool list below is transcribed verbatim from the
+  plugin README's "Available Tools" section; input schemas are advertised by the running server
+  via MCP introspection and were not fetched, because reaching one requires an operator's own
+  Jenkins instance and an API token.
+deployment:
+  mode: remote
+  endpoint: https://<your-jenkins-host>/mcp-server/mcp
+  endpoint_is_template: true
+  install: Install the "MCP Server" plugin (id mcp-server) from the Jenkins Plugin Manager
+  package: https://plugins.jenkins.io/mcp-server/
+  auth: api-key
+  verified: searched
+  note: >-
+    mode is `remote` because an MCP client POSTs to an https URL, not because anyone hosts it for
+    you — the host is the operator's own Jenkins controller, exactly as an OpenAPI `servers[]`
+    entry can be templated. Auth is HTTP Basic carrying a Jenkins user + API token, so the
+    server inherits that user's Jenkins permissions. No public endpoint exists to probe.
+server:
+  name: jenkins
+  project: Jenkins
+  transport: http
+  transports:
+    - name: streamable-http
+      path: /mcp-server/mcp
+      recommended: true
+    - name: sse
+      path: /mcp-server/sse
+      message_path: /mcp-server/message
+    - name: stateless-http
+      path: /mcp-server/stateless
+  health_endpoint: /mcp-health
+  metrics_endpoint: /mcp-server/metrics
+  sdk: MCP Java SDK 0.17.2
+  protocol_version: '2025-06-18'
+  license: MIT
+  repository: https://github.com/jenkinsci/mcp-server-plugin
+  version: 0.203.v12a_6f2a_01d72
+  released: '2026-09-03'
+  extensible: true
+  extension_interface: McpServerExtension
+tools:
+  - name: getJob
+    category: job-management
+    description: Get a Jenkins job by its full path.
+  - name: getJobs
+    category: job-management
+    description: Get a paginated list of Jenkins jobs, sorted by name.
+  - name: triggerBuild
+    category: job-management
+    description: >-
+      Trigger a build of a job. Supports parameterized builds via a JSON parameters object;
+      returns a queue item whose id can be passed to getQueueItem.
+  - name: getQueueItem
+    category: job-management
+    description: Get information about a queued item using its ID.
+  - name: getBuild
+    category: build-information
+    description: Retrieve a specific build or the last build of a Jenkins job.
+  - name: updateBuild
+    category: build-information
+    description: Update build display name and/or description.
+  - name: getBuildLog
+    category: build-information
+    description: >-
+      Retrieve log lines with pagination for a specific build or the last build; supports forward
+      reads, end-relative reads and cursor pagination via nextCursor.
+  - name: searchBuildLog
+    category: build-information
+    description: Search for log lines matching a string or regex pattern in build logs.
+  - name: rebuildBuild
+    category: build-information
+    description: Re-run a build with the same parameters; returns the queue item for the new build.
+  - name: getReplayScripts
+    category: build-information
+    description: Return the main script and loaded scripts of a replayable Pipeline build.
+  - name: replayBuild
+    category: build-information
+    description: Run a Pipeline build again with a modified script.
+  - name: getTestResults
+    category: build-information
+    description: Retrieve test results of a specific build or the last build.
+  - name: getJobScm
+    category: scm-integration
+    description: Retrieve SCM configurations of a Jenkins job.
+  - name: getBuildScm
+    category: scm-integration
+    description: Retrieve SCM configurations of a specific build.
+  - name: getBuildChangeSets
+    category: scm-integration
+    description: Retrieve change log sets of a specific build.
+  - name: findJobsWithScmUrl
+    category: scm-integration
+    description: Find jobs using a specific SCM (git) repository URL.
+  - name: whoAmI
+    category: management
+    description: Get information about the current user.
+  - name: getStatus
+    category: management
+    description: Check the health and readiness status of a Jenkins instance.
+coverage:
+  tools_documented: 18
+  input_schemas_captured: 0
+  input_schemas_note: >-
+    Requires authenticated MCP introspection against a running Jenkins controller. Not fabricated
+    here.
+other_projects:
+  - project: Spinnaker
+    mcp: none-first-party
+    note: >-
+      npm carries community packages named spinnaker-mcp and @mertsaygi/... — neither is published
+      from the spinnaker organization, so neither is recorded as a provider surface.
+  - project: Screwdriver
+    mcp: none
+  - project: Ortelius
+    mcp: none
+  - project: JayeX
+    mcp: none
+  - project: CDEvents
+    mcp: none
+    note: >-
+      CDF published a position piece on 2026-08-21 ("MCP Connects Tools, CDEvents Provides
+      Meaning") arguing MCP and CDEvents are complementary layers; it announces no server.

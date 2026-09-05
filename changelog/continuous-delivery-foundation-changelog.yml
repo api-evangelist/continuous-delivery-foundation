@@ -1,0 +1,78 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://www.jenkins.io/changelog/ , https://spinnaker.io/changelogs/ ,
+  github.com/cdevents/spec/releases, github.com/spinnaker/spinnaker/releases,
+  https://cd.foundation/blog/
+note: >-
+  The foundation publishes no changelog of its own — cd.foundation/blog is the closest thing, and
+  it is editorial rather than a release log. Each project keeps its own, and their cadences differ
+  by more than an order of magnitude, so they are recorded separately rather than merged.
+projects:
+  - project: Jenkins
+    scheme: release-train
+    url: https://www.jenkins.io/changelog/
+    lts_url: https://www.jenkins.io/changelog-stable/
+    cadence: weekly, plus a Long Term Support line
+    probed: 200
+  - project: Spinnaker
+    scheme: date-train
+    url: https://spinnaker.io/changelogs/
+    per_release_url_form: https://spinnaker.io/changelogs/<version>-changelog/
+    current_version: '2026.2.3'
+    probed: >-
+      the /changelogs/ index 404s; a per-release page (1.36.0) returns 200. Release tags read from
+      github.com/spinnaker/spinnaker/releases.
+    entries:
+      - version: spinnaker-release-2026.2.3
+        date: '2026-07-30'
+      - version: spinnaker-release-2026.1.2
+        date: '2026-07-30'
+      - version: spinnaker-release-2026.0.4
+        date: '2026-07-30'
+      - version: spinnaker-release-2026.2.2
+        date: '2026-07-13'
+      - version: spinnaker-release-2026.2.1
+        date: '2026-07-06'
+    note: >-
+      Three supported lines (2026.0, 2026.1, 2026.2) were patched on the same day, which is the
+      clearest evidence of a maintained-branch policy anywhere in the estate.
+  - project: CDEvents
+    scheme: semver
+    url: https://github.com/cdevents/spec/releases
+    current_version: v0.5.1
+    working_version: 0.6.0-draft
+    entries:
+      - version: v0.5.1
+        date: '2026-04-15'
+      - version: v0.5.0
+        date: '2025-12-22'
+      - version: v0.4.1
+        date: '2024-05-16'
+      - version: v0.4.0
+        date: '2024-04-11'
+      - version: v0.3.0
+        date: '2023-05-03'
+      - version: v0.2.0
+        date: '2023-03-21'
+    note: >-
+      The harvested schemas carry $id values under 0.6.0-draft, i.e. the schemas in main are ahead
+      of the last tagged release (v0.5.1). A consumer pinning to the released version should read
+      the v0.5.1 tag, not main.
+  - project: Screwdriver
+    scheme: semver
+    url: https://github.com/screwdriver-cd/screwdriver/releases
+    note: >-
+      GitHub releases stop at v4.1.0 (2020-10-13) — the project moved to publishing the API server
+      to npm instead. screwdriver-api on npm is at 8.0.192, published 2026-09-03, which is the
+      real release signal.
+  - project: JayeX
+    scheme: semver
+    url: https://github.com/jenkins-x/jx/releases
+    current_version: v3.17.98
+    entries:
+      - version: v3.17.98
+        date: '2026-09-02'
+  - project: Ortelius
+    scheme: semver
+    url: https://github.com/ortelius/ortelius/releases

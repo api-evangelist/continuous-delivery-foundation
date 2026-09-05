@@ -1,0 +1,22 @@
+generated: '2026-09-05'
+method: derived
+source: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml, openapi/continuous-delivery-foundation-screwdriver-openapi.json
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: jenkins_auth
+  type: http
+  scheme: basic
+  description: Jenkins basic authentication
+  sources:
+  - openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml
+- name: jwt
+  type: apiKey
+  in: header
+  parameter: Authorization
+  sources:
+  - openapi/continuous-delivery-foundation-screwdriver-openapi.json

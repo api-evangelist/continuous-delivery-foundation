@@ -1,0 +1,102 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  project documentation (jenkins.io, spinnaker.io, docs.screwdriver.cd, cdevents.dev), plus
+  deprecated:true operations read out of the harvested contracts
+note: >-
+  The Continuous Delivery Foundation is a Linux Foundation umbrella, so there is no single
+  versioning or deprecation policy across the estate — each project runs its own. What follows is
+  per project, and only where a page was actually fetched. The one status page in the estate is
+  Jenkins'.
+status_page: https://status.jenkins.io/
+status_pages:
+  - project: Jenkins
+    url: https://status.jenkins.io/
+    probed: 200
+    note: covers jenkins.io infrastructure — the update centre, mirrors, the plugin site, ci.jenkins.io
+projects:
+  - project: CDEvents
+    versioning:
+      scheme: semver
+      current: 0.6.0-draft
+      docs: https://cdevents.dev/docs/primer/
+      note: >-
+        Event types carry their own subject/predicate/version triple; schema $id values are
+        namespaced by specification version (https://cdevents.dev/0.6.0-draft/schema/<event>), so a
+        consumer pins a version by matching the $id.
+    deprecation: {policy_url: null, sunset_header: false}
+  - project: Jenkins
+    versioning:
+      scheme: release-train
+      current: LTS
+      docs: https://www.jenkins.io/changelog/
+      note: weekly releases plus a Long Term Support line
+    deprecation:
+      policy_url: null
+      sunset_header: false
+      note: >-
+        No API deprecation policy page was found. Security advisories are published continuously
+        at https://www.jenkins.io/security/advisories/ (probed 200).
+    security_advisories: https://www.jenkins.io/security/advisories/
+  - project: Spinnaker
+    versioning:
+      scheme: numbered-release
+      docs: https://spinnaker.io/docs/releases/versions/
+      changelogs: https://spinnaker.io/changelogs/
+      note: >-
+        Per-release changelog pages exist under /changelogs/<version>-changelog/ (1.36.0 probed
+        200); the /changelogs/ index itself 404s.
+    deprecation:
+      policy_url: null
+      sunset_header: false
+      in_contract: true
+      note: >-
+        12 of the 288 operations in the published Gate contract are marked deprecated:true — the
+        strongest deprecation signal in this estate, and it is machine-readable.
+  - project: Screwdriver
+    versioning:
+      scheme: uri-path
+      current: v4
+      docs: https://docs.screwdriver.cd/user-guide/api
+      note: every path in the published contract is prefixed /v4/
+    deprecation:
+      policy_url: null
+      sunset_header: false
+      in_contract: true
+    support: https://docs.screwdriver.cd/about/support
+  - project: Ortelius
+    versioning: {scheme: semver, current: null, docs: https://docs.ortelius.io/}
+    deprecation: {policy_url: null, sunset_header: false}
+  - project: JayeX
+    versioning:
+      scheme: semver
+      current: v3.17.98
+      docs: https://jayex.io/v3/
+      note: >-
+        Renamed from Jenkins X in April 2026 (cd.foundation/blog/2026/04/16/). The v3 line is
+        current; the CLI released v3.17.98 on 2026-09-02.
+    deprecation: {policy_url: null, sunset_header: false}
+  - project: Tekton
+    versioning: {scheme: kubernetes-api, docs: https://tekton.dev/docs/pipelines/pipeline-api/}
+    deprecation: {policy_url: null, sunset_header: false}
+    note: >-
+      Moved from the CDF to the CNCF in March 2026 (cd.foundation/blog/2026/03/24/). Retained in
+      this record for historical context only.
+deprecated_operations:
+  - openapi/continuous-delivery-foundation-screwdriver-openapi.json#postV4Builds
+  - openapi/continuous-delivery-foundation-spinnaker-openapi.json#invokePipelineConfig_1
+  - openapi/continuous-delivery-foundation-spinnaker-openapi.json#cancelPipeline_1
+  - openapi/continuous-delivery-foundation-spinnaker-openapi.json#task_1
+  - openapi/continuous-delivery-foundation-spinnaker-openapi.json#getTask_1
+  - openapi/continuous-delivery-foundation-spinnaker-openapi.json#cancelTask_1
+  - openapi/continuous-delivery-foundation-spinnaker-openapi.json#getTaskDetails_1
+  - openapi/continuous-delivery-foundation-spinnaker-openapi.json#all_1
+  - openapi/continuous-delivery-foundation-spinnaker-openapi.json#allByAccount
+  - openapi/continuous-delivery-foundation-spinnaker-openapi.json#getSecurityGroup
+  - openapi/continuous-delivery-foundation-spinnaker-openapi.json#all
+deprecated_operation_count: 13
+sla:
+  url: null
+  note: >-
+    No SLA is published, and none would be meaningful — every CDF project is self-hosted open
+    source. api.screwdriver.cd is a project-run cluster, not a commercial service.

@@ -1,0 +1,276 @@
+generated: '2026-09-05'
+method: searched
+source: live probe of the named /.well-known/ path list on every host this record knows
+note: >-
+  Thirteen hosts probed — the registrable domain, each CDF project host, the Screwdriver API
+  host and every docs host. Two real documents were served: an RFC 9727 api-catalog linkset on
+  cd.foundation, and an RFC 9116 security.txt on jenkins.io (served identically on www.jenkins.io
+  and the apex). Everything else 404s. A negative-control path that cannot exist was requested on
+  every host and returned 404 everywhere, so no host is path-echoing and the two hits are real.
+path_echo_control: passed
+hit_count: 2
+hosts:
+  - host: https://cd.foundation
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 200
+        content_type: application/linkset+json
+        file: continuous-delivery-foundation-api-catalog.json
+        note: >-
+          RFC 9727 linkset. Anchors https://cd.foundation/wp-json/ as service-desc, the WordPress
+          REST API handbook as service-doc. The declared surface is live and returns a 175-route
+          WordPress REST index.
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://www.jenkins.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain
+        file: continuous-delivery-foundation-security.txt
+        note: >-
+          RFC 9116. Three Contact entries, two Policy entries, Expires 2027-01-01. Served
+          identically on the jenkins.io apex.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://jenkins.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain
+        file: continuous-delivery-foundation-security.txt
+        note: same document as www.jenkins.io; Canonical points at the www host
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://cdevents.dev
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://api.screwdriver.cd
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://screwdriver.cd
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://docs.screwdriver.cd
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://spinnaker.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://ortelius.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://docs.ortelius.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://jayex.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist
+  - host: https://tekton.dev
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/cdf-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control — a path that cannot exist

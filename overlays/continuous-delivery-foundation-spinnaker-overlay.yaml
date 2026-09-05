@@ -1,0 +1,18 @@
+# generated: 2026-09-05
+# method: generated
+# source: openapi/continuous-delivery-foundation-spinnaker-openapi.json
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Spinnaker Gate API
+  version: 1.0.0
+extends: openapi/continuous-delivery-foundation-spinnaker-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: continuous-delivery-foundation
+    x-apievangelist-project: Spinnaker Gate API
+    x-apievangelist-harvested: '2026-09-05'
+    x-apievangelist-source: https://spinnaker.io/docs/reference/api/swagger.json
+    x-apievangelist-shape: openapi 3.1.0, 245 paths, 288 operations
+    x-apievangelist-note: Static document rendered with ReDoc on spinnaker.io; servers[] is the generated http://localhost
+      placeholder because Gate is self-hosted.

@@ -1,0 +1,18 @@
+# generated: 2026-09-05
+# method: generated
+# source: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Jenkins Pipeline Graph View plugin API
+  version: 1.0.0
+extends: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: continuous-delivery-foundation
+    x-apievangelist-project: Jenkins Pipeline Graph View plugin API
+    x-apievangelist-harvested: '2026-09-05'
+    x-apievangelist-source: https://github.com/jenkinsci/pipeline-graph-view-plugin/blob/main/openapi.yaml
+    x-apievangelist-shape: openapi 3.1.0, 10 operations, templated servers
+    x-apievangelist-note: The only Jenkins-project OpenAPI found; it covers one plugin, not the core remote-access
+      API.

@@ -3,120 +3,61 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Continuous Delivery Foundation
 providerId: continuous-delivery-foundation
+generated: '2026-09-05'
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Automation
-  - CI/CD
-  - DevOps
-  - Linux Foundation
-  - Open Source
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Continuous Delivery Foundation API surface.
-  Captures per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold
-  values to be replaced with published provider limits.
+modified: '2026-09-05'
+method: searched
+source: >-
+  project documentation (docs.screwdriver.cd, spinnaker.io/docs, jenkins.io/doc), the four
+  harvested OpenAPI contracts, and live response headers from https://api.screwdriver.cd/v4/
+description: >-
+  Published rate limits for the Continuous Delivery Foundation project APIs. There are none.
+  REPLACES a scaffold written by the 2026-05-04 bulk sweep which asserted a free/professional/
+  enterprise tier ladder with 10/100/1000 requests per minute and X-RateLimit-* response headers.
+  None of that was published by anyone — the CDF ships self-hosted open source, so quotas are set
+  by whoever runs the instance, not by the project.
+limit_count: 0
+limits: []
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - CDEvents Specification
-      - Jenkins
-      - Spinnaker
-      - Screwdriver
-      - Ortelius
-      - JayeX
-      - Tekton
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - CDEvents Specification
-      - Jenkins
-      - Spinnaker
-      - Screwdriver
-      - Ortelius
-      - JayeX
-      - Tekton
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - CDEvents Specification
-      - Jenkins
-      - Spinnaker
-      - Screwdriver
-      - Ortelius
-      - JayeX
-      - Tekton
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - CDEvents Specification
-      - Jenkins
-      - Spinnaker
-      - Screwdriver
-      - Ortelius
-      - JayeX
-      - Tekton
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - CDEvents Specification
-      - Jenkins
-      - Spinnaker
-      - Screwdriver
-      - Ortelius
-      - JayeX
-      - Tekton
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  request:
+    - name: X-RateLimit-App
+      projects: [Spinnaker]
+      required: false
+      operations: 47
+      note: >-
+        The one rate-limit-shaped thing in any published contract, and it points the wrong way: it
+        is an optional REQUEST header by which a caller labels itself so that an operator's own
+        rate-limiting can attribute the call. It is not a limit and it is not a signal back.
+  response: []
+responseCodes: {}
+findings:
+  - project: Screwdriver
+    documented_limits: false
+    observed_headers: []
+    evidence: >-
+      GET https://api.screwdriver.cd/v4/openapi.json returns no X-RateLimit-*, RateLimit-* or
+      Retry-After header (response headers observed 2026-09-05: date, content-type,
+      content-length, vary, cache-control, set-cookie, strict-transport-security).
+  - project: Spinnaker
+    documented_limits: false
+    evidence: >-
+      https://spinnaker.io/docs/guides/operator/rate-limiting/ returns 404; the Gate contract
+      declares no 429 response on any of its 288 operations.
+  - project: Jenkins
+    documented_limits: false
+    evidence: >-
+      Self-hosted controller; throttling is a plugin/operator concern, not a published API limit.
+  - project: JayeX
+    documented_limits: false
+  - project: Ortelius
+    documented_limits: false
+  - project: CDEvents
+    documented_limits: false
+    note: a specification, not a callable service — rate limits are not applicable
+note: >-
+  An honest zero. Every CDF API surface is software the consumer runs themselves, so no rate limit
+  exists to publish. The single exception worth watching is api.screwdriver.cd, a project-operated
+  cluster that could impose one and currently signals none.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,0 +1,177 @@
+generated: '2026-09-05'
+method: derived
+source: >-
+  openapi/ (all four harvested contracts), live probes of https://api.screwdriver.cd/v4/, and the
+  project documentation at docs.screwdriver.cd, spinnaker.io/docs and jenkins.io/doc
+note: >-
+  Cross-cutting semantics for the CDF project APIs. There is no foundation-wide convention set —
+  four independently governed projects are described here, and where they disagree the disagreement
+  is the finding.
+authentication:
+  style: per-project
+  summary: >-
+    Screwdriver: JWT in the Authorization header (declared securityScheme "jwt", apiKey/header).
+    Jenkins: HTTP Basic carrying username + API token (declared securityScheme "jenkins_auth",
+    http/basic) — the same credential the MCP server takes. Spinnaker: the published Gate contract
+    declares NO securitySchemes at all; authentication is configured per deployment (OAuth 2.0,
+    SAML, LDAP, x509 are all documented as deployment options, not as contract).
+  artifact: authentication/continuous-delivery-foundation-authentication.yml
+idempotency:
+  coverage: none
+  mechanism: null
+  header: null
+  scope: []
+  note: >-
+    No idempotency key, replay window or deduplication contract is documented or declared anywhere
+    in this estate. The only occurrence of the word in any harvested contract is Kubernetes
+    ObjectMeta boilerplate inside JayeX's CRD definitions (generateName "primarily intended for
+    creation idempotence"), which is Kubernetes' own text about name generation, not an API replay
+    guarantee. The Kubernetes-shaped surfaces (JayeX, Tekton) are idempotent by CONSTRUCTION —
+    applying the same desired state twice converges — but that is a property of declarative apply,
+    not a documented client contract, and an agent cannot safely retry a Screwdriver
+    POST /v4/events or a Spinnaker task on it.
+pagination:
+  style: page-and-count
+  projects:
+    - project: Screwdriver
+      params: [page, count, sort, sortBy, search, getCount]
+      note: >-
+        Derived from the contract: `page` and `count` appear on 19 operations each, `sort` on 20,
+        `sortBy` on 16, `getCount` on 10. No cursor and no link header is declared.
+    - project: Spinnaker
+      params: [limit]
+      note: >-
+        `limit` appears on 13 operations; no offset, page or cursor parameter is declared, so most
+        collection reads return an unbounded list.
+    - project: Jenkins (Pipeline Graph View plugin)
+      params: []
+      note: >-
+        The plugin API paginates nothing. The Jenkins MCP server's getBuildLog tool, by contrast,
+        implements real cursor pagination with a `nextCursor` echoed back as `cursor` — the most
+        developed pagination contract in the estate, and it exists only on the MCP surface.
+field_expansion:
+  supported: false
+  note: >-
+    No expand/fields/include parameter is declared in any contract. Jenkins' core remote-access API
+    (which publishes no OpenAPI) does support tree-based field selection via ?tree=, documented at
+    https://www.jenkins.io/doc/book/using/remote-access-api/.
+metadata:
+  supported: partial
+  note: >-
+    Screwdriver exposes build and event `meta` objects as first-class fields; JayeX and Tekton
+    carry Kubernetes labels and annotations on every object.
+request_tracing:
+  header: null
+  note: No request-id or correlation-id header is declared or returned in any harvested contract.
+versioning:
+  style: per-project
+  summary: >-
+    Screwdriver pins the version in the URI path (/v4/). Spinnaker and Jenkins version the software
+    release rather than the API. CDEvents versions the specification and stamps it into every
+    schema $id.
+  artifact: lifecycle/continuous-delivery-foundation-lifecycle.yml
+error_envelope:
+  format: vendor-specific
+  shapes:
+    - project: Screwdriver
+      shape: '{statusCode, error, message}'
+    - project: Jenkins (Pipeline Graph View plugin)
+      shape: '{status: "error", data: {error}}'
+    - project: Spinnaker
+      shape: undeclared
+  rfc9457: false
+  artifact: errors/continuous-delivery-foundation-problem-types.yml
+rate_limit_signaling:
+  response_headers: []
+  request_headers: [X-RateLimit-App]
+  note: >-
+    Spinnaker's Gate contract declares an OPTIONAL `X-RateLimit-App` REQUEST header on 47
+    operations — the caller labels itself so the operator's rate-limiting can attribute the call.
+    That is the inverse of the usual contract: it is an input, not a signal back. No project
+    declares an X-RateLimit-* or RateLimit-* RESPONSE header, and none documents a limit.
+  artifact: rate-limits/continuous-delivery-foundation-rate-limits.yml
+caching:
+  supported: partial
+  note: >-
+    The Jenkins Pipeline Graph View plugin is the only surface with conditional-request support: it
+    accepts `If-None-Match` and returns `ETag` plus `Cache-Control` on 3 operations.
+dry_run_mode:
+  supported: false
+  note: >-
+    No contract declares a dry-run, validate-only or preview parameter. The Kubernetes-shaped
+    surfaces (JayeX, Tekton) inherit kubectl's `--dry-run=server` at the cluster level, which is a
+    Kubernetes capability rather than one these projects document.
+reversibility:
+  grade: documented
+  note: >-
+    Reversal operations exist and are named in the contracts; NO project states a window in which a
+    reversal is valid, so this grades `documented` and not `verified`. Nothing here invents a
+    window.
+  write_surfaces:
+    - project: Screwdriver
+      reversal:
+        - action: stop a running event's builds
+          operation: putV4EventsIdStop
+          window: null
+        - action: delete a pipeline
+          operation: deleteV4PipelinesId
+          window: null
+          irreversible: true
+          note: no restore or undelete operation exists in the contract
+        - action: revoke a pipeline token
+          operation: deleteV4PipelinesIdTokens
+          window: null
+          irreversible: true
+        - action: remove a secret
+          operation: deleteV4SecretsId
+          window: null
+          irreversible: true
+      note: >-
+        The 152-operation contract contains 11 DELETE operations and one stop; not one has a paired
+        restore.
+    - project: Spinnaker
+      reversal:
+        - action: cancel a running pipeline execution
+          operation: cancelPipeline_1
+          window: null
+          note: the operation is itself marked deprecated:true in the published contract
+        - action: cancel a task
+          operation: cancelTask_1
+          window: null
+          note: also marked deprecated:true
+        - action: force-cancel an execution (admin)
+          operation: killZombie
+          window: null
+        - action: unpin an artifact version in an environment
+          operation: deletePin
+          window: null
+        - action: remove a veto on an artifact version
+          operation: deleteVeto
+          window: null
+        - action: clear a veto by marking a version good
+          operation: markGood
+          window: null
+      note: >-
+        Spinnaker has the richest reversal vocabulary in the estate — pin/unpin, veto/mark-good,
+        cancel, force-cancel — and it is the only one where reversal is a modelled domain concept
+        rather than a DELETE. Deleted delivery-config manifests and pipeline definitions have no
+        restore operation.
+    - project: Jenkins (Pipeline Graph View plugin)
+      reversal:
+        - action: cancel the running pipeline
+          operation: cancelPipeline
+          window: null
+          note: returns 400 when the pipeline is not running — the only stated precondition
+        - action: re-run a build
+          operation: rerunPipeline
+          window: null
+          note: forward-fix rather than a reversal; returns 400 when the build is not buildable
+    - project: CDEvents
+      reversal: []
+      note: read-only — a specification and a set of schemas, no write surface. `na`.
+cross_links:
+  errors: errors/continuous-delivery-foundation-problem-types.yml
+  lifecycle: lifecycle/continuous-delivery-foundation-lifecycle.yml
+  authentication: authentication/continuous-delivery-foundation-authentication.yml
+  rate_limits: rate-limits/continuous-delivery-foundation-rate-limits.yml
+  mcp: mcp/continuous-delivery-foundation-mcp.yml

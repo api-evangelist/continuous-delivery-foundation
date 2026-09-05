@@ -1,0 +1,91 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://jayex.io/v3/develop/reference/jx/ , https://spinnaker.io/docs/setup/other_config/spin/ ,
+  https://www.jenkins.io/doc/book/managing/cli/ , https://pypi.org/project/ortelius-cli/ ,
+  https://github.com/screwdriver-cd/sd-cmd
+note: >-
+  The Continuous Delivery Foundation ships no CLI. Four of its projects do, and they are the most
+  complete agent-usable surface in the estate — jx alone documents a command tree far larger than
+  any of the REST contracts harvested here. Binaries and package coordinates are catalogued in
+  packages/continuous-delivery-foundation-packages.yml; this artifact is the command surface.
+clis:
+  - name: jx
+    project: JayeX
+    description: >-
+      The JayeX (formerly Jenkins X) CLI — the primary interface to the product. Drives cluster
+      bootstrap, GitOps promotion, environments, previews and the Kubernetes CRDs whose Swagger 2.0
+      definitions are harvested to openapi/.
+    docs: https://jayex.io/v3/develop/reference/jx/
+    repository: https://github.com/jenkins-x/jx
+    version: v3.17.98
+    released: '2026-09-02'
+    install:
+      - brew install jenkins-x/jx/jx
+      - go install github.com/jenkins-x/jx@latest
+      - download a release binary from https://github.com/jenkins-x/jx/releases
+    command_groups:
+      - group: lifecycle
+        commands: [create, delete, destroy, install, upgrade, apply, import, clone, export]
+      - group: gitops
+        commands: [gitops, flux, argo, helm, helmfile, kpt, promote]
+      - group: environments and previews
+        commands: [environment, env, context, ingress, preview]
+      - group: pipelines and builds
+        commands: [build, activities, job, jobs, condition, changelog]
+      - group: inspection
+        commands: [get, edit, annotate, health, debug, grid, image, hash]
+      - group: platform
+        commands: [add, convert, copy, enable, escape, fmt, gc, git, jenkins, kube-test]
+    note: >-
+      Command list read from the published reference index at jayex.io/v3/develop/reference/jx/ —
+      each name above resolves to its own reference page there.
+  - name: spin
+    project: Spinnaker
+    description: >-
+      The first-party command-line client for the Spinnaker Gate API — the same API whose OpenAPI
+      3.1.0 contract is harvested to openapi/. Manages applications, pipelines, pipeline templates
+      and executions.
+    docs: https://spinnaker.io/docs/setup/other_config/spin/
+    repository: https://github.com/spinnaker/spin
+    version: v1.30.0
+    released: '2023-04-24'
+    install:
+      - go install github.com/spinnaker/spin@latest
+    note: >-
+      DECAY SIGNAL — the last tagged module release is April 2023 while Spinnaker itself shipped
+      release 2026.2.3 in July 2026. An operator on a current Spinnaker is driving it with a
+      three-year-old client.
+  - name: jenkins-cli
+    project: Jenkins
+    description: >-
+      The Jenkins CLI, distributed as jenkins-cli.jar from the running controller itself
+      (<jenkins-url>/jnlpJars/jenkins-cli.jar). Connects over SSH or HTTP and exposes build, job,
+      plugin, credential and node management.
+    docs: https://www.jenkins.io/doc/book/managing/cli/
+    install:
+      - curl -O <jenkins-url>/jnlpJars/jenkins-cli.jar
+    note: >-
+      Version-bound to the controller it was downloaded from, so no registry version applies. This
+      is the same core surface the Jenkins MCP server wraps.
+  - name: dh
+    project: Ortelius
+    description: >-
+      The Ortelius CLI — pushes component, SBOM and deployment evidence into the Ortelius supply
+      chain evidence store from inside a pipeline.
+    docs: https://github.com/ortelius/ortelius-cli
+    repository: https://github.com/ortelius/ortelius-cli
+    package: ortelius-cli
+    version: 9.3.281
+    released: '2025-04-01'
+    install:
+      - pip install ortelius-cli
+  - name: sd-cmd
+    project: Screwdriver
+    description: >-
+      Screwdriver's shared-command runner — resolves and executes versioned commands published to
+      the Screwdriver command registry from inside a build.
+    repository: https://github.com/screwdriver-cd/sd-cmd
+    note: >-
+      A build-time command runner rather than a general API client; Screwdriver publishes no
+      general-purpose CLI for the v4 REST API. docs.screwdriver.cd/user-guide/cli returns 404.

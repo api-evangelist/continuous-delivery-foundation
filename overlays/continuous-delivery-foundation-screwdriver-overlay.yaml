@@ -1,0 +1,18 @@
+# generated: 2026-09-05
+# method: generated
+# source: openapi/continuous-delivery-foundation-screwdriver-openapi.json
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Screwdriver v4 API
+  version: 1.0.0
+extends: openapi/continuous-delivery-foundation-screwdriver-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: continuous-delivery-foundation
+    x-apievangelist-project: Screwdriver v4 API
+    x-apievangelist-harvested: '2026-09-05'
+    x-apievangelist-source: https://api.screwdriver.cd/v4/openapi.json
+    x-apievangelist-shape: openapi 3.0.0, 119 paths, 152 operations
+    x-apievangelist-note: Screwdriver publishes a live OpenAPI on the API host root; no tags are declared and no
+      4xx/5xx responses are documented.

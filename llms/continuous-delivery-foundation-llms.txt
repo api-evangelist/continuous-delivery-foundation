@@ -1,0 +1,64 @@
+# CD Foundation
+> Open source community improving the world&#039;s ability to deliver software with security and speed.
+
+## Posts
+- [MCP Connects Tools, CDEvents Provides Meaning: Why Syntactic Message Passing Is Not Interoperability](https://cd.foundation/blog/2026/08/21/mcp-cdevents/): By pairing action-oriented agent protocols with an evolving CDEvents-native event mesh like Conduit, platform engineering teams can build autonomous pipelines that are flexible, transparent, and built to scale.
+- [Spinnaker: Full Roadmap & Upcoming Release](https://cd.foundation/blog/2026/08/18/spinnaker-roadmap/): What's next for Spinnaker? Find out in the release preview and roadmap
+- [Continuous Spotlight | Paweł Piwosz](https://cd.foundation/blog/2026/08/14/continuous-spotlight-pawel-piwosz/): Meet Pawel Piwosz, a member of our awesome Continuous Delivery Community.
+- [Intro to Deployment Strategies: Blue-Green, Canary, and More](https://cd.foundation/blog/2021/03/24/intro-to-deployment-strategies-blue-green-canary-and-more/): This post explores the different deployment strategies and practices to help you succeed with your production deployments.
+- [When the factory matters more than the code: securing CI/CD together](https://cd.foundation/blog/2026/07/27/when-factory-matters-more-than-code/): Supply-chain attacks have moved to the delivery layer, just as AI begins redrawing it. Why securing CI/CD has to become an open, community-maintained practice, not a script each team rebuilds alone.
+
+## Pages
+- [Training and Certification](https://cd.foundation/training/): Build your DevOps Career DevOps is at the core of the continuous delivery movement. Training and certifications from the Linux
+- [Home (2021)](https://cd.foundation/)
+- [Reports](https://cd.foundation/reports/): April 2024: State of CI/CD | The Evolution of Software Delivery Performance Read the Japanese version (PDF) of the State of
+- [Join the Community](https://cd.foundation/community/): Contribute to open source We welcome anyone to get involved and contribute to our technical and development communities at any
+- [Members](https://cd.foundation/members/): Organizations join CDF because they want to take an active role in supporting the growth and evolution of continuous delivery
+
+## Members
+- [Spacelift](https://cd.foundation/members/spacelift/)
+- [East China Normal University](https://cd.foundation/members/east-china-normal-university/)
+- [Shipa](https://cd.foundation/members/shipa/)
+- [AWS](https://cd.foundation/members/aws/)
+- [Testlio](https://cd.foundation/members/testlio/)
+
+## Venues
+- [Signia by Hilton](https://cd.foundation/venue/signia-by-hilton/)
+- [Vancouver Convention Centre](https://cd.foundation/venue/vancouver-convention-centre/)
+- [Huntington Place](https://cd.foundation/venue/huntington-place/)
+- [Convention Centre Dublin](https://cd.foundation/venue/convention-centre-dublin/)
+- [Pacifico Yokohama National Convention Hall](https://cd.foundation/venue/pacifico-yokohama-national-convention-hall/)
+
+## Organizers
+- [Google Summer of Code](https://cd.foundation/organizer/google-summer-of-code-2/)
+- [Google Summer of Code](https://cd.foundation/organizer/google-summer-of-code/)
+- [CDF Ambassadors](https://cd.foundation/organizer/cdf-ambassadors-2/)
+- [CDF Ambassadors](https://cd.foundation/organizer/cdf-ambassadors/)
+- [Techstrong](https://cd.foundation/organizer/techstrong-2/)
+
+## Events
+- [Open Source Summit Europe](https://cd.foundation/event/open-source-summit-europe-3/): Open Source Summit is the premier event for open source developers and contributors. It’s where maintainers, technologists, and community leaders come together to share knowledge, collaborate on solutions, and push open source projects forward. It’s the home for code, community, and the people driving the future of open source.
+
+## Categories
+- [Blog](https://cd.foundation/category/blog/)
+- [Staff](https://cd.foundation/category/blog/staff/)
+- [Community](https://cd.foundation/category/blog/community/)
+- [Project](https://cd.foundation/category/blog/project/)
+- [In The News](https://cd.foundation/category/in-the-news/)
+
+## Tags
+- [continuous delivery](https://cd.foundation/tag/continuous-delivery/)
+- [Jenkins](https://cd.foundation/tag/jenkins/)
+- [DevOps](https://cd.foundation/tag/devops/)
+- [cdcon](https://cd.foundation/tag/cdcon/)
+- [Tekton](https://cd.foundation/tag/tekton/)
+
+## Event Categories
+- [Continuous Delivery Foundation](https://cd.foundation/events/category/cdf/)
+- [Member](https://cd.foundation/events/category/member/)
+- [Jenkins](https://cd.foundation/events/category/jenkins/)
+- [Ortelius](https://cd.foundation/events/category/ortelius/)
+- [Linux Foundation](https://cd.foundation/events/category/linux-foundation/)
+
+## Optional
+- [Sitemap index](https://cd.foundation/wp-sitemap.xml)

@@ -1,0 +1,22 @@
+{
+    "linkset": [
+        {
+            "anchor": "https://cd.foundation/wp-json/",
+            "service-desc": [
+                {
+                    "href": "https://cd.foundation/wp-json/"
+                }
+            ],
+            "service-doc": [
+                {
+                    "href": "https://developer.wordpress.org/rest-api/"
+                }
+            ],
+            "status": [
+                {
+                    "href": "https://cd.foundation"
+                }
+            ]
+        }
+    ]
+}

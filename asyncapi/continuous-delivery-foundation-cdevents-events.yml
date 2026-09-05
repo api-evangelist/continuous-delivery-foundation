@@ -1,0 +1,215 @@
+generated: '2026-09-05'
+method: searched
+source: https://github.com/cdevents/spec (schemas/, spec.md, cloudevents-binding.md) and openapi/continuous-delivery-foundation-spinnaker-openapi.json
+spec_type: Webhooks
+asyncapi_published: false
+note: 'No AsyncAPI document is published anywhere in the CDF estate — searched the cdevents, cdfoundation,
+  spinnaker, screwdriver-cd, ortelius and jenkins-x GitHub organizations and probed /asyncapi.yaml on
+  every host; nothing. What DOES exist is a fully machine-readable event catalogue of a different shape:
+  CDEvents publishes 49 JSON Schema 2020-12 event definitions with a normative CloudEvents 1.0 binding,
+  and those events are already being received in production by a sibling project — Spinnaker''s Gate contract
+  declares POST /webhooks/cdevents/{source} taking a CloudEvent body. That is the event surface, recorded
+  as it actually is rather than converted into an AsyncAPI nobody published.'
+transport:
+  binding: CloudEvents 1.0
+  binding_doc: https://github.com/cdevents/spec/blob/main/cloudevents-binding.md
+  note: CloudEvents specversion MUST be 1.0; CDEvents context maps onto CloudEvents id/source/type/subject/time/datacontenttype/dataschema.
+receivers:
+- project: Spinnaker
+  operation: webhooks_1
+  method: POST
+  path: /webhooks/cdevents/{source}
+  body_schema: CloudEvent
+  summary: Endpoint for posting webhooks to Spinnaker's CDEvents webhook service
+  source: openapi/continuous-delivery-foundation-spinnaker-openapi.json
+  note: First-party, in-contract evidence that CDEvents is consumed and not just specified.
+- project: Spinnaker
+  operation: webhooks
+  method: POST
+  path: /webhooks/{type}/{source}
+  headers:
+  - X-Hub-Signature
+  - X-Event-Key
+  summary: Generic inbound webhook receiver (git provider style, HMAC-signed)
+  source: openapi/continuous-delivery-foundation-spinnaker-openapi.json
+- project: Spinnaker
+  operation: preconfiguredWebhooks
+  method: GET
+  path: /webhooks/preconfigured
+  summary: List the webhook stages an operator has preconfigured
+  source: openapi/continuous-delivery-foundation-spinnaker-openapi.json
+- project: Screwdriver
+  operation: postV4Webhooks
+  method: POST
+  path: /v4/webhooks
+  summary: Inbound SCM webhook receiver that starts pipeline events
+  source: openapi/continuous-delivery-foundation-screwdriver-openapi.json
+- project: Screwdriver
+  operation: postV4PipelinesIdSyncWebhooks
+  method: POST
+  path: /v4/pipelines/{id}/sync/webhooks
+  summary: Re-register the SCM webhooks for a pipeline
+  source: openapi/continuous-delivery-foundation-screwdriver-openapi.json
+event_catalog:
+  name: CDEvents
+  version: 0.6.0-draft
+  released_version: v0.5.1
+  schema_dialect: https://json-schema.org/draft/2020-12/schema
+  event_count: 49
+  docs: https://cdevents.dev/docs/
+  events:
+  - type: dev.cdevents.approval.closed.0.1.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/approval-closed-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-approvalclosed.json
+  - type: dev.cdevents.approval.created.0.1.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/approval-created-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-approvalcreated.json
+  - type: dev.cdevents.approval.updated.0.1.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/approval-updated-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-approvalupdated.json
+  - type: dev.cdevents.artifact.deleted.0.2.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/artifact-deleted-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-artifactdeleted.json
+  - type: dev.cdevents.artifact.downloaded.0.2.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/artifact-downloaded-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-artifactdownloaded.json
+  - type: dev.cdevents.artifact.packaged.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/artifact-packaged-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-artifactpackaged.json
+  - type: dev.cdevents.artifact.published.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/artifact-published-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-artifactpublished.json
+  - type: dev.cdevents.artifact.signed.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/artifact-signed-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-artifactsigned.json
+  - type: dev.cdevents.branch.created.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/branch-created-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-branchcreated.json
+  - type: dev.cdevents.branch.deleted.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/branch-deleted-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-branchdeleted.json
+  - type: dev.cdevents.build.finished.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/build-finished-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-buildfinished.json
+  - type: dev.cdevents.build.queued.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/build-queued-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-buildqueued.json
+  - type: dev.cdevents.build.started.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/build-started-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-buildstarted.json
+  - type: dev.cdevents.change.abandoned.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/change-abandoned-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-changeabandoned.json
+  - type: dev.cdevents.change.created.0.4.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/change-created-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-changecreated.json
+  - type: dev.cdevents.change.merged.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/change-merged-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-changemerged.json
+  - type: dev.cdevents.change.reviewed.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/change-reviewed-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-changereviewed.json
+  - type: dev.cdevents.change.updated.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/change-updated-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-changeupdated.json
+  - type: dev.cdevents.environment.created.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/environment-created-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-environmentcreated.json
+  - type: dev.cdevents.environment.deleted.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/environment-deleted-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-environmentdeleted.json
+  - type: dev.cdevents.environment.modified.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/environment-modified-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-environmentmodified.json
+  - type: dev.cdevents.incident.detected.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/incident-detected-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-incidentdetected.json
+  - type: dev.cdevents.incident.reported.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/incident-reported-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-incidentreported.json
+  - type: dev.cdevents.incident.resolved.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/incident-resolved-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-incidentresolved.json
+  - type: dev.cdevents.pipelinerun.finished.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/pipelinerun-finished-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-pipelinerunfinished.json
+  - type: dev.cdevents.pipelinerun.queued.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/pipelinerun-queued-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-pipelinerunqueued.json
+  - type: dev.cdevents.pipelinerun.started.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/pipelinerun-started-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-pipelinerunstarted.json
+  - type: dev.cdevents.repository.created.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/repository-created-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-repositorycreated.json
+  - type: dev.cdevents.repository.deleted.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/repository-deleted-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-repositorydeleted.json
+  - type: dev.cdevents.repository.modified.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/repository-modified-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-repositorymodified.json
+  - type: dev.cdevents.service.deployed.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/service-deployed-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-servicedeployed.json
+  - type: dev.cdevents.service.published.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/service-published-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-servicepublished.json
+  - type: dev.cdevents.service.removed.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/service-removed-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-serviceremoved.json
+  - type: dev.cdevents.service.rolledback.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/service-rolledback-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-servicerolledback.json
+  - type: dev.cdevents.service.upgraded.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/service-upgraded-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-serviceupgraded.json
+  - type: dev.cdevents.taskrun.finished.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/taskrun-finished-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-taskrunfinished.json
+  - type: dev.cdevents.taskrun.queued.0.1.0-draft
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/taskrun-queued-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-taskrunqueued.json
+  - type: dev.cdevents.taskrun.started.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/taskrun-started-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-taskrunstarted.json
+  - type: dev.cdevents.testcaserun.finished.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/testcaserun-finished-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-testcaserunfinished.json
+  - type: dev.cdevents.testcaserun.queued.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/testcaserun-queued-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-testcaserunqueued.json
+  - type: dev.cdevents.testcaserun.skipped.0.2.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/testcaserun-skipped-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-testcaserunskipped.json
+  - type: dev.cdevents.testcaserun.started.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/testcaserun-started-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-testcaserunstarted.json
+  - type: dev.cdevents.testoutput.published.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/test-output-published-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-testoutputpublished.json
+  - type: dev.cdevents.testsuiterun.finished.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/testsuiterun-finished-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-testsuiterunfinished.json
+  - type: dev.cdevents.testsuiterun.queued.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/testsuiterun-queued-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-testsuiterunqueued.json
+  - type: dev.cdevents.testsuiterun.started.0.3.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/testsuiterun-started-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-testsuiterunstarted.json
+  - type: dev.cdevents.ticket.closed.0.2.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/ticket-closed-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-ticketclosed.json
+  - type: dev.cdevents.ticket.created.0.2.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/ticket-created-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-ticketcreated.json
+  - type: dev.cdevents.ticket.updated.0.2.0
+    schema_id: https://cdevents.dev/0.6.0-draft/schema/ticket-updated-event
+    file: json-schema/cdevents/continuous-delivery-foundation-cdevents-ticketupdated.json
+graphql:
+  project: Spinnaker
+  endpoint: /managed/graphql
+  operation: graphql
+  introspected: false
+  note: 'Spinnaker Managed Delivery declares a GraphQL endpoint in its OpenAPI. It could not be introspected:
+    Spinnaker is self-hosted and no public instance exists to POST an introspection query to, so no SDL
+    is recorded. Not fabricated.'

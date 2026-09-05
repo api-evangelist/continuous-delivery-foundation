@@ -1,0 +1,31 @@
+generated: '2026-09-05'
+method: generated
+source: >-
+  openapi/ (Screwdriver, Spinnaker), mcp/continuous-delivery-foundation-mcp.yml,
+  json-schema/cdevents/
+note: >-
+  Five skills, one per marquee flow, each grounded in operationIds or tool names that were read out
+  of a harvested contract — never invented. No CDF project publishes its own AGENTS.md or skill
+  files; these are generated. Jenkins core, Ortelius and JayeX get no skill because none of them
+  publishes an OpenAPI to ground one in.
+skills:
+  - file: continuous-delivery-foundation-screwdriver-run-pipeline.md
+    name: Run a Screwdriver pipeline and follow it to completion
+    api: openapi/continuous-delivery-foundation-screwdriver-openapi.json
+    operations: [getV4AuthContexts, getV4Pipelines, getV4PipelinesId, getV4PipelinesIdJobs, postV4Events, getV4EventsId, getV4EventsIdBuilds, getV4BuildsId, getV4BuildsIdSteps, getV4BuildsIdStepsNameLogs, putV4EventsIdStop]
+  - file: continuous-delivery-foundation-spinnaker-trigger-execution.md
+    name: Trigger and track a Spinnaker pipeline execution
+    api: openapi/continuous-delivery-foundation-spinnaker-openapi.json
+    operations: [getAllApplications, getApplication, getPipelineConfigsForApplication, invokePipelineConfig, getPipelines, getPipeline, getFailedStagesForPipelineExecution, pausePipeline, resumePipeline, restartStage, cancelPipeline, searchForPipelineExecutionsByTrigger]
+  - file: continuous-delivery-foundation-spinnaker-managed-delivery-guardrails.md
+    name: Hold a Spinnaker Managed Delivery rollout with pins and vetoes
+    api: openapi/continuous-delivery-foundation-spinnaker-openapi.json
+    operations: [getApplicationDetails, getConfigBy, getConstraintState, updateConstraintStatus, pauseApplication, resumeApplication, createPin, deletePin, veto, markBad, markGood, deleteVeto]
+  - file: continuous-delivery-foundation-cdevents-emit-and-consume.md
+    name: Emit and consume CDEvents
+    api: json-schema/cdevents/
+    operations: [webhooks_1, preconfiguredWebhooks]
+  - file: continuous-delivery-foundation-jenkins-mcp-operate.md
+    name: Operate Jenkins through its MCP server
+    api: mcp/continuous-delivery-foundation-mcp.yml
+    operations: [getJobs, getJob, triggerBuild, getQueueItem, getBuild, getBuildLog, searchBuildLog, getTestResults, getBuildChangeSets, rebuildBuild, getStatus, whoAmI]

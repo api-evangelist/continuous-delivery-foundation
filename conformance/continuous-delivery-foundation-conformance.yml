@@ -1,0 +1,106 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  github.com/cdevents/spec (spec.md, cloudevents-binding.md, schemas/), the harvested OpenAPI
+  documents in openapi/, and the live /.well-known/ probe recorded in well-known/
+note: >-
+  Every entry below is evidenced against a document that was fetched, not against a marketing
+  claim. Nothing is asserted for the Continuous Delivery Foundation as a legal entity; the
+  conformance recorded here belongs to the specifications and API surfaces its projects publish.
+standards:
+  - id: cloudevents-1.0
+    conforms: true
+    evidence: >-
+      cdevents/spec/cloudevents-binding.md — a normative CloudEvents Binding for CDEvents which
+      states the CloudEvents specversion MUST be set to 1.0 and maps every CDEvents context field
+      onto CloudEvents attributes (id, source, type, subject, time, datacontenttype, dataschema).
+    url: https://github.com/cdevents/spec/blob/main/cloudevents-binding.md
+  - id: json-schema-2020-12
+    conforms: true
+    evidence: >-
+      All 49 CDEvents event schemas harvested to json-schema/cdevents/ declare
+      "$schema": "https://json-schema.org/draft/2020-12/schema" and carry an $id under
+      https://cdevents.dev/0.6.0-draft/schema/.
+    url: https://github.com/cdevents/spec/tree/main/schemas
+  - id: openapi-3.0
+    conforms: true
+    evidence: >-
+      Screwdriver serves openapi 3.0.0 with 119 paths / 152 operations at
+      https://api.screwdriver.cd/v4/openapi.json.
+  - id: openapi-3.1
+    conforms: true
+    evidence: >-
+      Spinnaker publishes openapi 3.1.0 (245 paths / 288 operations) at
+      https://spinnaker.io/docs/reference/api/swagger.json; the Jenkins Pipeline Graph View plugin
+      publishes openapi 3.1.0 in its own repository.
+  - id: swagger-2.0
+    conforms: true
+    evidence: >-
+      JayeX (jenkins-x/jx-api) publishes a Swagger 2.0 definition document with 249 CRD type
+      definitions at hack/apidocs/openapi-spec/openapiv2.json.
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: >-
+      https://www.jenkins.io/.well-known/security.txt returns 200 text/plain with Contact, Policy,
+      Preferred-Languages, Expires and Canonical fields. Probed 2026-09-05.
+    url: https://www.jenkins.io/.well-known/security.txt
+  - id: rfc9727-api-catalog
+    conforms: true
+    evidence: >-
+      https://cd.foundation/.well-known/api-catalog returns 200 application/linkset+json with a
+      linkset anchoring https://cd.foundation/wp-json/ and a service-doc link. Probed 2026-09-05.
+    url: https://cd.foundation/.well-known/api-catalog
+  - id: rfc7519-jwt
+    conforms: true
+    evidence: >-
+      Screwdriver's OpenAPI declares a single security scheme named "jwt" (apiKey, in header,
+      Authorization) applied globally via a top-level security requirement.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      No harvested contract declares application/problem+json. Screwdriver's live error envelope
+      is the hapi/Boom shape {statusCode, error, message}; the Jenkins Pipeline Graph View plugin
+      returns application/json error objects of its own design.
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No securityScheme of type oauth2 appears in any of the four harvested contracts. Jenkins,
+      Spinnaker and Screwdriver delegate operator login to external identity providers, which is a
+      deployment concern rather than a published API contract.
+  - id: openid-connect
+    conforms: false
+    evidence: /.well-known/openid-configuration returned 404 on all 12 hosts probed 2026-09-05.
+  - id: json-api
+    conforms: false
+    evidence: no application/vnd.api+json media type in any harvested contract
+  - id: odata
+    conforms: false
+  - id: scim
+    conforms: false
+  - id: fhir
+    conforms: false
+domain_standards:
+  - id: cdevents
+    name: CDEvents
+    conforms: true
+    role: steward
+    evidence: >-
+      CDEvents IS the domain standard for this market — a common vocabulary for continuous
+      delivery events — and the Continuous Delivery Foundation is the body that publishes it. The
+      contract is machine-readable and was harvested: 49 JSON Schema 2020-12 event definitions
+      under json-schema/cdevents/, spanning the core, source-code-control, continuous-integration,
+      testing, continuous-deployment, continuous-operations and ticket vocabularies. Each schema
+      carries an $id of the form https://cdevents.dev/0.6.0-draft/schema/<event>, which is the
+      versioned identifier a consumer matches on.
+    version: 0.6.0-draft
+    url: https://cdevents.dev/
+    schemas: json-schema/cdevents/
+  - id: cloudevents
+    name: CloudEvents
+    conforms: true
+    role: adopter
+    evidence: >-
+      CDEvents does not invent its own transport. cloudevents-binding.md pins CloudEvents
+      specversion 1.0 and defines the mapping, so a consumer that already speaks CloudEvents
+      integrates with no bespoke connector.
+    url: https://cloudevents.io/

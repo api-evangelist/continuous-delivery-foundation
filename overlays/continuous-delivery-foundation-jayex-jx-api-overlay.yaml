@@ -1,0 +1,18 @@
+# generated: 2026-09-05
+# method: generated
+# source: openapi/continuous-delivery-foundation-jayex-jx-api-openapi.json
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for JayeX (jx-api) type definitions
+  version: 1.0.0
+extends: openapi/continuous-delivery-foundation-jayex-jx-api-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: continuous-delivery-foundation
+    x-apievangelist-project: JayeX (jx-api) type definitions
+    x-apievangelist-harvested: '2026-09-05'
+    x-apievangelist-source: https://github.com/jenkins-x/jx-api/blob/master/hack/apidocs/openapi-spec/openapiv2.json
+    x-apievangelist-shape: swagger 2.0, 249 definitions, 0 paths
+    x-apievangelist-note: 'A Kubernetes CRD type catalogue: 249 definitions in the jenkins.io/v1 group and no HTTP
+      paths. It is a real published contract, but it describes types, not operations.'

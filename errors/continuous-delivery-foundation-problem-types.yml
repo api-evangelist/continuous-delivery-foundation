@@ -1,0 +1,112 @@
+generated: '2026-09-05'
+method: derived
+source: >-
+  openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml (declared 4xx/5xx
+  responses) and live unauthenticated probes of https://api.screwdriver.cd/v4/ (observed error
+  envelopes)
+format: vendor-specific
+note: >-
+  NO contract in this estate uses RFC 9457 problem+json. Two distinct error envelopes are in use
+  and they do not resemble each other, which is the finding: an agent working across CDF projects
+  cannot parse errors with one handler. Screwdriver returns the hapi/Boom envelope
+  {statusCode, error, message} — observed live, not inferred. The Jenkins Pipeline Graph View
+  plugin returns {status: "error", data: {error: <message>}}. Spinnaker's published Gate contract
+  (288 operations) declares NO 4xx or 5xx response on any operation at all, so nothing about its
+  failure modes can be derived from the contract; that gap is recorded rather than filled.
+envelopes:
+  - project: Screwdriver
+    shape: {statusCode: integer, error: string, message: string}
+    media_type: application/json
+    evidence: >-
+      GET https://api.screwdriver.cd/v4/doesnotexist -> 404
+      {"statusCode":404,"error":"Not Found","message":"Not Found"};
+      GET https://api.screwdriver.cd/v4/tokens -> 401
+      {"statusCode":401,"error":"Unauthorized","message":"Missing authentication"}.
+      Probed 2026-09-05.
+    note: hapi/Boom default envelope — Screwdriver's API server is a hapi application
+  - project: Jenkins (Pipeline Graph View plugin)
+    shape: {status: "error", data: {error: string}}
+    media_type: application/json
+    evidence: components.schemas.ErrorResponse in the plugin's published OpenAPI 3.1.0
+  - project: Spinnaker
+    shape: null
+    media_type: null
+    evidence: >-
+      No operation in the 288-operation Gate contract declares a 4xx or 5xx response. Not derived.
+problems:
+  - status: 401
+    title: Missing authentication
+    detail: No JWT was presented on a route that requires one.
+    envelope: '{"statusCode":401,"error":"Unauthorized","message":"Missing authentication"}'
+    project: Screwdriver
+    source: probed https://api.screwdriver.cd/v4/tokens on 2026-09-05
+    remediation: >-
+      Obtain a JWT from /v4/auth/token and send it as the Authorization header, per the "jwt"
+      security scheme declared in the OpenAPI.
+  - status: 404
+    title: Not Found
+    detail: The route or resource does not exist.
+    envelope: '{"statusCode":404,"error":"Not Found","message":"Not Found"}'
+    project: Screwdriver
+    source: probed https://api.screwdriver.cd/v4/doesnotexist on 2026-09-05
+  - status: 400
+    title: Missing or invalid nodeId parameter
+    project: Jenkins (Pipeline Graph View plugin)
+    source_operation: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml#getStepsByNode
+    schema: ErrorResponse
+  - status: 400
+    title: Missing or invalid parameters
+    project: Jenkins (Pipeline Graph View plugin)
+    source_operation: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml#getExceptionText
+    schema: text/plain string
+    note: the one operation that returns its error as plain text rather than the JSON envelope
+  - status: 400
+    title: Missing nodeId parameter
+    project: Jenkins (Pipeline Graph View plugin)
+    source_operation: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml#getConsoleText
+    schema: null
+    note: declared with a description but no response body schema
+  - status: 400
+    title: Missing or invalid queueId
+    project: Jenkins (Pipeline Graph View plugin)
+    source_operation: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml#hasNextBuild
+    schema: ErrorResponse
+  - status: 400
+    title: Build cannot be rerun (not buildable)
+    project: Jenkins (Pipeline Graph View plugin)
+    source_operation: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml#rerunPipeline
+    schema: ErrorResponse
+  - status: 403
+    title: Insufficient permissions
+    project: Jenkins (Pipeline Graph View plugin)
+    source_operation: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml#rerunPipeline
+    remediation: the caller needs Jenkins BUILD permission on the job
+  - status: 400
+    title: Pipeline cannot be cancelled (not running)
+    project: Jenkins (Pipeline Graph View plugin)
+    source_operation: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml#cancelPipeline
+    schema: ErrorResponse
+  - status: 403
+    title: Insufficient permissions
+    project: Jenkins (Pipeline Graph View plugin)
+    source_operation: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml#cancelPipeline
+    remediation: the caller needs Jenkins CANCEL permission on the job
+  - status: 500
+    title: Internal server error
+    project: Jenkins (Pipeline Graph View plugin)
+    source_operation: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml#getPipelineTree
+    schema: ErrorResponse
+  - status: 500
+    title: Internal server error
+    project: Jenkins (Pipeline Graph View plugin)
+    source_operation: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml#getAllSteps
+    schema: ErrorResponse
+gaps:
+  - project: Screwdriver
+    gap: >-
+      152 operations, zero declared 4xx/5xx responses. Every error shape recorded above for
+      Screwdriver came from a live probe, not from the contract.
+  - project: Spinnaker
+    gap: 288 operations, zero declared 4xx/5xx responses, and no anonymous host to probe.
+  - project: JayeX
+    gap: the published Swagger 2.0 document defines 249 types and no paths, so it declares no errors.

@@ -46,7 +46,7 @@ tags_raw:
   - Linux Foundation
   - Open Source
 created: '2026-03-16'
-modified: '2026-04-28'
+modified: '2026-09-05'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/continuous-delivery-foundation/refs/heads/main/apis.yml
 specificationVersion: '0.23'
@@ -82,6 +82,10 @@ apis:
         url: https://github.com/cdevents
       - type: Community
         url: https://cdevents.dev/community/
+      - type: JSONSchema
+        url: json-schema/continuous-delivery-foundation-cdevents-schemas.yml
+      - type: Webhooks
+        url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
 
   - aid: continuous-delivery-foundation:jenkins
     name: Jenkins
@@ -107,6 +111,21 @@ apis:
         url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
       - type: GitHubOrg
         url: https://github.com/jenkinsci
+      - type: OpenAPI
+        name: Jenkins Pipeline Graph View plugin API
+        url: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml
+      - type: Overlay
+        url: overlays/continuous-delivery-foundation-jenkins-pipeline-graph-view-overlay.yaml
+      - type: MCPServer
+        url: mcp/continuous-delivery-foundation-mcp.yml
+      - type: ToolCrosswalk
+        url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+      - type: StatusPage
+        url: https://status.jenkins.io/
+      - type: Security
+        url: https://www.jenkins.io/security/reporting/
+      - type: ChangeLog
+        url: https://www.jenkins.io/changelog/
 
   - aid: continuous-delivery-foundation:spinnaker
     name: Spinnaker
@@ -138,6 +157,17 @@ apis:
         url: https://spinnaker.io/docs/community/
       - type: GitHubOrg
         url: https://github.com/spinnaker
+      - type: OpenAPI
+        name: Spinnaker Gate API
+        url: openapi/continuous-delivery-foundation-spinnaker-openapi.json
+      - type: Overlay
+        url: overlays/continuous-delivery-foundation-spinnaker-overlay.yaml
+      - type: Webhooks
+        url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+      - type: ChangeLog
+        url: https://spinnaker.io/docs/releases/versions/
+      - type: CLI
+        url: https://spinnaker.io/docs/setup/other_config/spin/
 
   - aid: continuous-delivery-foundation:screwdriver
     name: Screwdriver
@@ -147,6 +177,7 @@ apis:
       managing pipelines, builds, jobs, and webhooks and is designed to
       coordinate complex CD workflows across multiple repositories.
     humanURL: https://screwdriver.cd/
+    baseURL: https://api.screwdriver.cd/
     tags:
       - Builds
       - CD
@@ -163,11 +194,16 @@ apis:
       - type: Documentation
         url: https://docs.screwdriver.cd/
       - type: APIDocumentation
-        url: https://docs.screwdriver.cd/api/
+        url: https://docs.screwdriver.cd/user-guide/api
       - type: GettingStarted
         url: https://docs.screwdriver.cd/user-guide/quickstart
       - type: GitHubOrg
         url: https://github.com/screwdriver-cd
+      - type: OpenAPI
+        name: Screwdriver v4 API
+        url: openapi/continuous-delivery-foundation-screwdriver-openapi.json
+      - type: Overlay
+        url: overlays/continuous-delivery-foundation-screwdriver-overlay.yaml
 
   - aid: continuous-delivery-foundation:ortelius
     name: Ortelius
@@ -214,6 +250,44 @@ apis:
         url: https://jayex.io/v3/
       - type: Community
         url: https://jayex.io/community/
+      - type: OpenAPI
+        name: JayeX (jx-api) type definitions
+        url: openapi/continuous-delivery-foundation-jayex-jx-api-openapi.json
+      - type: Overlay
+        url: overlays/continuous-delivery-foundation-jayex-jx-api-overlay.yaml
+      - type: CLI
+        url: https://jayex.io/v3/develop/reference/jx/
+
+  - aid: continuous-delivery-foundation:content-api
+    name: CD Foundation Content API
+    description: >-
+      The Continuous Delivery Foundation publishes a machine-readable index of its own website
+      content. The foundation serves an RFC 9727 API catalog at /.well-known/api-catalog which
+      anchors https://cd.foundation/wp-json/ as the service description; that endpoint returns a
+      WordPress REST API index of 175 routes across 18 namespaces, including wp/v2 for posts,
+      pages and members, and tribe/events/v1 for the CDF event calendar. It is read-oriented and
+      requires no key for public content; write access uses WordPress application passwords.
+    humanURL: https://cd.foundation/
+    baseURL: https://cd.foundation/wp-json/
+    tags:
+      - Content
+      - Events
+      - Open-Source
+      - REST
+      - WordPress
+    tags_raw:
+      - Content
+      - Events
+      - Open Source
+      - REST
+      - WordPress
+    properties:
+      - type: APICatalog
+        url: well-known/continuous-delivery-foundation-api-catalog.json
+      - type: Documentation
+        url: https://developer.wordpress.org/rest-api/
+      - type: Blog
+        url: https://cd.foundation/blog/
 
   - aid: continuous-delivery-foundation:tekton
     name: Tekton
@@ -233,11 +307,15 @@ apis:
       - type: Documentation
         url: https://tekton.dev/docs/
       - type: APIDocumentation
-        url: https://tekton.dev/docs/pipelines/api/
+        url: https://tekton.dev/docs/pipelines/pipeline-api/
       - type: GitHubOrg
         url: https://github.com/tektoncd
 
 common:
+  - type: VulnerabilityDisclosure
+    url: security/continuous-delivery-foundation-vulnerability-disclosure.yml
+  - type: Authentication
+    url: authentication/continuous-delivery-foundation-authentication.yml
   - type: DomainSecurity
     url: security/continuous-delivery-foundation-domain-security.yml
   - type: LinkedIn
@@ -259,6 +337,67 @@ common:
   - type: Events
     url: https://cd.foundation/events/
 
+  - type: WellKnown
+    url: well-known/continuous-delivery-foundation-well-known.yml
+  - type: APICatalog
+    url: well-known/continuous-delivery-foundation-api-catalog.json
+  - type: SecurityTxt
+    url: well-known/continuous-delivery-foundation-security.txt
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: LLMsTxt
+    url: llms/continuous-delivery-foundation-llms.txt
+  - type: MCPServer
+    url: mcp/continuous-delivery-foundation-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Packages
+    url: packages/continuous-delivery-foundation-packages.yml
+  - type: SDKs
+    url: packages/continuous-delivery-foundation-packages.yml
+  - type: CLI
+    url: cli/continuous-delivery-foundation-cli.yml
+  - type: Conformance
+    url: conformance/continuous-delivery-foundation-conformance.yml
+  - type: ErrorCatalog
+    url: errors/continuous-delivery-foundation-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/continuous-delivery-foundation-lifecycle.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Conventions
+    url: conventions/continuous-delivery-foundation-conventions.yml
+  - type: ChangeLog
+    url: changelog/continuous-delivery-foundation-changelog.yml
+  - type: DataModel
+    url: data-model/continuous-delivery-foundation-data-model.yml
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: JSONSchema
+    url: json-schema/continuous-delivery-foundation-cdevents-schemas.yml
+  - type: Plans
+    url: plans/continuous-delivery-foundation-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/continuous-delivery-foundation-rate-limits.yml
+  - type: FinOps
+    url: finops/continuous-delivery-foundation-finops.yml
+  - type: TermsOfService
+    url: https://www.linuxfoundation.org/legal/terms
+  - type: PrivacyPolicy
+    url: https://www.linuxfoundation.org/legal/privacy-policy
+  - type: Training
+    url: https://cd.foundation/training/
+  - type: Newsletter
+    url: https://cd.foundation/newsletter/
+
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+
+x-enrichment:
+  date: '2026-09-05'
+  status: enriched
+  artifacts_added: 87
+  pass: local-v3
