@@ -36,7 +36,6 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/continuous
 tags:
   - Automation
   - CI/CD
-  - Developer Tools
   - DevOps
   - Linux Foundation
   - Open-Source
@@ -52,267 +51,4217 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/continuous-delivery-foundation/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
-  - aid: continuous-delivery-foundation:cdevents
-    name: CDEvents Specification
-    description: >-
-      CDEvents is a common specification for Continuous Delivery events that
-      enables interoperability across CI/CD systems. It extends the
-      CloudEvents specification and defines event vocabularies for source
-      code control, continuous integration, testing, continuous deployment,
-      continuous operations, and core lifecycle events. The specification is
-      maintained at github.com/cdevents/spec.
-    humanURL: https://cdevents.dev/
-    tags:
-      - CDEvents
-      - CI/CD
-      - CloudEvents
-      - Event
-      - Specification
-    tags_raw:
-      - CDEvents
-      - CI/CD
-      - CloudEvents
-      - Events
-      - Specification
-    properties:
-      - type: Documentation
-        url: https://cdevents.dev/docs/
-      - type: Specification
-        url: https://github.com/cdevents/spec
-      - type: GitHubOrg
-        url: https://github.com/cdevents
-      - type: Community
-        url: https://cdevents.dev/community/
-      - type: JSONSchema
-        url: json-schema/continuous-delivery-foundation-cdevents-schemas.yml
-      - type: Webhooks
-        url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
-
-  - aid: continuous-delivery-foundation:jenkins
-    name: Jenkins
-    description: >-
-      Jenkins is the leading open source automation server, providing
-      hundreds of plugins for building, deploying, and automating software
-      projects. Jenkins exposes a remote access REST API that supports XML,
-      JSON, and Python representations and is the de facto standard
-      automation engine for many organizations.
-    humanURL: https://www.jenkins.io/
-    tags:
-      - Automation
-      - CI/CD
-      - Jenkins
-      - Pipelines
-      - REST
-    properties:
-      - type: Documentation
-        url: https://www.jenkins.io/doc/
-      - type: APIDocumentation
-        url: https://www.jenkins.io/doc/book/using/remote-access-api/
-      - type: GettingStarted
-        url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
-      - type: GitHubOrg
-        url: https://github.com/jenkinsci
-      - type: OpenAPI
-        name: Jenkins Pipeline Graph View plugin API
-        url: openapi/continuous-delivery-foundation-jenkins-pipeline-graph-view-openapi.yaml
-      - type: Overlay
-        url: overlays/continuous-delivery-foundation-jenkins-pipeline-graph-view-overlay.yaml
-      - type: MCPServer
-        url: mcp/continuous-delivery-foundation-mcp.yml
-      - type: ToolCrosswalk
-        url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
-      - type: StatusPage
-        url: https://status.jenkins.io/
-      - type: Security
-        url: https://www.jenkins.io/security/reporting/
-      - type: ChangeLog
-        url: https://www.jenkins.io/changelog/
-
-  - aid: continuous-delivery-foundation:spinnaker
-    name: Spinnaker
-    description: >-
-      Spinnaker is an open-source, multi-cloud continuous delivery platform
-      originally built at Netflix and Google for releasing software changes
-      with high velocity and confidence. Spinnaker exposes a Gate REST API
-      that drives pipelines, applications, and deployment workflows across
-      AWS, GCP, Azure, Kubernetes, and other cloud targets.
-    humanURL: https://spinnaker.io/
-    tags:
-      - CD
-      - Cloud
-      - Deployment
-      - Multi-Cloud
-      - Spinnaker
-    tags_raw:
-      - CD
-      - Cloud
-      - Deployment
-      - Multi-cloud
-      - Spinnaker
-    properties:
-      - type: Documentation
-        url: https://spinnaker.io/docs/
-      - type: APIDocumentation
-        url: https://spinnaker.io/docs/reference/api/
-      - type: Community
-        url: https://spinnaker.io/docs/community/
-      - type: GitHubOrg
-        url: https://github.com/spinnaker
-      - type: OpenAPI
-        name: Spinnaker Gate API
-        url: openapi/continuous-delivery-foundation-spinnaker-openapi.json
-      - type: Overlay
-        url: overlays/continuous-delivery-foundation-spinnaker-overlay.yaml
-      - type: Webhooks
-        url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
-      - type: ChangeLog
-        url: https://spinnaker.io/docs/releases/versions/
-      - type: CLI
-        url: https://spinnaker.io/docs/setup/other_config/spin/
-
-  - aid: continuous-delivery-foundation:screwdriver
-    name: Screwdriver
-    description: >-
-      Screwdriver is an open-source build platform designed for Continuous
-      Delivery, originally built at Yahoo. It provides a REST API for
-      managing pipelines, builds, jobs, and webhooks and is designed to
-      coordinate complex CD workflows across multiple repositories.
-    humanURL: https://screwdriver.cd/
-    baseURL: https://api.screwdriver.cd/
-    tags:
-      - Builds
-      - CD
-      - CI/CD
-      - Pipelines
-      - Screwdriver
-    tags_raw:
-      - Build
-      - CD
-      - CI/CD
-      - Pipelines
-      - Screwdriver
-    properties:
-      - type: Documentation
-        url: https://docs.screwdriver.cd/
-      - type: APIDocumentation
-        url: https://docs.screwdriver.cd/user-guide/api
-      - type: GettingStarted
-        url: https://docs.screwdriver.cd/user-guide/quickstart
-      - type: GitHubOrg
-        url: https://github.com/screwdriver-cd
-      - type: OpenAPI
-        name: Screwdriver v4 API
-        url: openapi/continuous-delivery-foundation-screwdriver-openapi.json
-      - type: Overlay
-        url: overlays/continuous-delivery-foundation-screwdriver-overlay.yaml
-
-  - aid: continuous-delivery-foundation:ortelius
-    name: Ortelius
-    description: >-
-      Ortelius is an open source supply chain evidence store that aggregates
-      continuous security intelligence across the software delivery
-      lifecycle. It exposes APIs for tracking microservice components, SBOMs,
-      vulnerabilities, and deployment evidence so platform teams can answer
-      where any component is running and what is in it.
-    humanURL: https://ortelius.io/
-    tags:
-      - Evidence Store
-      - SBOM
-      - Supply Chain
-      - Security
-    properties:
-      - type: Documentation
-        url: https://docs.ortelius.io/
-      - type: GettingStarted
-        url: https://docs.ortelius.io/guides/
-      - type: GitHubOrg
-        url: https://github.com/ortelius
-
-  - aid: continuous-delivery-foundation:jayex
-    name: JayeX
-    description: >-
-      JayeX is a customizable cloud developer tool suite hosted by the
-      Continuous Delivery Foundation that provides built-in CI/CD
-      capabilities and developer self-service tooling for cloud-native
-      teams.
-    humanURL: https://jayex.io/
-    tags:
-      - CI/CD
-      - Cloud-Native
-      - Developer Tools
-      - Platform
-    tags_raw:
-      - CI/CD
-      - Cloud Native
-      - Developer Tools
-      - Platform
-    properties:
-      - type: Documentation
-        url: https://jayex.io/v3/
-      - type: Community
-        url: https://jayex.io/community/
-      - type: OpenAPI
-        name: JayeX (jx-api) type definitions
-        url: openapi/continuous-delivery-foundation-jayex-jx-api-openapi.json
-      - type: Overlay
-        url: overlays/continuous-delivery-foundation-jayex-jx-api-overlay.yaml
-      - type: CLI
-        url: https://jayex.io/v3/develop/reference/jx/
-
-  - aid: continuous-delivery-foundation:content-api
-    name: CD Foundation Content API
-    description: >-
-      The Continuous Delivery Foundation publishes a machine-readable index of its own website
-      content. The foundation serves an RFC 9727 API catalog at /.well-known/api-catalog which
-      anchors https://cd.foundation/wp-json/ as the service description; that endpoint returns a
-      WordPress REST API index of 175 routes across 18 namespaces, including wp/v2 for posts,
-      pages and members, and tribe/events/v1 for the CDF event calendar. It is read-oriented and
-      requires no key for public content; write access uses WordPress application passwords.
-    humanURL: https://cd.foundation/
-    baseURL: https://cd.foundation/wp-json/
-    tags:
-      - Content
-      - Events
-      - Open-Source
-      - REST
-      - WordPress
-    tags_raw:
-      - Content
-      - Events
-      - Open Source
-      - REST
-      - WordPress
-    properties:
-      - type: APICatalog
-        url: well-known/continuous-delivery-foundation-api-catalog.json
-      - type: Documentation
-        url: https://developer.wordpress.org/rest-api/
-      - type: Blog
-        url: https://cd.foundation/blog/
-
-  - aid: continuous-delivery-foundation:tekton
-    name: Tekton
-    description: >-
-      Tekton is a Kubernetes-native open source framework for creating CI/CD
-      systems. It defines Custom Resource Definitions for Pipelines, Tasks,
-      PipelineRuns, and TaskRuns and was originally hosted at the CDF before
-      moving to the Cloud Native Computing Foundation (CNCF). It is included
-      here for historical context with the CDF ecosystem.
-    humanURL: https://tekton.dev/
-    tags:
-      - CI/CD
-      - Kubernetes
-      - Pipelines
-      - Tekton
-    properties:
-      - type: Documentation
-        url: https://tekton.dev/docs/
-      - type: APIDocumentation
-        url: https://tekton.dev/docs/pipelines/pipeline-api/
-      - type: GitHubOrg
-        url: https://github.com/tektoncd
-
+- aid: continuous-delivery-foundation:cdevents
+  name: CDEvents Specification
+  description: >-
+    CDEvents is a common specification for Continuous Delivery events that enables interoperability across
+    CI/CD systems. It extends the CloudEvents specification and defines event vocabularies for source
+    code control, continuous integration, testing, continuous deployment, continuous operations, and core
+    lifecycle events. The specification is maintained at github.com/cdevents/spec.
+  humanURL: https://cdevents.dev/
+  tags:
+  - CDEvents
+  - CI/CD
+  - CloudEvents
+  - Event
+  - Specification
+  tags_raw:
+  - CDEvents
+  - CI/CD
+  - CloudEvents
+  - Events
+  - Specification
+  properties:
+  - type: Documentation
+    url: https://cdevents.dev/docs/
+  - type: Specification
+    url: https://github.com/cdevents/spec
+  - type: GitHubOrg
+    url: https://github.com/cdevents
+  - type: Community
+    url: https://cdevents.dev/community/
+  - type: JSONSchema
+    url: json-schema/continuous-delivery-foundation-cdevents-schemas.yml
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+- aid: continuous-delivery-foundation:ortelius
+  name: Ortelius
+  description: >-
+    Ortelius is an open source supply chain evidence store that aggregates continuous security intelligence
+    across the software delivery lifecycle. It exposes APIs for tracking microservice components, SBOMs,
+    vulnerabilities, and deployment evidence so platform teams can answer where any component is running
+    and what is in it.
+  humanURL: https://ortelius.io/
+  tags:
+  - Evidence Store
+  - SBOM
+  - Supply Chain
+  - Security
+  properties:
+  - type: Documentation
+    url: https://docs.ortelius.io/
+  - type: GettingStarted
+    url: https://docs.ortelius.io/guides/
+  - type: GitHubOrg
+    url: https://github.com/ortelius
+- aid: continuous-delivery-foundation:content-api
+  name: CD Foundation Content API
+  description: >-
+    The Continuous Delivery Foundation publishes a machine-readable index of its own website content.
+    The foundation serves an RFC 9727 API catalog at /.well-known/api-catalog which anchors https://cd.foundation/wp-json/
+    as the service description; that endpoint returns a WordPress REST API index of 175 routes across
+    18 namespaces, including wp/v2 for posts, pages and members, and tribe/events/v1 for the CDF event
+    calendar. It is read-oriented and requires no key for public content; write access uses WordPress
+    application passwords.
+  humanURL: https://cd.foundation/
+  baseURL: https://cd.foundation/wp-json/
+  tags:
+  - Content
+  - Event
+  - Open-Source
+  - REST
+  - WordPress
+  tags_raw:
+  - Content
+  - Events
+  - Open Source
+  - REST
+  - WordPress
+  properties:
+  - type: APICatalog
+    url: well-known/continuous-delivery-foundation-api-catalog.json
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+  - type: Blog
+    url: https://cd.foundation/blog/
+- aid: continuous-delivery-foundation:tekton
+  name: Tekton
+  description: >-
+    Tekton is a Kubernetes-native open source framework for creating CI/CD systems. It defines Custom
+    Resource Definitions for Pipelines, Tasks, PipelineRuns, and TaskRuns and was originally hosted at
+    the CDF before moving to the Cloud Native Computing Foundation (CNCF). It is included here for historical
+    context with the CDF ecosystem.
+  humanURL: https://tekton.dev/
+  tags:
+  - CI/CD
+  - Kubernetes
+  - Pipelines
+  - Tekton
+  properties:
+  - type: Documentation
+    url: https://tekton.dev/docs/
+  - type: APIDocumentation
+    url: https://tekton.dev/docs/pipelines/pipeline-api/
+  - type: GitHubOrg
+    url: https://github.com/tektoncd
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-admin-controller-api
+  name: Continuous Delivery Foundation Admin Controller API
+  description: >-
+    The admin-controller API from Continuous Delivery Foundation — 3 operation(s) for admin-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - admin-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-admin-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-amazon-infrastructure-controller-api
+  name: Continuous Delivery Foundation Amazon Infrastructure Controller API
+  description: >-
+    The amazon-infrastructure-controller API from Continuous Delivery Foundation — 6 operation(s) for
+    amazon-infrastructure-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - amazon-infrastructure-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-amazon-infrastructure-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-api-extension-controller-api
+  name: Continuous Delivery Foundation API Extension Controller API
+  description: >-
+    The api-extension-controller API from Continuous Delivery Foundation — 1 operation(s) for api-extension-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - api-extension-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-api-extension-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-application-controller-api
+  name: Continuous Delivery Foundation Application Controller API
+  description: >-
+    The application-controller API from Continuous Delivery Foundation — 13 operation(s) for application-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - application-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-application-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-artifact-controller-api
+  name: Continuous Delivery Foundation Artifact Controller API
+  description: >-
+    The artifact-controller API from Continuous Delivery Foundation — 7 operation(s) for artifact-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - artifact-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-artifact-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-artifactory-controller-api
+  name: Continuous Delivery Foundation Artifactory Controller API
+  description: >-
+    The artifactory-controller API from Continuous Delivery Foundation — 1 operation(s) for artifactory-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - artifactory-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-artifactory-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-auth-controller-api
+  name: Continuous Delivery Foundation Auth Controller API
+  description: >-
+    The auth-controller API from Continuous Delivery Foundation — 6 operation(s) for auth-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - auth-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-auth-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-bake-controller-api
+  name: Continuous Delivery Foundation Bake Controller API
+  description: >-
+    The bake-controller API from Continuous Delivery Foundation — 3 operation(s) for bake-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - bake-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-bake-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-batch-entity-tags-controller-api
+  name: Continuous Delivery Foundation Batch Entity Tags Controller API
+  description: >-
+    The batch-entity-tags-controller API from Continuous Delivery Foundation — 1 operation(s) for batch-entity-tags-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - batch-entity-tags-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-batch-entity-tags-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-build-controller-api
+  name: Continuous Delivery Foundation Build Controller API
+  description: >-
+    The build-controller API from Continuous Delivery Foundation — 10 operation(s) for build-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - build-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-build-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-capabilities-controller-api
+  name: Continuous Delivery Foundation Capabilities Controller API
+  description: >-
+    The capabilities-controller API from Continuous Delivery Foundation — 3 operation(s) for capabilities-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - capabilities-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-capabilities-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-certificate-controller-api
+  name: Continuous Delivery Foundation Certificate Controller API
+  description: >-
+    The certificate-controller API from Continuous Delivery Foundation — 2 operation(s) for certificate-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - certificate-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-certificate-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-chart-image-controller-api
+  name: Continuous Delivery Foundation Chart Image Controller API
+  description: >-
+    The chart-image-controller API from Continuous Delivery Foundation — 3 operation(s) for chart-image-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - chart-image-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-chart-image-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-ci-controller-api
+  name: Continuous Delivery Foundation Ci Controller API
+  description: >-
+    The ci-controller API from Continuous Delivery Foundation — 2 operation(s) for ci-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - ci-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-ci-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-cleanup-controller-api
+  name: Continuous Delivery Foundation Cleanup Controller API
+  description: >-
+    The cleanup-controller API from Continuous Delivery Foundation — 4 operation(s) for cleanup-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - cleanup-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-cleanup-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-cloud-metric-controller-api
+  name: Continuous Delivery Foundation Cloud Metric Controller API
+  description: >-
+    The cloud-metric-controller API from Continuous Delivery Foundation — 2 operation(s) for cloud-metric-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - cloud-metric-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-cloud-metric-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-cluster-controller-api
+  name: Continuous Delivery Foundation Cluster Controller API
+  description: >-
+    The cluster-controller API from Continuous Delivery Foundation — 8 operation(s) for cluster-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - cluster-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-cluster-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-concourse-controller-api
+  name: Continuous Delivery Foundation Concourse Controller API
+  description: >-
+    The concourse-controller API from Continuous Delivery Foundation — 5 operation(s) for concourse-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - concourse-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-concourse-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-credentials-controller-api
+  name: Continuous Delivery Foundation Credentials Controller API
+  description: >-
+    The credentials-controller API from Continuous Delivery Foundation — 4 operation(s) for credentials-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - credentials-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-credentials-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-cron-controller-api
+  name: Continuous Delivery Foundation Cron Controller API
+  description: >-
+    The cron-controller API from Continuous Delivery Foundation — 1 operation(s) for cron-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - cron-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-cron-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-data-controller-api
+  name: Continuous Delivery Foundation Data Controller API
+  description: >-
+    The data-controller API from Continuous Delivery Foundation — 2 operation(s) for data-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - data-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-data-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-deck-plugins-controller-api
+  name: Continuous Delivery Foundation Deck Plugins Controller API
+  description: >-
+    The deck-plugins-controller API from Continuous Delivery Foundation — 2 operation(s) for deck-plugins-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - deck-plugins-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-deck-plugins-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-ecs-cloud-metric-controller-api
+  name: Continuous Delivery Foundation Ecs Cloud Metric Controller API
+  description: >-
+    The ecs-cloud-metric-controller API from Continuous Delivery Foundation — 1 operation(s) for ecs-cloud-metric-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - ecs-cloud-metric-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-ecs-cloud-metric-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-ecs-cluster-controller-api
+  name: Continuous Delivery Foundation Ecs Cluster Controller API
+  description: >-
+    The ecs-cluster-controller API from Continuous Delivery Foundation — 2 operation(s) for ecs-cluster-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - ecs-cluster-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-ecs-cluster-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-ecs-secret-controller-api
+  name: Continuous Delivery Foundation Ecs Secret Controller API
+  description: >-
+    The ecs-secret-controller API from Continuous Delivery Foundation — 1 operation(s) for ecs-secret-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - ecs-secret-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-ecs-secret-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-ecs-server-group-events-controller-api
+  name: Continuous Delivery Foundation Ecs Server Group Events Controller API
+  description: >-
+    The ecs-server-group-events-controller API from Continuous Delivery Foundation — 1 operation(s) for
+    ecs-server-group-events-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - ecs-server-group-events-controller
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/continuous-delivery-foundation-ecs-server-group-events-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-ecs-service-discovery-controller-api
+  name: Continuous Delivery Foundation Ecs Service Discovery Controller API
+  description: >-
+    The ecs-service-discovery-controller API from Continuous Delivery Foundation — 1 operation(s) for
+    ecs-service-discovery-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - ecs-service-discovery-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-ecs-service-discovery-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-entity-tags-controller-api
+  name: Continuous Delivery Foundation Entity Tags Controller API
+  description: >-
+    The entity-tags-controller API from Continuous Delivery Foundation — 3 operation(s) for entity-tags-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - entity-tags-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-entity-tags-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-executions-controller-api
+  name: Continuous Delivery Foundation Executions Controller API
+  description: >-
+    The executions-controller API from Continuous Delivery Foundation — 3 operation(s) for executions-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - executions-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-executions-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-firewall-controller-api
+  name: Continuous Delivery Foundation Firewall Controller API
+  description: >-
+    The firewall-controller API from Continuous Delivery Foundation — 4 operation(s) for firewall-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - firewall-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-firewall-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-generic-error-controller-api
+  name: Continuous Delivery Foundation Generic Error Controller API
+  description: >-
+    The generic-error-controller API from Continuous Delivery Foundation — 1 operation(s) for generic-error-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - generic-error-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-generic-error-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-history-controller-api
+  name: Continuous Delivery Foundation History Controller API
+  description: >-
+    The history-controller API from Continuous Delivery Foundation — 1 operation(s) for history-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - history-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-history-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-image-controller-api
+  name: Continuous Delivery Foundation Image Controller API
+  description: >-
+    The image-controller API from Continuous Delivery Foundation — 3 operation(s) for image-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - image-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-image-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-instance-controller-api
+  name: Continuous Delivery Foundation Instance Controller API
+  description: >-
+    The instance-controller API from Continuous Delivery Foundation — 2 operation(s) for instance-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - instance-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-instance-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-job-controller-api
+  name: Continuous Delivery Foundation Job Controller API
+  description: >-
+    The job-controller API from Continuous Delivery Foundation — 2 operation(s) for job-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - job-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-job-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-load-balancer-controller-api
+  name: Continuous Delivery Foundation Load Balancer Controller API
+  description: >-
+    The load-balancer-controller API from Continuous Delivery Foundation — 4 operation(s) for load-balancer-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - load-balancer-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-load-balancer-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-managed-controller-api
+  name: Continuous Delivery Foundation Managed Controller API
+  description: >-
+    The managed-controller API from Continuous Delivery Foundation — 32 operation(s) for managed-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - managed-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-managed-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-manifest-controller-api
+  name: Continuous Delivery Foundation Manifest Controller API
+  description: >-
+    The manifest-controller API from Continuous Delivery Foundation — 1 operation(s) for manifest-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - manifest-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-manifest-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-multi-pipeline-graph-api
+  name: Continuous Delivery Foundation Multi-Pipeline Graph API
+  description: APIs for viewing multiple pipeline runs
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - Multi-Pipeline Graph
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-multi-pipeline-graph-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-network-controller-api
+  name: Continuous Delivery Foundation Network Controller API
+  description: >-
+    The network-controller API from Continuous Delivery Foundation — 2 operation(s) for network-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - network-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-network-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-nexus-controller-api
+  name: Continuous Delivery Foundation Nexus Controller API
+  description: >-
+    The nexus-controller API from Continuous Delivery Foundation — 1 operation(s) for nexus-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - nexus-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-nexus-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-notification-controller-api
+  name: Continuous Delivery Foundation Notification Controller API
+  description: >-
+    The notification-controller API from Continuous Delivery Foundation — 3 operation(s) for notification-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - notification-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-notification-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-pipeline-config-controller-api
+  name: Continuous Delivery Foundation Pipeline Config Controller API
+  description: >-
+    The pipeline-config-controller API from Continuous Delivery Foundation — 3 operation(s) for pipeline-config-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - pipeline-config-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-pipeline-config-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-pipeline-controller-api
+  name: Continuous Delivery Foundation Pipeline Controller API
+  description: >-
+    The pipeline-controller API from Continuous Delivery Foundation — 16 operation(s) for pipeline-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - pipeline-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-pipeline-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-pipeline-overview-api
+  name: Continuous Delivery Foundation Pipeline Overview API
+  description: APIs for individual pipeline run visualization and control
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - Pipeline Overview
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-pipeline-overview-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-pipeline-templates-controller-api
+  name: Continuous Delivery Foundation Pipeline Templates Controller API
+  description: >-
+    The pipeline-templates-controller API from Continuous Delivery Foundation — 4 operation(s) for pipeline-templates-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - pipeline-templates-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-pipeline-templates-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-plugin-info-controller-api
+  name: Continuous Delivery Foundation Plugin Info Controller API
+  description: >-
+    The plugin-info-controller API from Continuous Delivery Foundation — 2 operation(s) for plugin-info-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - plugin-info-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-plugin-info-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-plugin-publish-controller-api
+  name: Continuous Delivery Foundation Plugin Publish Controller API
+  description: >-
+    The plugin-publish-controller API from Continuous Delivery Foundation — 1 operation(s) for plugin-publish-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - plugin-publish-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-plugin-publish-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-plugins-installed-controller-api
+  name: Continuous Delivery Foundation Plugins Installed Controller API
+  description: >-
+    The plugins-installed-controller API from Continuous Delivery Foundation — 1 operation(s) for plugins-installed-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - plugins-installed-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-plugins-installed-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-project-controller-api
+  name: Continuous Delivery Foundation Project Controller API
+  description: >-
+    The project-controller API from Continuous Delivery Foundation — 4 operation(s) for project-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - project-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-project-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-proxy-controller-api
+  name: Continuous Delivery Foundation Proxy Controller API
+  description: >-
+    The proxy-controller API from Continuous Delivery Foundation — 2 operation(s) for proxy-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - proxy-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-proxy-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-pubsub-subscription-controller-api
+  name: Continuous Delivery Foundation Pubsub Subscription Controller API
+  description: >-
+    The pubsub-subscription-controller API from Continuous Delivery Foundation — 1 operation(s) for pubsub-subscription-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - pubsub-subscription-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-pubsub-subscription-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-raw-resource-controller-api
+  name: Continuous Delivery Foundation Raw Resource Controller API
+  description: >-
+    The raw-resource-controller API from Continuous Delivery Foundation — 1 operation(s) for raw-resource-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - raw-resource-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-raw-resource-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-reorder-pipelines-controller-api
+  name: Continuous Delivery Foundation Reorder Pipelines Controller API
+  description: >-
+    The reorder-pipelines-controller API from Continuous Delivery Foundation — 2 operation(s) for reorder-pipelines-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - reorder-pipelines-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-reorder-pipelines-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-role-controller-api
+  name: Continuous Delivery Foundation Role Controller API
+  description: >-
+    The role-controller API from Continuous Delivery Foundation — 1 operation(s) for role-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - role-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-role-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-root-controller-api
+  name: Continuous Delivery Foundation Root Controller API
+  description: >-
+    The root-controller API from Continuous Delivery Foundation — 1 operation(s) for root-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - root-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-root-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-search-controller-api
+  name: Continuous Delivery Foundation Search Controller API
+  description: >-
+    The search-controller API from Continuous Delivery Foundation — 1 operation(s) for search-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - search-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-search-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-security-group-controller-api
+  name: Continuous Delivery Foundation Security Group Controller API
+  description: >-
+    The security-group-controller API from Continuous Delivery Foundation — 3 operation(s) for security-group-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - security-group-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-security-group-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-server-group-controller-api
+  name: Continuous Delivery Foundation Server Group Controller API
+  description: >-
+    The server-group-controller API from Continuous Delivery Foundation — 3 operation(s) for server-group-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - server-group-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-server-group-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-server-group-manager-controller-api
+  name: Continuous Delivery Foundation Server Group Manager Controller API
+  description: >-
+    The server-group-manager-controller API from Continuous Delivery Foundation — 1 operation(s) for server-group-manager-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - server-group-manager-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-server-group-manager-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-service-broker-controller-api
+  name: Continuous Delivery Foundation Service Broker Controller API
+  description: >-
+    The service-broker-controller API from Continuous Delivery Foundation — 2 operation(s) for service-broker-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - service-broker-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-service-broker-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-snapshot-controller-api
+  name: Continuous Delivery Foundation Snapshot Controller API
+  description: >-
+    The snapshot-controller API from Continuous Delivery Foundation — 2 operation(s) for snapshot-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - snapshot-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-snapshot-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-storage-account-controller-api
+  name: Continuous Delivery Foundation Storage Account Controller API
+  description: >-
+    The storage-account-controller API from Continuous Delivery Foundation — 1 operation(s) for storage-account-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - storage-account-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-storage-account-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-strategy-config-controller-api
+  name: Continuous Delivery Foundation Strategy Config Controller API
+  description: >-
+    The strategy-config-controller API from Continuous Delivery Foundation — 2 operation(s) for strategy-config-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - strategy-config-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-strategy-config-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-strategy-controller-api
+  name: Continuous Delivery Foundation Strategy Controller API
+  description: >-
+    The strategy-controller API from Continuous Delivery Foundation — 4 operation(s) for strategy-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - strategy-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-strategy-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-subnet-controller-api
+  name: Continuous Delivery Foundation Subnet Controller API
+  description: >-
+    The subnet-controller API from Continuous Delivery Foundation — 1 operation(s) for subnet-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - subnet-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-subnet-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-task-controller-api
+  name: Continuous Delivery Foundation Task Controller API
+  description: >-
+    The task-controller API from Continuous Delivery Foundation — 5 operation(s) for task-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - task-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-task-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-test-controller-api
+  name: Continuous Delivery Foundation Test Controller API
+  description: >-
+    The test-controller API from Continuous Delivery Foundation — 2 operation(s) for test-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - test-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-test-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-v-2-canary-config-controller-api
+  name: Continuous Delivery Foundation V 2 Canary Config Controller API
+  description: >-
+    The v-2-canary-config-controller API from Continuous Delivery Foundation — 2 operation(s) for v-2-canary-config-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - v-2-canary-config-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-v-2-canary-config-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-v-2-canary-controller-api
+  name: Continuous Delivery Foundation V 2 Canary Controller API
+  description: >-
+    The v-2-canary-controller API from Continuous Delivery Foundation — 9 operation(s) for v-2-canary-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - v-2-canary-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-v-2-canary-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: >-
+    continuous-delivery-foundation:continuous-delivery-foundation-v-2-pipeline-templates-controller-api
+  name: Continuous Delivery Foundation V 2 Pipeline Templates Controller API
+  description: >-
+    The v-2-pipeline-templates-controller API from Continuous Delivery Foundation — 7 operation(s) for
+    v-2-pipeline-templates-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - v-2-pipeline-templates-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-v-2-pipeline-templates-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-v4-api
+  name: Continuous Delivery Foundation V4 API
+  description: The v4 API from Continuous Delivery Foundation — 119 operation(s) for v4.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - v4
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-v4-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-version-controller-api
+  name: Continuous Delivery Foundation Version Controller API
+  description: >-
+    The version-controller API from Continuous Delivery Foundation — 1 operation(s) for version-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - version-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-version-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
+- aid: continuous-delivery-foundation:continuous-delivery-foundation-webhook-controller-api
+  name: Continuous Delivery Foundation Webhook Controller API
+  description: >-
+    The webhook-controller API from Continuous Delivery Foundation — 3 operation(s) for webhook-controller.
+  humanURL: https://cdevents.dev/
+  baseURL: https://api.screwdriver.cd/
+  tags:
+  - webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/continuous-delivery-foundation-webhook-controller-api-openapi.yml
+  - type: Documentation
+    url: https://www.jenkins.io/doc/
+  - type: APIDocumentation
+    url: https://www.jenkins.io/doc/book/using/remote-access-api/
+  - type: GettingStarted
+    url: https://www.jenkins.io/doc/pipeline/tour/getting-started/
+  - type: GitHubOrg
+    url: https://github.com/jenkinsci
+  - type: ToolCrosswalk
+    url: mcp/continuous-delivery-foundation-tool-crosswalk.yml
+  - type: StatusPage
+    url: https://status.jenkins.io/
+  - type: Security
+    url: https://www.jenkins.io/security/reporting/
+  - type: ChangeLog
+    url: https://www.jenkins.io/changelog/
+  - type: Documentation
+    url: https://spinnaker.io/docs/
+  - type: APIDocumentation
+    url: https://spinnaker.io/docs/reference/api/
+  - type: Community
+    url: https://spinnaker.io/docs/community/
+  - type: GitHubOrg
+    url: https://github.com/spinnaker
+  - type: Webhooks
+    url: asyncapi/continuous-delivery-foundation-cdevents-events.yml
+  - type: ChangeLog
+    url: https://spinnaker.io/docs/releases/versions/
+  - type: CLI
+    url: https://spinnaker.io/docs/setup/other_config/spin/
+  - type: Documentation
+    url: https://docs.screwdriver.cd/
+  - type: APIDocumentation
+    url: https://docs.screwdriver.cd/user-guide/api
+  - type: GettingStarted
+    url: https://docs.screwdriver.cd/user-guide/quickstart
+  - type: GitHubOrg
+    url: https://github.com/screwdriver-cd
+  - type: Documentation
+    url: https://jayex.io/v3/
+  - type: Community
+    url: https://jayex.io/community/
+  - type: CLI
+    url: https://jayex.io/v3/develop/reference/jx/
 common:
+  - type: Overlay
+    url: overlays/continuous-delivery-foundation-jenkins-pipeline-graph-view-overlay.yaml
+  - type: Overlay
+    url: overlays/continuous-delivery-foundation-spinnaker-overlay.yaml
+  - type: Overlay
+    url: overlays/continuous-delivery-foundation-screwdriver-overlay.yaml
+  - type: Overlay
+    url: overlays/continuous-delivery-foundation-jayex-jx-api-overlay.yaml
   - type: VulnerabilityDisclosure
     url: security/continuous-delivery-foundation-vulnerability-disclosure.yml
   - type: Authentication
