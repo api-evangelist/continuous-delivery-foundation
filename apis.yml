@@ -4095,6 +4095,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - V4
+  tags_raw:
   - v4
   properties:
   - type: OpenAPI
@@ -4205,6 +4207,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - WebhookController
+  tags_raw:
   - webhook-controller
   properties:
   - type: OpenAPI
