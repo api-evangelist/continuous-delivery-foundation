@@ -1,0 +1,132 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Task Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: task-controller
+paths:
+  /tasks:
+    post:
+      operationId: task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Create task
+      tags:
+      - task-controller
+  /tasks/cancel:
+    put:
+      operationId: cancelTasks
+      parameters:
+      - in: query
+        name: ids
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      responses:
+        '200':
+          description: OK
+      summary: Cancel tasks
+      tags:
+      - task-controller
+  /tasks/{id}:
+    delete:
+      operationId: deleteTask
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete task
+      tags:
+      - task-controller
+    get:
+      operationId: getTask
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Get task
+      tags:
+      - task-controller
+  /tasks/{id}/cancel:
+    put:
+      operationId: cancelTask
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Cancel task
+      tags:
+      - task-controller
+  /tasks/{id}/details/{taskDetailsId}:
+    get:
+      operationId: getTaskDetails
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: taskDetailsId
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Get task details
+      tags:
+      - task-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

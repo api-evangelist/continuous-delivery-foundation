@@ -1,0 +1,57 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Capabilities Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: capabilities-controller
+paths:
+  /capabilities/deploymentMonitors:
+    get:
+      operationId: getDeploymentMonitors
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve the list configured deployment monitors
+      tags:
+      - capabilities-controller
+  /capabilities/expressions:
+    get:
+      operationId: getExpressionCapabilities
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve the SpEL expression capabilities (e.g. registered functions, etc)
+      tags:
+      - capabilities-controller
+  /capabilities/quietPeriod:
+    get:
+      operationId: getQuietPeriodState
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve the current state of the quiet period
+      tags:
+      - capabilities-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

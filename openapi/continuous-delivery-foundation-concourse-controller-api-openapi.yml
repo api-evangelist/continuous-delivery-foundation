@@ -1,0 +1,150 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Concourse Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: concourse-controller
+paths:
+  /concourse/stage/start:
+    post:
+      operationId: stageExecution
+      parameters:
+      - in: query
+        name: stageId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: job
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: buildNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Inform Spinnaker of the Concourse build running connected to a particular…
+      tags:
+      - concourse-controller
+  /concourse/{buildMaster}/teams:
+    get:
+      operationId: teams
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Retrieve the list of team names available to triggers
+      tags:
+      - concourse-controller
+  /concourse/{buildMaster}/teams/{team}/pipelines:
+    get:
+      operationId: pipelines
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: team
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Retrieve the list of pipeline names for a given team available to triggers
+      tags:
+      - concourse-controller
+  /concourse/{buildMaster}/teams/{team}/pipelines/{pipeline}/jobs:
+    get:
+      operationId: jobs
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: team
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pipeline
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Retrieve the list of job names for a given pipeline available to triggers
+      tags:
+      - concourse-controller
+  /concourse/{buildMaster}/teams/{team}/pipelines/{pipeline}/resources:
+    get:
+      operationId: resources
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: team
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pipeline
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Retrieve the list of resource names for a given pipeline available to the…
+      tags:
+      - concourse-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

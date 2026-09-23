@@ -1,0 +1,134 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Amazon Infrastructure Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: amazon-infrastructure-controller
+paths:
+  /applications/{application}/functions:
+    get:
+      operationId: applicationFunctions
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Get application functions
+      tags:
+      - amazon-infrastructure-controller
+  /functions:
+    get:
+      operationId: functions
+      parameters:
+      - in: query
+        name: functionName
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: region
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: account
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Get functions
+      tags:
+      - amazon-infrastructure-controller
+  /instanceTypes:
+    get:
+      operationId: instanceTypes
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Get instance types
+      tags:
+      - amazon-infrastructure-controller
+  /keyPairs:
+    get:
+      operationId: keyPairs
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Get key pairs
+      tags:
+      - amazon-infrastructure-controller
+  /subnets:
+    get:
+      operationId: subnets
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Get subnets
+      tags:
+      - amazon-infrastructure-controller
+  /vpcs:
+    get:
+      deprecated: true
+      operationId: vpcs
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Get VPCs
+      tags:
+      - amazon-infrastructure-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

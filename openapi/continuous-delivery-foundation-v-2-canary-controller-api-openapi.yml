@@ -1,0 +1,287 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker V 2 Canary Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: v-2-canary-controller
+paths:
+  /v2/canaries/canary:
+    post:
+      operationId: initiateCanaryWithConfig
+      parameters:
+      - in: query
+        name: application
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: parentPipelineExecutionId
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: metricsAccountName
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: storageAccountName
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Start a canary execution with the supplied canary config
+      tags:
+      - v-2-canary-controller
+  /v2/canaries/canary/{canaryConfigId}:
+    post:
+      operationId: initiateCanary
+      parameters:
+      - in: path
+        name: canaryConfigId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: application
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: parentPipelineExecutionId
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: metricsAccountName
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: storageAccountName
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: configurationAccountName
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Start a canary execution
+      tags:
+      - v-2-canary-controller
+  /v2/canaries/canary/{canaryConfigId}/{canaryExecutionId}:
+    get:
+      deprecated: true
+      operationId: getCanaryResult_1
+      parameters:
+      - in: path
+        name: canaryConfigId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: canaryExecutionId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: storageAccountName
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: (DEPRECATED) Retrieve a canary result
+      tags:
+      - v-2-canary-controller
+  /v2/canaries/canary/{canaryExecutionId}:
+    get:
+      operationId: getCanaryResult
+      parameters:
+      - in: path
+        name: canaryExecutionId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: storageAccountName
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve a canary result
+      tags:
+      - v-2-canary-controller
+  /v2/canaries/credentials:
+    get:
+      operationId: listCredentials
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of configured Kayenta accounts
+      tags:
+      - v-2-canary-controller
+  /v2/canaries/judges:
+    get:
+      operationId: listJudges
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of all configured canary judges
+      tags:
+      - v-2-canary-controller
+  /v2/canaries/metadata/metricsService:
+    get:
+      operationId: listMetricsServiceMetadata
+      parameters:
+      - in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: metricsAccountName
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of descriptors for use in populating the canary config ui
+      tags:
+      - v-2-canary-controller
+  /v2/canaries/metricSetPairList/{metricSetPairListId}:
+    get:
+      operationId: getMetricSetPairList
+      parameters:
+      - in: path
+        name: metricSetPairListId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: storageAccountName
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a metric set pair list
+      tags:
+      - v-2-canary-controller
+  /v2/canaries/{application}/executions:
+    get:
+      operationId: getCanaryResultsByApplication
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+      - description: 'Comma-separated list of statuses, e.g.: RUNNING, SUCCEEDED, TERMINAL'
+        in: query
+        name: statuses
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: storageAccountName
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of an application's canary results
+      tags:
+      - v-2-canary-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

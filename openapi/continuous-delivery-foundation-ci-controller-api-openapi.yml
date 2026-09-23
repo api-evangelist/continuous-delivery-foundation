@@ -1,0 +1,79 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Ci Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: ci-controller
+paths:
+  /ci/builds:
+    get:
+      operationId: getBuilds_1
+      parameters:
+      - in: query
+        name: projectKey
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: repoSlug
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: completionStatus
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: buildNumber
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: commitId
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      tags:
+      - ci-controller
+      summary: Get builds 1
+      x-summary-source: derived
+  /ci/builds/{buildId}/output:
+    get:
+      operationId: getBuildOutputById
+      parameters:
+      - in: path
+        name: buildId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - ci-controller
+      summary: Get build output by id
+      x-summary-source: derived
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

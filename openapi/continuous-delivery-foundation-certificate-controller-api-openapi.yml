@@ -1,0 +1,64 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Certificate Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: certificate-controller
+paths:
+  /certificates:
+    get:
+      operationId: all_10
+      parameters:
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Retrieve a list of all server certificates
+      tags:
+      - certificate-controller
+  /certificates/{cloudProvider}:
+    get:
+      operationId: allByCloudProvider_2
+      parameters:
+      - in: path
+        name: cloudProvider
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Retrieve a list of server certificates for a given cloud provider
+      tags:
+      - certificate-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

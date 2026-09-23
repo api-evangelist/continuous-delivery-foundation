@@ -1,0 +1,93 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Cleanup Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: cleanup-controller
+paths:
+  /cleanup/resources/deleted:
+    get:
+      operationId: getAllDeletedResources
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Get all deleted resources
+      tags:
+      - cleanup-controller
+  /cleanup/resources/marked:
+    get:
+      operationId: getAllMarkedResources
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Get all marked resources
+      tags:
+      - cleanup-controller
+  /cleanup/resources/{namespace}/{resourceId}:
+    get:
+      operationId: getMarkedResource
+      parameters:
+      - in: path
+        name: namespace
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Get information about a marked resource
+      tags:
+      - cleanup-controller
+  /cleanup/resources/{namespace}/{resourceId}/optOut:
+    get:
+      operationId: optOut
+      parameters:
+      - in: path
+        name: namespace
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Opt out of clean up for a marked resource
+      tags:
+      - cleanup-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

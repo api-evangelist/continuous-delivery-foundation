@@ -1,0 +1,35 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Role Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: role-controller
+paths:
+  /roles/{cloudProvider}:
+    get:
+      operationId: all_2
+      parameters:
+      - in: path
+        name: cloudProvider
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of roles that can be used by the selected cloud provider
+      tags:
+      - role-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

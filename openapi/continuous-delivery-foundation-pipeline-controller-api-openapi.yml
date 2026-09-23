@@ -1,0 +1,502 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Pipeline Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: pipeline-controller
+paths:
+  /pipelines:
+    post:
+      operationId: savePipeline
+      parameters:
+      - in: query
+        name: staleCheck
+        required: false
+        schema:
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Save a pipeline definition
+      tags:
+      - pipeline-controller
+  /pipelines/bulksave:
+    post:
+      operationId: bulksavePipeline
+      parameters:
+      - description: Application in which to run the bulk save task
+        example: bulk_save_placeholder_app
+        in: query
+        name: application
+        required: false
+        schema:
+          default: bulk_save_placeholder_app
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                additionalProperties: {}
+                type: object
+              type: array
+        description: JSON array of pipeline definitions to upsert
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Save a list of pipelines
+      tags:
+      - pipeline-controller
+  /pipelines/move:
+    post:
+      operationId: renamePipeline
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Rename a pipeline definition
+      tags:
+      - pipeline-controller
+  /pipelines/start:
+    post:
+      operationId: start
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: OK
+      summary: Initiate a pipeline execution
+      tags:
+      - pipeline-controller
+  /pipelines/v2/{application}/{pipelineNameOrId}:
+    post:
+      operationId: invokePipelineConfigViaEcho
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pipelineNameOrId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties:
+                type: object
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: OK
+      summary: Trigger a pipeline execution
+      tags:
+      - pipeline-controller
+  /pipelines/{application}/{pipelineNameOrId}:
+    post:
+      operationId: invokePipelineConfig
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pipelineNameOrId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties:
+                type: object
+              type: object
+        required: false
+      responses:
+        '202':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: Accepted
+      summary: Trigger a pipeline execution
+      tags:
+      - pipeline-controller
+  /pipelines/{application}/{pipelineName}:
+    delete:
+      operationId: deletePipeline_2
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pipelineName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete a pipeline definition
+      tags:
+      - pipeline-controller
+  /pipelines/{id}:
+    delete:
+      operationId: deletePipeline
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete a pipeline execution
+      tags:
+      - pipeline-controller
+    get:
+      operationId: getPipeline
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve a pipeline execution
+      tags:
+      - pipeline-controller
+    put:
+      operationId: updatePipeline
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Update a pipeline definition
+      tags:
+      - pipeline-controller
+  /pipelines/{id}/cancel:
+    put:
+      operationId: cancelPipeline
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: reason
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: force
+        required: false
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+      summary: Cancel a pipeline execution
+      tags:
+      - pipeline-controller
+  /pipelines/{id}/evaluateExpression:
+    get:
+      operationId: evaluateExpressionForExecution
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: expression
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Evaluate a pipeline expression using the provided execution as context
+      tags:
+      - pipeline-controller
+    post:
+      operationId: evaluateExpressionForExecutionViaPOST
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+          text/plain:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Evaluate a pipeline expression using the provided execution as context
+      tags:
+      - pipeline-controller
+  /pipelines/{id}/evaluateVariables:
+    post:
+      operationId: evaluateVariables
+      parameters:
+      - description: Execution id to run against
+        in: query
+        name: executionId
+        required: true
+        schema:
+          type: string
+      - description: Comma separated list of requisite stage IDs for the evaluation stage
+        in: query
+        name: requisiteStageRefIds
+        required: false
+        schema:
+          default: ''
+          type: string
+      - description: Version of SpEL evaluation logic to use (v3 or v4)
+        in: query
+        name: spelVersion
+        required: false
+        schema:
+          default: ''
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: List of variables/expressions to evaluate
+              items:
+                additionalProperties:
+                  type: string
+                type: object
+              type: array
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Evaluate variables same as Evaluate Variables stage using the provided…
+      tags:
+      - pipeline-controller
+  /pipelines/{id}/pause:
+    put:
+      operationId: pausePipeline
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Pause a pipeline execution
+      tags:
+      - pipeline-controller
+  /pipelines/{id}/resume:
+    put:
+      operationId: resumePipeline
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Resume a pipeline execution
+      tags:
+      - pipeline-controller
+  /pipelines/{id}/stages/{stageId}:
+    patch:
+      operationId: updateStage
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: stageId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Update a stage execution
+      tags:
+      - pipeline-controller
+  /pipelines/{id}/stages/{stageId}/restart:
+    put:
+      operationId: restartStage
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: stageId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Restart a stage execution
+      tags:
+      - pipeline-controller
+  /pipelines/{id}/{stageId}/evaluateExpression:
+    get:
+      operationId: evaluateExpressionForExecutionAtStage
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: stageId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: expression
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Evaluate a pipeline expression at a specific stage using the provided execution…
+      tags:
+      - pipeline-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

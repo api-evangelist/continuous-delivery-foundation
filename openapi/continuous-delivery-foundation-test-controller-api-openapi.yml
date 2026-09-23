@@ -1,0 +1,42 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Test Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: test-controller
+paths:
+  /responseHeader/api:
+    get:
+      operationId: api
+      responses:
+        '200':
+          description: OK
+      tags:
+      - test-controller
+      summary: Api
+      x-summary-source: derived
+  /test/asyncApi:
+    get:
+      operationId: asyncApi
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StreamingResponseBody'
+          description: OK
+      tags:
+      - test-controller
+      summary: Async api
+      x-summary-source: derived
+components:
+  schemas:
+    StreamingResponseBody: {}
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

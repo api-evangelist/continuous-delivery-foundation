@@ -1,0 +1,80 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Admin Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: admin-controller
+paths:
+  /admin:
+    get:
+      operationId: adminOrNot
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - admin-controller
+      summary: Admin or not
+      x-summary-source: derived
+  /admin/executions/forceCancel:
+    put:
+      operationId: killZombie
+      parameters:
+      - description: The execution id of the specific pipeline
+        in: query
+        name: executionId
+        required: true
+        schema:
+          type: string
+      - description: The type of execution, either PIPELINE or ORCHESTRATION.
+        in: query
+        name: executionType
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Admin endpoint to force cancel an execution
+      tags:
+      - admin-controller
+  /admin/executions/hydrate:
+    post:
+      operationId: rehydrate
+      parameters:
+      - description: The execution id of the specific pipeline to rehydrate.
+        in: query
+        name: executionId
+        required: true
+        schema:
+          type: string
+      - description: Do a dry run instead of actually hydrating the execution into the queue
+        in: query
+        name: dryRun
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - admin-controller
+      summary: Rehydrate
+      x-summary-source: derived
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

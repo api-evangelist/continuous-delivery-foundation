@@ -1,0 +1,30 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Artifactory Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: artifactory-controller
+paths:
+  /artifactory/names:
+    get:
+      operationId: names_1
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Retrieve the list of artifactory names available to triggers
+      tags:
+      - artifactory-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

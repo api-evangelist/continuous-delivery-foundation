@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Notification Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: notification-controller
+paths:
+  /notifications/callbacks/{source}:
+    post:
+      operationId: processNotificationCallback
+      parameters:
+      - in: path
+        name: source
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+      tags:
+      - notification-controller
+      summary: Process notification callback
+      x-summary-source: derived
+  /notifications/metadata:
+    get:
+      operationId: getNotificationTypeMetadata
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      tags:
+      - notification-controller
+      summary: Get notification type metadata
+      x-summary-source: derived
+  /notifications/{type}/{application}:
+    delete:
+      operationId: deletePipeline_1
+      parameters:
+      - in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - notification-controller
+      summary: Delete pipeline 1
+      x-summary-source: derived
+    get:
+      operationId: getNotificationConfig
+      parameters:
+      - in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - notification-controller
+      summary: Get notification config
+      x-summary-source: derived
+    post:
+      operationId: saveNotificationConfig
+      parameters:
+      - in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          description: OK
+      tags:
+      - notification-controller
+      summary: Save notification config
+      x-summary-source: derived
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

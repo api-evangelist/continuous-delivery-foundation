@@ -1,0 +1,37 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Raw Resource Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: raw-resource-controller
+paths:
+  /applications/{application}/rawResources:
+    get:
+      operationId: getApplicationRawResources
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Retrieve a list of raw resources for a given application
+      tags:
+      - raw-resource-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

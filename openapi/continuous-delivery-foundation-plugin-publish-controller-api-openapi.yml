@@ -1,0 +1,158 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Plugin Publish Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: plugin-publish-controller
+paths:
+  /plugins/publish/{pluginId}/{pluginVersion}:
+    post:
+      operationId: publishPlugin
+      parameters:
+      - in: path
+        name: pluginId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pluginVersion
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                plugin:
+                  format: binary
+                  type: string
+                pluginInfo:
+                  $ref: '#/components/schemas/SpinnakerPluginInfo'
+              required:
+              - plugin
+              - pluginInfo
+              type: object
+      responses:
+        '200':
+          description: OK
+      summary: Publish a plugin binary and the plugin info metadata
+      tags:
+      - plugin-publish-controller
+components:
+  schemas:
+    SpinnakerPluginInfo:
+      properties:
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        projectUrl:
+          type: string
+        provider:
+          type: string
+        releases:
+          items:
+            $ref: '#/components/schemas/SpinnakerPluginRelease'
+          type: array
+        repositoryId:
+          type: string
+      required:
+      - releases
+      type: object
+    RemoteExtensionConfig:
+      properties:
+        config:
+          additionalProperties: {}
+          nullable: true
+          type: object
+        id:
+          type: string
+        transport:
+          $ref: '#/components/schemas/RemoteExtensionTransportConfig'
+        type:
+          type: string
+      required:
+      - id
+      - transport
+      - type
+      type: object
+    RemoteExtensionTransportConfig:
+      properties:
+        http:
+          $ref: '#/components/schemas/Http'
+      required:
+      - http
+      type: object
+    SpinnakerPluginRelease:
+      properties:
+        date:
+          format: date-time
+          type: string
+        preferred:
+          type: boolean
+        remoteExtensions:
+          items:
+            $ref: '#/components/schemas/RemoteExtensionConfig'
+          type: array
+        requires:
+          type: string
+        sha512sum:
+          type: string
+        url:
+          type: string
+        version:
+          type: string
+      required:
+      - preferred
+      - remoteExtensions
+      type: object
+    Http:
+      properties:
+        config:
+          additionalProperties:
+            type: string
+          type: object
+        headers:
+          $ref: '#/components/schemas/Headers'
+        queryParams:
+          additionalProperties:
+            type: string
+          type: object
+        url:
+          type: string
+      required:
+      - config
+      - headers
+      - queryParams
+      - url
+      type: object
+    Headers:
+      properties:
+        invokeHeaders:
+          additionalProperties:
+            type: string
+          type: object
+        readHeaders:
+          additionalProperties:
+            type: string
+          type: object
+        writeHeaders:
+          additionalProperties:
+            type: string
+          type: object
+      required:
+      - invokeHeaders
+      - readHeaders
+      - writeHeaders
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

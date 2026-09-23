@@ -1,0 +1,45 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Batch Entity Tags Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: batch-entity-tags-controller
+paths:
+  /batch/tags:
+    post:
+      operationId: batchUpdate
+      parameters:
+      - in: query
+        name: application
+        required: false
+        schema:
+          default: adhoc
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                additionalProperties: {}
+                type: object
+              type: array
+        required: true
+      responses:
+        '202':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: Accepted
+      summary: Batch update a set of entity tags
+      tags:
+      - batch-entity-tags-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

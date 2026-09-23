@@ -1,0 +1,141 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Server Group Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: server-group-controller
+paths:
+  /applications/{applicationName}/serverGroups:
+    get:
+      operationId: getServerGroupsForApplication
+      parameters:
+      - in: path
+        name: applicationName
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: expand
+        required: false
+        schema:
+          default: 'false'
+          type: string
+      - in: query
+        name: cloudProvider
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: clusters
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of server groups for a given application
+      tags:
+      - server-group-controller
+  /applications/{applicationName}/serverGroups/{account}/{region}/{serverGroupName}:
+    get:
+      operationId: getServerGroupDetails
+      parameters:
+      - in: path
+        name: applicationName
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: region
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: serverGroupName
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: includeDetails
+        required: false
+        schema:
+          default: 'true'
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve a server group's details
+      tags:
+      - server-group-controller
+  /serverGroups:
+    get:
+      operationId: getServerGroups
+      parameters:
+      - in: query
+        name: applications
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: ids
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: cloudProvider
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of server groups for a list of applications or a list of…
+      tags:
+      - server-group-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

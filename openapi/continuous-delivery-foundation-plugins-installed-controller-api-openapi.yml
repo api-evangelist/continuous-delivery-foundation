@@ -1,0 +1,101 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Plugins Installed Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: plugins-installed-controller
+paths:
+  /plugins/installed:
+    get:
+      operationId: getInstalledPlugins
+      parameters:
+      - in: query
+        name: service
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties:
+                  items:
+                    $ref: '#/components/schemas/SpinnakerPluginDescriptor'
+                  type: array
+                type: object
+          description: OK
+      summary: Get all installed Spinnaker plugins
+      tags:
+      - plugins-installed-controller
+components:
+  schemas:
+    DefaultPluginDescriptor:
+      properties:
+        dependencies:
+          items:
+            $ref: '#/components/schemas/PluginDependency'
+          type: array
+        license:
+          type: string
+        pluginClass:
+          type: string
+        pluginDescription:
+          type: string
+        pluginId:
+          type: string
+        pluginVersion:
+          type: object
+          writeOnly: true
+        provider:
+          type: string
+        requires:
+          type: string
+        version:
+          type: string
+      type: object
+    PluginDependency:
+      properties:
+        optional:
+          type: boolean
+        pluginId:
+          type: string
+        pluginVersionSupport:
+          type: string
+      type: object
+    SpinnakerPluginDescriptor:
+      properties:
+        dependencies:
+          items:
+            $ref: '#/components/schemas/PluginDependency'
+          type: array
+        license:
+          type: string
+        pluginClass:
+          type: string
+        pluginDescription:
+          type: string
+        pluginId:
+          type: string
+        pluginVersion:
+          $ref: '#/components/schemas/DefaultPluginDescriptor'
+          writeOnly: true
+        provider:
+          type: string
+        requires:
+          type: string
+        unsafe:
+          type: boolean
+        version:
+          type: string
+      required:
+      - unsafe
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

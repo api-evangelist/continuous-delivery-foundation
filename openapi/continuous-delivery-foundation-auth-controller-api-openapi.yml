@@ -1,0 +1,171 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Auth Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: auth-controller
+paths:
+  /auth/deleteSessionCache:
+    post:
+      operationId: deleteSessionCache
+      responses:
+        '200':
+          description: OK
+      summary: Delete session cache
+      tags:
+      - auth-controller
+  /auth/loggedOut:
+    get:
+      operationId: loggedOut
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: OK
+      summary: Get logged out message
+      tags:
+      - auth-controller
+  /auth/rawUser:
+    get:
+      operationId: rawUser
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+      summary: Get raw user
+      tags:
+      - auth-controller
+  /auth/redirect:
+    get:
+      operationId: redirect
+      parameters:
+      - in: query
+        name: to
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Redirect to Deck
+      tags:
+      - auth-controller
+  /auth/roles/sync:
+    post:
+      operationId: sync
+      responses:
+        '200':
+          description: OK
+      summary: Sync user roles
+      tags:
+      - auth-controller
+  /auth/user:
+    get:
+      operationId: user
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthUserResponse'
+          description: OK
+      summary: Get user
+      tags:
+      - auth-controller
+components:
+  schemas:
+    AuthUserResponse:
+      properties:
+        accountNonExpired:
+          type: boolean
+        accountNonLocked:
+          type: boolean
+        allowedAccounts:
+          items:
+            type: string
+          type: array
+        authorities:
+          items:
+            $ref: '#/components/schemas/Authority'
+          type: array
+        canMintApiTokens:
+          type: boolean
+        credentialsNonExpired:
+          type: boolean
+        email:
+          type: string
+        enabled:
+          type: boolean
+        firstName:
+          type: string
+        isAdmin:
+          type: boolean
+        lastName:
+          type: string
+        maxServiceAccountTokenLifetimeDays:
+          format: int32
+          type: integer
+        maxUserTokenLifetimeDays:
+          format: int32
+          type: integer
+        roles:
+          items:
+            type: string
+          type: array
+        username:
+          type: string
+      type: object
+    Authority:
+      properties:
+        authority:
+          type: string
+      type: object
+    GrantedAuthority:
+      properties:
+        authority:
+          type: string
+      type: object
+    User:
+      properties:
+        accountNonExpired:
+          type: boolean
+        accountNonLocked:
+          type: boolean
+        allowedAccounts:
+          items:
+            type: string
+          type: array
+        authorities:
+          items:
+            $ref: '#/components/schemas/GrantedAuthority'
+          type: array
+        credentialsNonExpired:
+          type: boolean
+        email:
+          type: string
+        enabled:
+          type: boolean
+        firstName:
+          type: string
+        lastName:
+          type: string
+        roles:
+          items:
+            type: string
+          type: array
+        username:
+          type: string
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

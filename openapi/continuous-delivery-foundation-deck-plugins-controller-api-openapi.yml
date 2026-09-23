@@ -1,0 +1,71 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Deck Plugins Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: deck-plugins-controller
+paths:
+  /plugins/deck/plugin-manifest.json:
+    get:
+      operationId: getPluginManifest
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/DeckPluginVersion'
+                type: array
+          description: OK
+      summary: Retrieve a plugin manifest
+      tags:
+      - deck-plugins-controller
+  /plugins/deck/{pluginId}/{pluginVersion}/{asset}:
+    get:
+      operationId: getPluginAsset
+      parameters:
+      - in: path
+        name: pluginId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pluginVersion
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: asset
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: OK
+      summary: Retrieve a single plugin asset by version
+      tags:
+      - deck-plugins-controller
+components:
+  schemas:
+    DeckPluginVersion:
+      properties:
+        id:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - version
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

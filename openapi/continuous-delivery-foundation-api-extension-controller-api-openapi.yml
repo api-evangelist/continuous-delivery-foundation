@@ -1,0 +1,198 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker API Extension Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: api-extension-controller
+paths:
+  /extensions/{extension}/**:
+    delete:
+      operationId: any_7
+      parameters:
+      - in: path
+        name: extension
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - api-extension-controller
+      summary: Any 7
+      x-summary-source: derived
+    get:
+      operationId: any_4
+      parameters:
+      - in: path
+        name: extension
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - api-extension-controller
+      summary: Any 4
+      x-summary-source: derived
+    head:
+      operationId: any_9
+      parameters:
+      - in: path
+        name: extension
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - api-extension-controller
+      summary: Any 9
+      x-summary-source: derived
+    options:
+      operationId: any_10
+      parameters:
+      - in: path
+        name: extension
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - api-extension-controller
+      summary: Any 10
+      x-summary-source: derived
+    patch:
+      operationId: any_8
+      parameters:
+      - in: path
+        name: extension
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - api-extension-controller
+      summary: Any 8
+      x-summary-source: derived
+    post:
+      operationId: any_5
+      parameters:
+      - in: path
+        name: extension
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - api-extension-controller
+      summary: Any 5
+      x-summary-source: derived
+    put:
+      operationId: any_6
+      parameters:
+      - in: path
+        name: extension
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - api-extension-controller
+      summary: Any 6
+      x-summary-source: derived
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

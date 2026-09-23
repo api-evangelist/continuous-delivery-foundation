@@ -1,0 +1,127 @@
+openapi: 3.2.0
+info:
+  title: Jenkins Pipeline Graph View Plugin Multi-Pipeline Graph API
+  description: 'REST API for the Jenkins Pipeline Graph View Plugin. This plugin provides enhanced visualization
+
+    and interaction capabilities for Jenkins pipeline builds.
+
+
+    The plugin exposes two main sets of endpoints:
+
+    - Pipeline Overview APIs: For individual pipeline run details, console output, and build control
+
+    - Multi-Pipeline Graph APIs: For viewing multiple pipeline runs in aggregate'
+  version: 1.0.0
+  contact:
+    name: Jenkins Pipeline Graph View Plugin
+    url: https://github.com/jenkinsci/pipeline-graph-view-plugin
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+servers:
+- url: '{build_url}/stages'
+  description: Pipeline Overview API - Individual pipeline run
+  variables:
+    build_url:
+      default: http://localhost:8080/jenkins/job/my-pipeline/1
+      description: Complete build URL including Jenkins server, job path, and build number
+- url: '{job_url}/multi-pipeline-graph'
+  description: Multi-Pipeline Graph API - Multiple pipeline runs
+  variables:
+    job_url:
+      default: http://localhost:8080/jenkins/job/my-pipeline
+      description: Complete job URL including Jenkins server and job path
+tags:
+- name: Multi-Pipeline Graph
+  description: APIs for viewing multiple pipeline runs
+paths:
+  /runs:
+    get:
+      tags:
+      - Multi-Pipeline Graph
+      summary: Get recent pipeline runs
+      description: 'Returns information about recent pipeline runs for the job. Supports
+
+        ETags for efficient caching.'
+      operationId: getPipelineRuns
+      parameters:
+      - name: If-None-Match
+        in: header
+        required: false
+        description: ETag value for conditional requests
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of recent pipeline runs
+          headers:
+            ETag:
+              description: ETag for caching
+              schema:
+                type: string
+            Cache-Control:
+              description: Cache control header
+              schema:
+                type: string
+                examples:
+                - no-cache
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineRunsResponse'
+        '304':
+          description: Not modified (ETag match)
+components:
+  schemas:
+    PipelineRun:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique run identifier
+        displayName:
+          type: string
+          description: Display name of the run
+        timestamp:
+          type: integer
+          format: int64
+          description: Run start timestamp in milliseconds since epoch
+        duration:
+          type: integer
+          format: int64
+          description: Run duration in milliseconds
+        changesCount:
+          type: integer
+          description: Number of changes in this run
+        result:
+          $ref: '#/components/schemas/PipelineState'
+    PipelineState:
+      type: string
+      enum:
+      - queued
+      - running
+      - paused
+      - skipped
+      - not_built
+      - finished
+      - success
+      - unstable
+      - failure
+      - unknown
+      - aborted
+    PipelineRunsResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineRun'
+  securitySchemes:
+    jenkins_auth:
+      type: http
+      scheme: basic
+      description: Jenkins basic authentication

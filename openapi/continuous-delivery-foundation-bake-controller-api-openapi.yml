@@ -1,0 +1,72 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Bake Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: bake-controller
+paths:
+  /bakery/logs/{region}/{statusId}:
+    get:
+      operationId: lookupLogs
+      parameters:
+      - in: path
+        name: region
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: statusId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: OK
+      summary: Retrieve the logs for a given bake
+      tags:
+      - bake-controller
+  /bakery/options:
+    get:
+      operationId: bakeOptions
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of available bakery base images, grouped by cloud provider
+      tags:
+      - bake-controller
+  /bakery/options/{cloudProvider}:
+    get:
+      operationId: bakeOptions_1
+      parameters:
+      - in: path
+        name: cloudProvider
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      summary: Retrieve a list of available bakery base images for a given cloud provider
+      tags:
+      - bake-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

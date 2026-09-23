@@ -1,0 +1,227 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Data Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: data-controller
+paths:
+  /v1/data/adhoc/{groupId}/{bucketId}/**:
+    delete:
+      operationId: getAdhocData_3
+      parameters:
+      - in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: bucketId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: expectedContentType
+        required: false
+        schema:
+          default: application/json
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - data-controller
+      summary: Get adhoc data 3
+      x-summary-source: derived
+    get:
+      operationId: getAdhocData
+      parameters:
+      - in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: bucketId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: expectedContentType
+        required: false
+        schema:
+          default: application/json
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - data-controller
+      summary: Get adhoc data
+      x-summary-source: derived
+    head:
+      operationId: getAdhocData_5
+      parameters:
+      - in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: bucketId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: expectedContentType
+        required: false
+        schema:
+          default: application/json
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - data-controller
+      summary: Get adhoc data 5
+      x-summary-source: derived
+    options:
+      operationId: getAdhocData_6
+      parameters:
+      - in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: bucketId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: expectedContentType
+        required: false
+        schema:
+          default: application/json
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - data-controller
+      summary: Get adhoc data 6
+      x-summary-source: derived
+    patch:
+      operationId: getAdhocData_4
+      parameters:
+      - in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: bucketId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: expectedContentType
+        required: false
+        schema:
+          default: application/json
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - data-controller
+      summary: Get adhoc data 4
+      x-summary-source: derived
+    post:
+      operationId: getAdhocData_1
+      parameters:
+      - in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: bucketId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: expectedContentType
+        required: false
+        schema:
+          default: application/json
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - data-controller
+      summary: Get adhoc data 1
+      x-summary-source: derived
+    put:
+      operationId: getAdhocData_2
+      parameters:
+      - in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: bucketId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: expectedContentType
+        required: false
+        schema:
+          default: application/json
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - data-controller
+      summary: Get adhoc data 2
+      x-summary-source: derived
+  /v1/data/static/{id}:
+    get:
+      operationId: getStaticData
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: filters
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      - in: query
+        name: expectedContentType
+        required: false
+        schema:
+          default: application/json
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - data-controller
+      summary: Get static data
+      x-summary-source: derived
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

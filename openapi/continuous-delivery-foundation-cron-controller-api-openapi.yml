@@ -1,0 +1,36 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Cron Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: cron-controller
+paths:
+  /cron/validate:
+    get:
+      operationId: validateCronExpression
+      parameters:
+      - in: query
+        name: expression
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - cron-controller
+      summary: Validate cron expression
+      x-summary-source: derived
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

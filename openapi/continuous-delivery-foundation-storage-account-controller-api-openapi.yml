@@ -1,0 +1,37 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Storage Account Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: storage-account-controller
+paths:
+  /storage:
+    get:
+      deprecated: true
+      operationId: all
+      parameters:
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Retrieve the list of storage accounts configured in Clouddriver
+      tags:
+      - storage-account-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

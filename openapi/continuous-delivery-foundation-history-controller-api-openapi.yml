@@ -1,0 +1,43 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker History Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: history-controller
+paths:
+  /history/{name}:
+    get:
+      operationId: getHistory
+      parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Get history for a resource
+      tags:
+      - history-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

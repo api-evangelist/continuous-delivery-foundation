@@ -1,0 +1,79 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Root Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: root-controller
+paths:
+  /:
+    delete:
+      operationId: root_3
+      responses:
+        '200':
+          description: OK
+      tags:
+      - root-controller
+      summary: Root 3
+      x-summary-source: derived
+    get:
+      operationId: root
+      responses:
+        '200':
+          description: OK
+      tags:
+      - root-controller
+      summary: Root
+      x-summary-source: derived
+    head:
+      operationId: root_5
+      responses:
+        '200':
+          description: OK
+      tags:
+      - root-controller
+      summary: Root 5
+      x-summary-source: derived
+    options:
+      operationId: root_6
+      responses:
+        '200':
+          description: OK
+      tags:
+      - root-controller
+      summary: Root 6
+      x-summary-source: derived
+    patch:
+      operationId: root_4
+      responses:
+        '200':
+          description: OK
+      tags:
+      - root-controller
+      summary: Root 4
+      x-summary-source: derived
+    post:
+      operationId: root_1
+      responses:
+        '200':
+          description: OK
+      tags:
+      - root-controller
+      summary: Root 1
+      x-summary-source: derived
+    put:
+      operationId: root_2
+      responses:
+        '200':
+          description: OK
+      tags:
+      - root-controller
+      summary: Root 2
+      x-summary-source: derived
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

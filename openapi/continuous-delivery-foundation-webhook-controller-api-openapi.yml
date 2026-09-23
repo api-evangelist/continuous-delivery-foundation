@@ -1,0 +1,136 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Webhook Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: webhook controller
+paths:
+  /webhooks/cdevents/{source}:
+    post:
+      operationId: webhooks_1
+      parameters:
+      - in: path
+        name: source
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloudEvent'
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Endpoint for posting webhooks to Spinnaker's CDEvents webhook service
+      tags:
+      - webhook controller
+  /webhooks/preconfigured:
+    get:
+      operationId: preconfiguredWebhooks
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of preconfigured webhooks in Orca
+      tags:
+      - webhook controller
+  /webhooks/{type}/{source}:
+    post:
+      operationId: webhooks
+      parameters:
+      - in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: source
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-Hub-Signature
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: X-Event-Key
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Endpoint for posting webhooks to Spinnaker's webhook service
+      tags:
+      - webhook controller
+components:
+  schemas:
+    CloudEventData:
+      type: object
+    CloudEvent:
+      properties:
+        attributeNames:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        data:
+          $ref: '#/components/schemas/CloudEventData'
+        dataContentType:
+          nullable: true
+          type: string
+        dataSchema:
+          format: uri
+          nullable: true
+          type: string
+        extensionNames:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        id:
+          type: string
+        source:
+          format: uri
+          type: string
+        specVersion:
+          enum:
+          - '0.3'
+          - '1.0'
+          type: string
+        subject:
+          nullable: true
+          type: string
+        time:
+          format: date-time
+          nullable: true
+          type: string
+        type:
+          type: string
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

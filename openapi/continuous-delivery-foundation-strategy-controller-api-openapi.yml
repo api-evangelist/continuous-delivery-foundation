@@ -1,0 +1,98 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Strategy Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: strategy-controller
+paths:
+  /strategies:
+    post:
+      operationId: saveStrategy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          description: OK
+      tags:
+      - strategy-controller
+      summary: Save strategy
+      x-summary-source: derived
+  /strategies/move:
+    post:
+      operationId: renameStrategy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          description: OK
+      tags:
+      - strategy-controller
+      summary: Rename strategy
+      x-summary-source: derived
+  /strategies/{application}/{strategyName}:
+    delete:
+      operationId: deleteStrategy
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: strategyName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - strategy-controller
+      summary: Delete strategy
+      x-summary-source: derived
+  /strategies/{id}:
+    put:
+      operationId: updateStrategy
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - strategy-controller
+      summary: Update strategy
+      x-summary-source: derived
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

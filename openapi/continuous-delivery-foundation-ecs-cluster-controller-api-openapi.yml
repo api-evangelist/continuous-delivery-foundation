@@ -1,0 +1,54 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Ecs Cluster Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: ecs-cluster-controller
+paths:
+  /ecs/ecsClusterDescriptions/{account}/{region}:
+    get:
+      operationId: getEcsClusterDescriptions
+      parameters:
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: region
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of Ecs Cluster Description WRT account and region
+      tags:
+      - ecs-cluster-controller
+  /ecs/ecsClusters:
+    get:
+      operationId: all_9
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of ECS clusters that can be used for the account and region
+      tags:
+      - ecs-cluster-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

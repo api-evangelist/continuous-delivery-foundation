@@ -1,0 +1,29 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Ecs Cloud Metric Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: ecs-cloud-metric-controller
+paths:
+  /ecs/cloudMetrics/alarms:
+    get:
+      operationId: allMetricAlarms
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of MetricAlarms
+      tags:
+      - ecs-cloud-metric-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

@@ -1,0 +1,141 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker V 2 Canary Config Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: v-2-canary-config-controller
+paths:
+  /v2/canaryConfig:
+    get:
+      operationId: getCanaryConfigs
+      parameters:
+      - in: query
+        name: application
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: configurationAccountName
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of canary configurations
+      tags:
+      - v-2-canary-config-controller
+    post:
+      operationId: createCanaryConfig
+      parameters:
+      - in: query
+        name: configurationAccountName
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Create a canary configuration
+      tags:
+      - v-2-canary-config-controller
+  /v2/canaryConfig/{id}:
+    delete:
+      operationId: deleteCanaryConfig
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: configurationAccountName
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete a canary configuration
+      tags:
+      - v-2-canary-config-controller
+    get:
+      operationId: getCanaryConfig
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: configurationAccountName
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve a canary configuration by id
+      tags:
+      - v-2-canary-config-controller
+    put:
+      operationId: updateCanaryConfig
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: configurationAccountName
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Update a canary configuration
+      tags:
+      - v-2-canary-config-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

@@ -1,0 +1,148 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Proxy Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: proxy-controller
+paths:
+  /proxies:
+    get:
+      operationId: list_3
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/SimpleProxyConfig'
+                type: array
+          description: OK
+      tags:
+      - proxy-controller
+      summary: List 3
+      x-summary-source: derived
+  /proxies/{proxy}/**:
+    delete:
+      operationId: any_3
+      parameters:
+      - in: path
+        name: proxy
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - proxy-controller
+      summary: Any 3
+      x-summary-source: derived
+    get:
+      operationId: any
+      parameters:
+      - in: path
+        name: proxy
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - proxy-controller
+      summary: Any
+      x-summary-source: derived
+    post:
+      operationId: any_1
+      parameters:
+      - in: path
+        name: proxy
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - proxy-controller
+      summary: Any 1
+      x-summary-source: derived
+    put:
+      operationId: any_2
+      parameters:
+      - in: path
+        name: proxy
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: requestParams
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+      tags:
+      - proxy-controller
+      summary: Any 2
+      x-summary-source: derived
+components:
+  schemas:
+    SimpleProxyConfig:
+      properties:
+        id:
+          type: string
+        uri:
+          type: string
+      required:
+      - id
+      - uri
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

@@ -1,0 +1,120 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Security Group Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: security-group-controller
+paths:
+  /securityGroups:
+    get:
+      deprecated: true
+      operationId: all_1
+      parameters:
+      - in: query
+        name: id
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve a list of security groups, grouped by account, cloud provider, and…
+      tags:
+      - security-group-controller
+  /securityGroups/{account}:
+    get:
+      deprecated: true
+      operationId: allByAccount
+      parameters:
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: provider
+        required: false
+        schema:
+          default: aws
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve a list of security groups for a given account, grouped by region
+      tags:
+      - security-group-controller
+  /securityGroups/{account}/{region}/{name}:
+    get:
+      deprecated: true
+      operationId: getSecurityGroup
+      parameters:
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: region
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: provider
+        required: false
+        schema:
+          default: aws
+          type: string
+      - in: query
+        name: vpcId
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve a security group's details
+      tags:
+      - security-group-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

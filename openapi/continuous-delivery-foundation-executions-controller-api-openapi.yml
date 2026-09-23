@@ -1,0 +1,202 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Executions Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: executions-controller
+paths:
+  /applications/{application}/executions/search:
+    get:
+      operationId: searchForPipelineExecutionsByTrigger
+      parameters:
+      - description: Only includes executions that are part of this application. If this value is "*", results will include executions of all applications.
+        in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - description: Only includes executions that were triggered by a trigger with a type that is equal to a type provided in this field. The list of trigger types should be a comma-delimited string. If this value is missing, results will includes executions of all trigger types.
+        in: query
+        name: triggerTypes
+        required: false
+        schema:
+          type: string
+      - description: Only includes executions that with this pipeline name.
+        in: query
+        name: pipelineName
+        required: false
+        schema:
+          type: string
+      - description: Only includes executions that were triggered by a trigger with this eventId.
+        in: query
+        name: eventId
+        required: false
+        schema:
+          type: string
+      - description: 'Only includes executions that were triggered by a trigger that matches the subset of fields provided by this value. This value should be a base64-encoded string of a JSON representation of a trigger object. The comparison succeeds if the execution trigger contains all the fields of the input trigger, the fields are of the same type, and each value of the field "matches". The term "matches" is specific for each field''s type:
+
+          - For Strings: A String value in the execution''s trigger matches the input trigger''s String value if the former equals the latter (case-insensitive) OR if the former matches the latter as a regular expression.
+
+          - For Maps: A Map value in the execution''s trigger matches the input trigger''s Map value if the former contains all keys of the latter and their values match.
+
+          - For Collections: A Collection value in the execution''s trigger matches the input trigger''s Collection value if the former has a unique element that matches each element of the latter.
+
+          - Every other value is compared using the Java "equals" method (Groovy "==" operator)'
+        in: query
+        name: trigger
+        required: false
+        schema:
+          type: string
+      - description: Only includes executions that were built at or after the given time, represented as a Unix timestamp in ms (UTC). This value must be >= 0 and <= the value of [triggerTimeEndBoundary], if provided. If this value is missing, it is defaulted to 0.
+        in: query
+        name: triggerTimeStartBoundary
+        required: false
+        schema:
+          default: 0
+          format: int64
+          type: integer
+      - description: Only includes executions that were built at or before the given time, represented as a Unix timestamp in ms (UTC). This value must be <= 9223372036854775807 (Long.MAX_VALUE) and >= the value of [triggerTimeStartBoundary], if provided. If this value is missing, it is defaulted to 9223372036854775807.
+        in: query
+        name: triggerTimeEndBoundary
+        required: false
+        schema:
+          default: 9223372036854775807
+          format: int64
+          type: integer
+      - description: 'Only includes executions with a status that is equal to a status provided in this field. The list of statuses should be given as a comma-delimited string. If this value is missing, includes executions of all statuses. Allowed statuses are: NOT_STARTED, RUNNING, PAUSED, SUSPENDED, SUCCEEDED, FAILED_CONTINUE, TERMINAL, CANCELED, REDIRECT, STOPPED, SKIPPED, BUFFERED.'
+        in: query
+        name: statuses
+        required: false
+        schema:
+          type: string
+      - description: Sets the first item of the resulting list for pagination. The list is 0-indexed. This value must be >= 0. If this value is missing, it is defaulted to 0.
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Sets the size of the resulting list for pagination. This value must be > 0. If this value is missing, it is defaulted to 10.
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      - description: Reverses the resulting list before it is paginated. If this value is missing, it is defaulted to false.
+        in: query
+        name: reverse
+        required: false
+        schema:
+          default: false
+          type: boolean
+      - description: Expands each execution object in the resulting list. If this value is missing, it is defaulted to false.
+        in: query
+        name: expand
+        required: false
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Search for pipeline executions using a combination of criteria.
+      tags:
+      - executions-controller
+  /executions:
+    get:
+      operationId: getLatestExecutionsByConfigIds
+      parameters:
+      - description: A comma-separated list of pipeline configuration IDs to retrieve recent executions for. Either this OR pipelineConfigIds must be supplied, but not both.
+        in: query
+        name: pipelineConfigIds
+        required: false
+        schema:
+          type: string
+      - description: A comma-separated list of executions to retrieve. Either this OR pipelineConfigIds must be supplied, but not both.
+        in: query
+        name: executionIds
+        required: false
+        schema:
+          type: string
+      - description: The number of executions to return per pipeline configuration. Ignored if executionIds parameter is supplied. If this value is missing, it is defaulted to 1.
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - description: A comma-separated list of execution statuses to filter by. Ignored if executionIds parameter is supplied. If this value is missing, it is defaulted to all statuses.
+        in: query
+        name: statuses
+        required: false
+        schema:
+          type: string
+      - description: Expands each execution object in the resulting list. If this value is missing, it is defaulted to true.
+        in: query
+        name: expand
+        required: false
+        schema:
+          default: true
+          type: boolean
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieves an ad-hoc collection of executions based on a number of user-supplied…
+      tags:
+      - executions-controller
+  /executions/failedStages:
+    get:
+      operationId: getFailedStagesForPipelineExecution
+      parameters:
+      - description: Pipeline execution id for which to retrieve failed stages.
+        in: query
+        name: executionId
+        required: true
+        schema:
+          type: string
+      - description: The Deck UI origin to use for building the pipeline execution URL for failing stages. If not set then only the path is generated and returned, i.e. the part after scheme://host:port.
+        in: query
+        name: deckOrigin
+        required: false
+        schema:
+          type: string
+      - description: The maximum number of nested pipeline executions to return for failing stages. The default value is 1.
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieves the subset of pipeline stages in a failed state.
+      tags:
+      - executions-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

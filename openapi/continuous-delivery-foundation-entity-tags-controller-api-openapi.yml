@@ -1,0 +1,151 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Entity Tags Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: entity-tags-controller
+paths:
+  /tags:
+    get:
+      operationId: list
+      parameters:
+      - description: "Any parameters to filter by, passed as individual parameters. Options are: \n  cloudProvider, application, entityType, entityId, idPrefix, account, region, namespace, maxResults"
+        in: query
+        name: allParameters
+        required: true
+        schema:
+          additionalProperties: {}
+          type: object
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      tags:
+      - entity-tags-controller
+      summary: List
+      x-summary-source: derived
+    post:
+      operationId: post
+      parameters:
+      - in: query
+        name: entityId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: entityType
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: region
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: cloudProvider
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: application
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: isPartial
+        required: false
+        schema:
+          default: true
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                additionalProperties: {}
+                type: object
+              type: array
+        required: true
+      responses:
+        '202':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: Accepted
+      tags:
+      - entity-tags-controller
+      summary: Post
+      x-summary-source: derived
+  /tags/**:
+    get:
+      operationId: get_2
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - entity-tags-controller
+      summary: Get 2
+      x-summary-source: derived
+  /tags/{id}/{tag}:
+    delete:
+      description: multiple tags can be deleted for an entity using a comma as a separator, e.g. /tag1,tag2
+      operationId: delete_2
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: tag
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '202':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: Accepted
+      summary: Deletes a subset of tags for the provided tag ID
+      tags:
+      - entity-tags-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

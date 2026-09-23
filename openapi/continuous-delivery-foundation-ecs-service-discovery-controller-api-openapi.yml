@@ -1,0 +1,31 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Ecs Service Discovery Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: ecs-service-discovery-controller
+paths:
+  /ecs/serviceDiscoveryRegistries:
+    get:
+      operationId: all_7
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Retrieve a list of Cloud Map services that can be used for the account and…
+      tags:
+      - ecs-service-discovery-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

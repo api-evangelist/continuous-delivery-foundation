@@ -1,0 +1,67 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Reorder Pipelines Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: reorder-pipelines-controller
+paths:
+  /actions/pipelines/reorder:
+    post:
+      operationId: reorderPipelines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReorderPipelinesCommand'
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Re-order pipelines
+      tags:
+      - reorder-pipelines-controller
+  /actions/strategies/reorder:
+    post:
+      operationId: reorderPipelineStrategies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReorderPipelinesCommand'
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Re-order pipeline strategies
+      tags:
+      - reorder-pipelines-controller
+components:
+  schemas:
+    ReorderPipelinesCommand:
+      properties:
+        application:
+          type: string
+        idsToIndices:
+          additionalProperties:
+            format: int32
+            type: integer
+          type: object
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

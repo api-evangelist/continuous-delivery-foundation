@@ -1,0 +1,153 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Firewall Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: firewall-controller
+paths:
+  /firewalls:
+    get:
+      operationId: all_6
+      parameters:
+      - in: query
+        name: id
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve a list of firewalls, grouped by account, cloud provider, and region
+      tags:
+      - firewall-controller
+  /firewalls/{account}:
+    get:
+      operationId: allByAccount_1
+      parameters:
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: provider
+        required: false
+        schema:
+          default: aws
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve a list of firewalls for a given account, grouped by region
+      tags:
+      - firewall-controller
+  /firewalls/{account}/{region}:
+    get:
+      operationId: allByAccountAndRegion
+      parameters:
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: region
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: provider
+        required: false
+        schema:
+          default: aws
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieve a list of firewalls for a given account and region
+      tags:
+      - firewall-controller
+  /firewalls/{account}/{region}/{name}:
+    get:
+      operationId: getSecurityGroup_1
+      parameters:
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: region
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: provider
+        required: false
+        schema:
+          default: aws
+          type: string
+      - in: query
+        name: vpcId
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: X-RateLimit-App
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Retrieve a firewall's details
+      tags:
+      - firewall-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

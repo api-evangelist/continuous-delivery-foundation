@@ -1,0 +1,163 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Generic Error Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: generic-error-controller
+paths:
+  /error:
+    delete:
+      operationId: error_3
+      parameters:
+      - in: query
+        name: trace
+        required: false
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - generic-error-controller
+      summary: Error 3
+      x-summary-source: derived
+    get:
+      operationId: error
+      parameters:
+      - in: query
+        name: trace
+        required: false
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - generic-error-controller
+      summary: Error
+      x-summary-source: derived
+    head:
+      operationId: error_5
+      parameters:
+      - in: query
+        name: trace
+        required: false
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - generic-error-controller
+      summary: Error 5
+      x-summary-source: derived
+    options:
+      operationId: error_6
+      parameters:
+      - in: query
+        name: trace
+        required: false
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - generic-error-controller
+      summary: Error 6
+      x-summary-source: derived
+    patch:
+      operationId: error_4
+      parameters:
+      - in: query
+        name: trace
+        required: false
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - generic-error-controller
+      summary: Error 4
+      x-summary-source: derived
+    post:
+      operationId: error_1
+      parameters:
+      - in: query
+        name: trace
+        required: false
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - generic-error-controller
+      summary: Error 1
+      x-summary-source: derived
+    put:
+      operationId: error_2
+      parameters:
+      - in: query
+        name: trace
+        required: false
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - generic-error-controller
+      summary: Error 2
+      x-summary-source: derived
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

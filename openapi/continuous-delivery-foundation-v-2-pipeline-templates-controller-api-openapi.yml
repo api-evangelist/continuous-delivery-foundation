@@ -1,0 +1,247 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker V 2 Pipeline Templates Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: v-2-pipeline-templates-controller
+paths:
+  /v2/pipelineTemplates:
+    get:
+      operationId: list_2
+      parameters:
+      - in: query
+        name: scopes
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: (ALPHA) List pipeline templates
+      tags:
+      - v-2-pipeline-templates-controller
+  /v2/pipelineTemplates/create:
+    post:
+      operationId: create
+      parameters:
+      - in: query
+        name: tag
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: (ALPHA) Create a pipeline template
+      tags:
+      - v-2-pipeline-templates-controller
+  /v2/pipelineTemplates/plan:
+    post:
+      operationId: plan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: (ALPHA) Plan a pipeline template configuration
+      tags:
+      - v-2-pipeline-templates-controller
+  /v2/pipelineTemplates/update/{id}:
+    post:
+      operationId: update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: tag
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: skipPlanDependents
+        required: false
+        schema:
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: (ALPHA) Update a pipeline template
+      tags:
+      - v-2-pipeline-templates-controller
+  /v2/pipelineTemplates/versions:
+    get:
+      operationId: listVersions
+      parameters:
+      - in: query
+        name: scopes
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties:
+                  items:
+                    additionalProperties: {}
+                    type: object
+                  type: array
+                type: object
+          description: OK
+      summary: List pipeline templates with versions
+      tags:
+      - v-2-pipeline-templates-controller
+  /v2/pipelineTemplates/{id}:
+    delete:
+      operationId: delete_1
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: tag
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: digest
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: application
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Delete a pipeline template
+      tags:
+      - v-2-pipeline-templates-controller
+    get:
+      operationId: get_1
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: tag
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: digest
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: (ALPHA) Get a pipeline template
+      tags:
+      - v-2-pipeline-templates-controller
+  /v2/pipelineTemplates/{id}/dependents:
+    get:
+      operationId: listPipelineTemplateDependents
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/PipelineTemplateDependent'
+                type: array
+          description: OK
+      summary: (ALPHA) List all pipelines that implement a pipeline template
+      tags:
+      - v-2-pipeline-templates-controller
+components:
+  schemas:
+    PipelineTemplateDependent:
+      properties:
+        application:
+          type: string
+        pipelineConfigId:
+          type: string
+        pipelineName:
+          type: string
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

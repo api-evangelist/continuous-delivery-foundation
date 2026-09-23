@@ -1,0 +1,251 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Build Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: build-controller
+paths:
+  /v2/builds:
+    get:
+      description: Deprecated, use the v3 endpoint instead
+      operationId: getBuildMasters
+      parameters:
+      - in: query
+        name: type
+        required: false
+        schema:
+          default: ''
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Get build masters
+      tags:
+      - build-controller
+  /v2/builds/{buildMaster}/build/{number}/**:
+    get:
+      description: Deprecated, use the v3 endpoint instead
+      operationId: getBuild
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: number
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Get build for build master
+      tags:
+      - build-controller
+  /v2/builds/{buildMaster}/builds/**:
+    get:
+      description: Deprecated, use the v3 endpoint instead
+      operationId: getBuilds
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Get builds for build master
+      tags:
+      - build-controller
+  /v2/builds/{buildMaster}/jobs:
+    get:
+      description: Deprecated, use the v3 endpoint instead
+      operationId: getJobsForBuildMaster
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Get jobs for build master
+      tags:
+      - build-controller
+  /v2/builds/{buildMaster}/jobs/**:
+    get:
+      description: Deprecated, use the v3 endpoint instead
+      operationId: getJobConfig
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Get job config
+      tags:
+      - build-controller
+  /v3/builds:
+    get:
+      operationId: v3GetBuildMasters
+      parameters:
+      - in: query
+        name: type
+        required: false
+        schema:
+          default: ''
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Get build masters
+      tags:
+      - build-controller
+  /v3/builds/{buildMaster}/build/{number}:
+    get:
+      operationId: v3GetBuild
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: number
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: job
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Get build for build master
+      tags:
+      - build-controller
+  /v3/builds/{buildMaster}/builds:
+    get:
+      operationId: v3GetBuilds
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: job
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Get builds for build master
+      tags:
+      - build-controller
+  /v3/builds/{buildMaster}/job:
+    get:
+      operationId: v3GetJobConfig
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: job
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Get job config
+      tags:
+      - build-controller
+  /v3/builds/{buildMaster}/jobs:
+    get:
+      operationId: v3GetJobsForBuildMaster
+      parameters:
+      - in: path
+        name: buildMaster
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Get jobs for build master
+      tags:
+      - build-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

@@ -1,0 +1,35 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Version Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: version-controller
+paths:
+  /version:
+    get:
+      operationId: getVersion
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Version'
+          description: OK
+      summary: Fetch Gate's current version
+      tags:
+      - version-controller
+components:
+  schemas:
+    Version:
+      properties:
+        version:
+          type: string
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

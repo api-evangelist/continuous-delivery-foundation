@@ -1,0 +1,46 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Manifest Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: manifest-controller
+paths:
+  /manifests/{account}/{location}/{name}:
+    get:
+      operationId: getManifest
+      parameters:
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: location
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      tags:
+      - manifest-controller
+      summary: Get manifest
+      x-summary-source: derived
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

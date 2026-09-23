@@ -1,0 +1,55 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Ecs Server Group Events Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: ecs-server-group-events-controller
+paths:
+  /applications/{application}/serverGroups/{account}/{serverGroupName}/events:
+    get:
+      operationId: getEvents
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: serverGroupName
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: region
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: provider
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items: {}
+                type: array
+          description: OK
+      summary: Retrieves a list of events for a server group
+      tags:
+      - ecs-server-group-events-controller
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

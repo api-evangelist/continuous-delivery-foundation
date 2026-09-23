@@ -1,0 +1,1015 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Managed Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: managed-controller
+paths:
+  /managed/application/{application}:
+    get:
+      operationId: getApplicationDetails
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: includeDetails
+        required: false
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: entities
+        required: false
+        schema:
+          default:
+          - resources
+          items:
+            type: string
+          type: array
+      - in: query
+        name: maxArtifactVersions
+        required: false
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Get managed details about an application
+      tags:
+      - managed-controller
+  /managed/application/{application}/config:
+    delete:
+      operationId: deleteManifestByApp
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeliveryConfig'
+          description: OK
+      summary: Delete a delivery config manifest for an application
+      tags:
+      - managed-controller
+    get:
+      operationId: getConfigBy
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeliveryConfig'
+          description: OK
+      summary: Get the delivery config associated with an application
+      tags:
+      - managed-controller
+  /managed/application/{application}/environment/{environment}/constraint:
+    post:
+      operationId: updateConstraintStatus
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: environment
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConstraintStatus'
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Update the status of an environment constraint
+      tags:
+      - managed-controller
+  /managed/application/{application}/environment/{environment}/constraints:
+    get:
+      operationId: getConstraintState
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: environment
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: limit
+        required: false
+        schema:
+          default: '10'
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConstraintState'
+                type: array
+          description: OK
+      summary: List up-to {limit} current constraint states for an environment
+      tags:
+      - managed-controller
+  /managed/application/{application}/mark/bad:
+    post:
+      operationId: markBad
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentArtifactVeto'
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Veto an artifact version in an environment
+      tags:
+      - managed-controller
+  /managed/application/{application}/mark/good:
+    post:
+      operationId: markGood
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentArtifactVeto'
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Delete veto of an artifact version in an environment
+      tags:
+      - managed-controller
+  /managed/application/{application}/pause:
+    delete:
+      operationId: resumeApplication
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Resume management of an entire application
+      tags:
+      - managed-controller
+    post:
+      operationId: pauseApplication
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Pause management of an entire application
+      tags:
+      - managed-controller
+  /managed/application/{application}/pin:
+    post:
+      operationId: createPin
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentArtifactPin'
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Create a pin for an artifact in an environment
+      tags:
+      - managed-controller
+  /managed/application/{application}/pin/{targetEnvironment}:
+    delete:
+      operationId: deletePin
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: targetEnvironment
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: reference
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Unpin one or more artifact(s) in an environment.
+      tags:
+      - managed-controller
+  /managed/application/{application}/veto:
+    post:
+      operationId: veto
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentArtifactVeto'
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Veto an artifact version in an environment
+      tags:
+      - managed-controller
+  /managed/application/{application}/veto/{targetEnvironment}/{reference}/{version}:
+    delete:
+      operationId: deleteVeto
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: targetEnvironment
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: reference
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: version
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Remove veto of an artifact version in an environment
+      tags:
+      - managed-controller
+  /managed/delivery-configs:
+    post:
+      operationId: upsertManifest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryConfig'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/DeliveryConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryConfig'
+          description: OK
+      summary: Create or update a delivery config manifest
+      tags:
+      - managed-controller
+  /managed/delivery-configs/diff:
+    post:
+      operationId: diffManifest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryConfig'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/DeliveryConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Ad-hoc validate and diff a config manifest
+      tags:
+      - managed-controller
+  /managed/delivery-configs/schema:
+    get:
+      operationId: schema
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties: {}
+                type: object
+            application/x-yaml:
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Ad-hoc validate and diff a config manifest
+      tags:
+      - managed-controller
+  /managed/delivery-configs/validate:
+    post:
+      operationId: validateManifest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryConfig'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/DeliveryConfig'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties: {}
+                type: object
+            application/x-yaml:
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Validate a delivery config manifest
+      tags:
+      - managed-controller
+  /managed/delivery-configs/{name}:
+    delete:
+      operationId: deleteManifest
+      parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeliveryConfig'
+          description: OK
+      summary: Delete a delivery config manifest
+      tags:
+      - managed-controller
+    get:
+      operationId: getManifest_1
+      parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeliveryConfig'
+          description: OK
+      summary: Get a delivery config manifest
+      tags:
+      - managed-controller
+  /managed/delivery-configs/{name}.yml:
+    get:
+      operationId: getManifestYaml
+      parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/DeliveryConfig'
+          description: OK
+      summary: Get a delivery config manifest
+      tags:
+      - managed-controller
+  /managed/delivery-configs/{name}/artifacts:
+    get:
+      operationId: getManifestArtifacts
+      parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Get the status of each version of each artifact in each environment
+      tags:
+      - managed-controller
+  /managed/environments/{application}:
+    get:
+      operationId: getEnvironments
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: Get current environment details
+      tags:
+      - managed-controller
+  /managed/graphql:
+    post:
+      operationId: graphql
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Post a graphql request
+      tags:
+      - managed-controller
+  /managed/notifications/callbacks/{source}:
+    post:
+      operationId: processNotificationCallback_1
+      parameters:
+      - in: path
+        name: source
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+      tags:
+      - managed-controller
+      summary: Process notification callback 1
+      x-summary-source: derived
+  /managed/reports/adoption:
+    get:
+      operationId: getAdoptionReport
+      parameters:
+      - in: query
+        name: params
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            text/html:
+              schema:
+                format: byte
+                type: string
+          description: OK
+      summary: Get a report of Managed Delivery adoption
+      tags:
+      - managed-controller
+  /managed/reports/onboarding:
+    get:
+      operationId: getOnboardingReport
+      parameters:
+      - in: header
+        name: Accept
+        required: false
+        schema:
+          default: text/html
+          type: string
+      - in: query
+        name: params
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                format: byte
+                type: string
+          description: OK
+      summary: Get a report of application onboarding
+      tags:
+      - managed-controller
+  /managed/resources/diff:
+    post:
+      operationId: diffResource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Resource'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Ad-hoc validate and diff a resource
+      tags:
+      - managed-controller
+  /managed/resources/export/artifact/{cloudProvider}/{account}/{clusterName}:
+    get:
+      operationId: exportResource_1
+      parameters:
+      - in: path
+        name: cloudProvider
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: clusterName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Generates an artifact definition based on the artifact used in a running cluster
+      tags:
+      - managed-controller
+  /managed/resources/export/{cloudProvider}/{account}/{type}/{name}:
+    get:
+      operationId: exportResource
+      parameters:
+      - in: path
+        name: cloudProvider
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: account
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: serviceAccount
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Resource'
+          description: OK
+      summary: Generate a keel resource definition for a deployed cloud resource
+      tags:
+      - managed-controller
+  /managed/resources/{resourceId}:
+    get:
+      operationId: getResource
+      parameters:
+      - in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Resource'
+          description: OK
+      summary: Get a resource
+      tags:
+      - managed-controller
+  /managed/resources/{resourceId}.yml:
+    get:
+      operationId: getResourceYaml
+      parameters:
+      - in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Resource'
+          description: OK
+      summary: Get a resource
+      tags:
+      - managed-controller
+  /managed/resources/{resourceId}/pause:
+    delete:
+      operationId: resumeResource
+      parameters:
+      - in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Resume management of a resource
+      tags:
+      - managed-controller
+    post:
+      operationId: pauseResource
+      parameters:
+      - in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Pause management of a resource
+      tags:
+      - managed-controller
+  /managed/resources/{resourceId}/status:
+    get:
+      operationId: getResourceStatus
+      parameters:
+      - in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Get status of a resource
+      tags:
+      - managed-controller
+  /managed/{application}/environment/{environment}/verifications:
+    post:
+      operationId: overrideVerification
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: environment
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverrideVerificationRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Override the status of a verification
+      tags:
+      - managed-controller
+  /managed/{application}/environment/{environment}/verifications/retry:
+    post:
+      operationId: retryVerification
+      parameters:
+      - in: path
+        name: application
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: environment
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetryVerificationRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Retry a verification
+      tags:
+      - managed-controller
+components:
+  schemas:
+    Notification:
+      properties:
+        address:
+          type: string
+        frequency:
+          type: string
+        type:
+          type: string
+      type: object
+    GraphQLRequest:
+      properties:
+        operationName:
+          type: string
+        query:
+          type: string
+        variables:
+          additionalProperties: {}
+          type: object
+      type: object
+    RetryVerificationRequest:
+      properties:
+        artifactReference:
+          type: string
+        artifactVersion:
+          type: string
+        verificationId:
+          type: string
+      required:
+      - artifactReference
+      - artifactVersion
+      - verificationId
+      type: object
+    ConstraintStatus:
+      properties:
+        artifactReference:
+          type: string
+        artifactVersion:
+          type: string
+        comment:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+      type: object
+    Resource:
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          additionalProperties: {}
+          type: object
+        spec:
+          additionalProperties: {}
+          type: object
+      type: object
+    Environment:
+      properties:
+        constraints:
+          items:
+            additionalProperties: {}
+            type: object
+          type: array
+        locations:
+          additionalProperties: {}
+          type: object
+        name:
+          type: string
+        notifications:
+          items:
+            $ref: '#/components/schemas/Notification'
+          type: array
+        postDeploy:
+          items:
+            additionalProperties: {}
+            type: object
+          type: array
+        resources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          type: array
+        verifyWith:
+          items:
+            additionalProperties: {}
+            type: object
+          type: array
+      type: object
+    EnvironmentArtifactVeto:
+      properties:
+        comment:
+          type: string
+        reference:
+          type: string
+        targetEnvironment:
+          type: string
+        version:
+          type: string
+      type: object
+    OverrideVerificationRequest:
+      properties:
+        artifactReference:
+          type: string
+        artifactVersion:
+          type: string
+        comment:
+          nullable: true
+          type: string
+        status:
+          type: string
+        verificationId:
+          type: string
+      required:
+      - artifactReference
+      - artifactVersion
+      - status
+      - verificationId
+      type: object
+    EnvironmentArtifactPin:
+      properties:
+        comment:
+          type: string
+        pinnedBy:
+          type: string
+        reference:
+          type: string
+        targetEnvironment:
+          type: string
+        version:
+          type: string
+      type: object
+    ConstraintState:
+      properties:
+        artifactVersion:
+          type: string
+        attributes:
+          additionalProperties: {}
+          type: object
+        comment:
+          type: string
+        createdAt:
+          type: string
+        deliveryConfigName:
+          type: string
+        environmentName:
+          type: string
+        judgedAt:
+          type: string
+        judgedBy:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+      type: object
+    DeliveryConfig:
+      properties:
+        apiVersion:
+          type: string
+        application:
+          type: string
+        artifacts:
+          items:
+            additionalProperties: {}
+            type: object
+          type: array
+        environments:
+          items:
+            $ref: '#/components/schemas/Environment'
+          type: array
+        name:
+          type: string
+        serviceAccount:
+          type: string
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io

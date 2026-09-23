@@ -1,0 +1,202 @@
+openapi: 3.2.0
+info:
+  contact:
+    name: ''
+  description: ''
+  title: Spinnaker Pipeline Templates Controller API
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- name: pipeline-templates-controller
+paths:
+  /pipelineTemplates:
+    get:
+      operationId: list_1
+      parameters:
+      - in: query
+        name: scopes
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties: {}
+                  type: object
+                type: array
+          description: OK
+      summary: List pipeline templates
+      tags:
+      - pipeline-templates-controller
+    post:
+      operationId: create_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '202':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: Accepted
+      summary: Create a pipeline template
+      tags:
+      - pipeline-templates-controller
+  /pipelineTemplates/resolve:
+    get:
+      operationId: resolveTemplates
+      parameters:
+      - in: query
+        name: source
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: executionId
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: pipelineConfigId
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Resolve a pipeline template
+      tags:
+      - pipeline-templates-controller
+  /pipelineTemplates/{id}:
+    delete:
+      operationId: delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: application
+        required: false
+        schema:
+          type: string
+      responses:
+        '202':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: Accepted
+      summary: Delete a pipeline template
+      tags:
+      - pipeline-templates-controller
+    get:
+      operationId: get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: OK
+      summary: Get a pipeline template
+      tags:
+      - pipeline-templates-controller
+    post:
+      operationId: update_1
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: skipPlanDependents
+        required: false
+        schema:
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: {}
+              type: object
+        required: true
+      responses:
+        '202':
+          content:
+            '*/*':
+              schema:
+                additionalProperties: {}
+                type: object
+          description: Accepted
+      summary: Update a pipeline template
+      tags:
+      - pipeline-templates-controller
+  /pipelineTemplates/{id}/dependents:
+    get:
+      operationId: listPipelineTemplateDependents_1
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: recursive
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/PipelineTemplateDependent'
+                type: array
+          description: OK
+      summary: List all pipelines that implement a pipeline template
+      tags:
+      - pipeline-templates-controller
+components:
+  schemas:
+    PipelineTemplateDependent:
+      properties:
+        application:
+          type: string
+        pipelineConfigId:
+          type: string
+        pipelineName:
+          type: string
+      type: object
+externalDocs:
+  description: Spinnaker Documentation
+  url: https://spinnaker.io
