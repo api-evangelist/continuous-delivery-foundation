@@ -95,6 +95,17 @@ components:
           description: Number of changes in this run
         result:
           $ref: '#/components/schemas/PipelineState'
+    PipelineRunsResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineRun'
     PipelineState:
       type: string
       enum:
@@ -109,17 +120,6 @@ components:
       - failure
       - unknown
       - aborted
-    PipelineRunsResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - ok
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineRun'
   securitySchemes:
     jenkins_auth:
       type: http

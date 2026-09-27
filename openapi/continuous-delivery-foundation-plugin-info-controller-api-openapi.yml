@@ -111,29 +111,31 @@ components:
       required:
       - releases
       type: object
-    RemoteExtensionConfig:
-      properties:
-        config:
-          additionalProperties: {}
-          nullable: true
-          type: object
-        id:
-          type: string
-        transport:
-          $ref: '#/components/schemas/RemoteExtensionTransportConfig'
-        type:
-          type: string
-      required:
-      - id
-      - transport
-      - type
-      type: object
     RemoteExtensionTransportConfig:
       properties:
         http:
           $ref: '#/components/schemas/Http'
       required:
       - http
+      type: object
+    Headers:
+      properties:
+        invokeHeaders:
+          additionalProperties:
+            type: string
+          type: object
+        readHeaders:
+          additionalProperties:
+            type: string
+          type: object
+        writeHeaders:
+          additionalProperties:
+            type: string
+          type: object
+      required:
+      - invokeHeaders
+      - readHeaders
+      - writeHeaders
       type: object
     SpinnakerPluginRelease:
       properties:
@@ -178,24 +180,22 @@ components:
       - queryParams
       - url
       type: object
-    Headers:
+    RemoteExtensionConfig:
       properties:
-        invokeHeaders:
-          additionalProperties:
-            type: string
+        config:
+          additionalProperties: {}
+          nullable: true
           type: object
-        readHeaders:
-          additionalProperties:
-            type: string
-          type: object
-        writeHeaders:
-          additionalProperties:
-            type: string
-          type: object
+        id:
+          type: string
+        transport:
+          $ref: '#/components/schemas/RemoteExtensionTransportConfig'
+        type:
+          type: string
       required:
-      - invokeHeaders
-      - readHeaders
-      - writeHeaders
+      - id
+      - transport
+      - type
       type: object
 externalDocs:
   description: Spinnaker Documentation

@@ -834,13 +834,37 @@ paths:
       - managed-controller
 components:
   schemas:
-    Notification:
+    EnvironmentArtifactPin:
       properties:
-        address:
+        comment:
           type: string
-        frequency:
+        pinnedBy:
           type: string
-        type:
+        reference:
+          type: string
+        targetEnvironment:
+          type: string
+        version:
+          type: string
+      type: object
+    DeliveryConfig:
+      properties:
+        apiVersion:
+          type: string
+        application:
+          type: string
+        artifacts:
+          items:
+            additionalProperties: {}
+            type: object
+          type: array
+        environments:
+          items:
+            $ref: '#/components/schemas/Environment'
+          type: array
+        name:
+          type: string
+        serviceAccount:
           type: string
       type: object
     GraphQLRequest:
@@ -866,13 +890,24 @@ components:
       - artifactVersion
       - verificationId
       type: object
-    ConstraintStatus:
+    ConstraintState:
       properties:
-        artifactReference:
-          type: string
         artifactVersion:
           type: string
+        attributes:
+          additionalProperties: {}
+          type: object
         comment:
+          type: string
+        createdAt:
+          type: string
+        deliveryConfigName:
+          type: string
+        environmentName:
+          type: string
+        judgedAt:
+          type: string
+        judgedBy:
           type: string
         status:
           type: string
@@ -923,6 +958,15 @@ components:
             type: object
           type: array
       type: object
+    Notification:
+      properties:
+        address:
+          type: string
+        frequency:
+          type: string
+        type:
+          type: string
+      type: object
     EnvironmentArtifactVeto:
       properties:
         comment:
@@ -953,61 +997,17 @@ components:
       - status
       - verificationId
       type: object
-    EnvironmentArtifactPin:
+    ConstraintStatus:
       properties:
-        comment:
+        artifactReference:
           type: string
-        pinnedBy:
-          type: string
-        reference:
-          type: string
-        targetEnvironment:
-          type: string
-        version:
-          type: string
-      type: object
-    ConstraintState:
-      properties:
         artifactVersion:
           type: string
-        attributes:
-          additionalProperties: {}
-          type: object
         comment:
-          type: string
-        createdAt:
-          type: string
-        deliveryConfigName:
-          type: string
-        environmentName:
-          type: string
-        judgedAt:
-          type: string
-        judgedBy:
           type: string
         status:
           type: string
         type:
-          type: string
-      type: object
-    DeliveryConfig:
-      properties:
-        apiVersion:
-          type: string
-        application:
-          type: string
-        artifacts:
-          items:
-            additionalProperties: {}
-            type: object
-          type: array
-        environments:
-          items:
-            $ref: '#/components/schemas/Environment'
-          type: array
-        name:
-          type: string
-        serviceAccount:
           type: string
       type: object
 externalDocs:

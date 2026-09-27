@@ -1,0 +1,2273 @@
+openapi: 3.2.0
+info:
+  title: Screwdriver API Documentation Pipelines API
+  version: '3'
+servers:
+- url: https://api.screwdriver.cd/
+security:
+- jwt: []
+tags:
+- name: Pipelines
+paths:
+  /v4/pipelines:
+    get:
+      summary: Get pipelines with pagination
+      operationId: getV4Pipelines
+      description: Returns all pipeline records
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          description: Page to paginate
+          minimum: 1
+        description: Page to paginate
+      - name: count
+        in: query
+        schema:
+          type: integer
+          description: Count to paginate
+          minimum: 1
+          maximum: 50
+        description: Count to paginate
+      - name: search
+        in: query
+        schema:
+          type: string
+          description: Keyword to search by
+          maxLength: 200
+        description: Keyword to search by
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: Sorting option
+          default: descending
+          enum:
+          - ascending
+          - descending
+          x-convert:
+            case: lower
+        description: Sorting option
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          description: Field to sort by
+          maxLength: 100
+        description: Field to sort by
+      - name: getCount
+        in: query
+        schema:
+          type: boolean
+          description: Return total count
+        description: Return total count
+      - name: configPipelineId
+        in: query
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+      - name: ids[]
+        in: query
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+              description: Identifier of this pipeline
+              example: 123345
+              x-constraint:
+                sign: positive
+            name: ids[]
+          - type: integer
+            description: Identifier of this pipeline
+            example: 123345
+            x-constraint:
+              sign: positive
+      - name: scmUri
+        in: query
+        schema:
+          type: string
+          description: Unique identifier for the application
+          example: github.com:123456:master
+          maxLength: 500
+          pattern: ^([^:]+):([^:]+):([^:]+)(?::(.*))?$
+        description: Unique identifier for the application
+      - name: scmContext
+        in: query
+        schema:
+          type: string
+          description: The SCM in which the repository exists
+          example: github:github.com
+          maxLength: 128
+          pattern: ^([^:]+):([^:]+)$
+        description: The SCM in which the repository exists
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List%20of%20Pipelines'
+    post:
+      summary: Create a new pipeline
+      operationId: postV4Pipelines
+      description: Create a specific pipeline
+      tags:
+      - Pipelines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Create%20Pipeline'
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}:
+    get:
+      summary: Get a single pipeline
+      operationId: getV4PipelinesId
+      description: Returns a pipeline record
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get%20Pipeline'
+    put:
+      summary: Update a pipeline
+      operationId: putV4PipelinesId
+      description: Update a specific pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Update%20Pipeline'
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      summary: Delete a single pipeline
+      operationId: deleteV4PipelinesId
+      description: Returns null if successful
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/admins:
+    get:
+      summary: Get all admin users for a given pipeline
+      operationId: getV4PipelinesIdAdmins
+      description: Returns all admin users for a given pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List%20of%20users'
+  /v4/pipelines/{id}/latestCommitEvent:
+    get:
+      summary: Get latest commit event for a given pipeline
+      operationId: getV4PipelinesIdLatestcommitevent
+      description: Return latest commit event
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get%20Event'
+  /v4/pipelines/{id}/tokens:
+    get:
+      summary: List tokens for pipeline
+      operationId: getV4PipelinesIdTokens
+      description: List tokens for a specific pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model30'
+    post:
+      summary: Create a new token for pipeline
+      operationId: postV4PipelinesIdTokens
+      description: Create a specific token for pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Create%20token'
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      summary: Remove all tokens for a specific pipeline
+      operationId: deleteV4PipelinesIdTokens
+      description: Returns null if successful
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/events:
+    get:
+      summary: Get pipeline type events for this pipeline
+      operationId: getV4PipelinesIdEvents
+      description: Returns pipeline events for the given pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: page
+        in: query
+        schema:
+          type: integer
+          description: Page to paginate
+          minimum: 1
+        description: Page to paginate
+      - name: count
+        in: query
+        schema:
+          type: integer
+          description: Count to paginate
+          minimum: 1
+          maximum: 50
+        description: Count to paginate
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: Sorting option
+          default: descending
+          enum:
+          - ascending
+          - descending
+          x-convert:
+            case: lower
+        description: Sorting option
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          description: Field to sort by
+          maxLength: 100
+        description: Field to sort by
+      - name: type
+        in: query
+        schema:
+          type: string
+          description: Type of the event
+          example: pr
+          enum:
+          - pr
+          - pipeline
+          maxLength: 10
+        description: Type of the event
+      - name: prNum
+        in: query
+        schema:
+          type: integer
+          description: Pull request number if it is a PR event
+          x-constraint:
+            sign: positive
+        description: Pull request number if it is a PR event
+      - name: sha
+        in: query
+        schema:
+          type: string
+          description: SHA or partial SHA
+          example: ccc49349d3cffbd12ea9e3d41521480b4aa5de5f
+          maxLength: 40
+          x-format:
+            hex:
+              byteAligned: false
+              prefix: false
+        description: SHA or partial SHA
+      - name: message
+        in: query
+        schema:
+          type: string
+          example: 'fix: Typo'
+      - name: author
+        in: query
+        schema:
+          type: string
+          example: Dao Lam
+      - name: creator
+        in: query
+        schema:
+          type: string
+          description: Creator Name; optionally use "ne:" prefix to exclude creator
+          example: Dao Lam
+        description: Creator Name; optionally use "ne:" prefix to exclude creator
+      - name: id
+        in: query
+        schema:
+          description: Event ID; alternatively can use greater than or less than prefix (gt:/lt:)
+          example: gt:12345
+          anyOf:
+          - type: integer
+            description: Identifier of this pipeline
+            example: 123345
+            x-constraint:
+              sign: positive
+          - type: string
+            pattern: ^(gt|lt):([\d]+)$
+        description: Event ID; alternatively can use greater than or less than prefix (gt:/lt:)
+      - name: groupEventId
+        in: query
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List%20of%20events'
+  /v4/pipelines/{id}/triggers:
+    get:
+      summary: Get all triggers for a given pipeline
+      operationId: getV4PipelinesIdTriggers
+      description: Returns all triggers for a given pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List%20of%20triggers'
+  /v4/pipelines/{id}/jobs:
+    get:
+      summary: Get all jobs for a given pipeline
+      operationId: getV4PipelinesIdJobs
+      description: Returns all jobs for a given pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: page
+        in: query
+        schema:
+          type: integer
+          description: Page to paginate
+          minimum: 1
+        description: Page to paginate
+      - name: count
+        in: query
+        schema:
+          type: integer
+          description: Count to paginate
+          minimum: 1
+          maximum: 50
+        description: Count to paginate
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: Sorting option
+          default: descending
+          enum:
+          - ascending
+          - descending
+          x-convert:
+            case: lower
+        description: Sorting option
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - pr
+          - pipeline
+      - name: archived
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: jobName
+        in: query
+        schema:
+          type: string
+          description: Name of the Job
+          example: main
+          maxLength: 110
+          pattern: ^(PR-[0-9]+:)?(([\w-]+)|(?:stage@([\w-]+):(setup|teardown)))$
+        description: Name of the Job
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List%20of%20jobs'
+  /v4/pipelines/{id}/badge:
+    get:
+      summary: Get a badge for the pipeline
+      operationId: getV4PipelinesIdBadge
+      description: Redirects to the badge service
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/stages:
+    get:
+      summary: Get all stages for a given pipeline
+      operationId: getV4PipelinesIdStages
+      description: Returns all stages for a given pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: page
+        in: query
+        schema:
+          type: integer
+          description: Page to paginate
+          minimum: 1
+        description: Page to paginate
+      - name: count
+        in: query
+        schema:
+          type: integer
+          description: Count to paginate
+          minimum: 1
+          maximum: 50
+        description: Count to paginate
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: Sorting option
+          default: descending
+          enum:
+          - ascending
+          - descending
+          x-convert:
+            case: lower
+        description: Sorting option
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          description: Field to sort by
+          maxLength: 100
+        description: Field to sort by
+      - name: getCount
+        in: query
+        schema:
+          type: boolean
+          description: Return total count
+        description: Return total count
+      - name: name
+        in: query
+        schema:
+          type: string
+          description: Name of the Stage
+          example: deploy
+          maxLength: 110
+          pattern: ^[\w-]+$
+        description: Name of the Stage
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - pr
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/secrets:
+    get:
+      summary: Get all secrets secrets for a given pipelines
+      operationId: getV4PipelinesIdSecrets
+      description: Returns all secrets for a given pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List_of_secrets'
+  /v4/pipelines/{id}/builds:
+    get:
+      summary: Get builds for this pipeline
+      operationId: getV4PipelinesIdBuilds
+      description: Returns builds for the given pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: page
+        in: query
+        schema:
+          type: integer
+          description: Page to paginate
+          minimum: 1
+        description: Page to paginate
+      - name: count
+        in: query
+        schema:
+          type: integer
+          description: Count to paginate
+          minimum: 1
+          maximum: 50
+        description: Count to paginate
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: Sorting option
+          default: descending
+          enum:
+          - ascending
+          - descending
+          x-convert:
+            case: lower
+        description: Sorting option
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          description: Field to sort by
+          maxLength: 100
+        description: Field to sort by
+      - name: readOnly
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: fetchSteps
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: groupEventId
+        in: query
+        schema:
+          type: integer
+          description: Identifier of the group parent event
+          example: 123344
+          x-constraint:
+            sign: positive
+        description: Identifier of the group parent event
+      - name: latest
+        in: query
+        schema:
+          type: boolean
+          default: false
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model32'
+  /v4/pipelines/{id}/metrics:
+    get:
+      summary: Get metrics for this pipeline
+      operationId: getV4PipelinesIdMetrics
+      description: Returns list of metrics for the given pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: page
+        in: query
+        schema:
+          type: integer
+          description: Page to paginate
+          minimum: 1
+        description: Page to paginate
+      - name: count
+        in: query
+        schema:
+          type: integer
+          description: Count to paginate
+          minimum: 1
+          maximum: 50
+        description: Count to paginate
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: Sorting option
+          default: descending
+          enum:
+          - ascending
+          - descending
+          x-convert:
+            case: lower
+        description: Sorting option
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          description: Field to sort by
+          maxLength: 100
+        description: Field to sort by
+      - name: getCount
+        in: query
+        schema:
+          type: boolean
+          description: Return total count
+        description: Return total count
+      - name: startTime
+        in: query
+        schema:
+          type: string
+          example: '1970-01-01T15:00:00Z'
+          x-format:
+            isoDate: true
+      - name: endTime
+        in: query
+        schema:
+          type: string
+          example: '1970-01-03T18:00:00Z'
+          x-format:
+            isoDate: true
+      - name: aggregateInterval
+        in: query
+        schema:
+          type: string
+          enum:
+          - none
+          - day
+          - week
+          - month
+          - year
+      - name: downtimeJobs[]
+        in: query
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+              pattern: ^[0-9]+$
+            name: downtimeJobs[]
+          - type: string
+            pattern: ^[0-9]+$
+      - name: downtimeStatuses[]
+        in: query
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+              description: Current status of the build
+              example: SUCCESS
+              enum:
+              - ABORTED
+              - CREATED
+              - FAILURE
+              - QUEUED
+              - RUNNING
+              - SUCCESS
+              - BLOCKED
+              - UNSTABLE
+              - COLLAPSED
+              - FROZEN
+            name: downtimeStatuses[]
+          - type: string
+            description: Current status of the build
+            example: SUCCESS
+            enum:
+            - ABORTED
+            - CREATED
+            - FAILURE
+            - QUEUED
+            - RUNNING
+            - SUCCESS
+            - BLOCKED
+            - UNSTABLE
+            - COLLAPSED
+            - FROZEN
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model33'
+  /v4/pipelines/{id}/lastSuccessfulEvent:
+    get:
+      summary: Get last successful event for a given pipeline
+      operationId: getV4PipelinesIdLastsuccessfulevent
+      description: Return last successful event
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get%20Event'
+  /v4/pipelines/{id}/admin:
+    get:
+      summary: Get the pipeline admin
+      operationId: getV4PipelinesIdAdmin
+      description: Returns a pipeline admin record
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: scmContext
+        in: query
+        schema:
+          type: string
+          description: The SCM in which the repository exists
+          example: github:github.com
+          maxLength: 128
+          pattern: ^([^:]+):([^:]+)$
+        description: The SCM in which the repository exists
+      - name: includeUserToken
+        in: query
+        schema:
+          type: boolean
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/{jobName}/badge:
+    get:
+      summary: Get a badge for a job
+      operationId: getV4PipelinesIdJobnameBadge
+      description: Redirects to the badge service
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: jobName
+        in: path
+        schema:
+          type: string
+          description: Name of the Job
+          example: main
+          maxLength: 110
+          pattern: ^(PR-[0-9]+:)?(([\w-]+)|(?:stage@([\w-]+):(setup|teardown)))$
+        description: Name of the Job
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/jobs/{jobName}/latestBuild:
+    get:
+      summary: Get latest build for a given job
+      operationId: getV4PipelinesIdJobsJobnameLatestbuild
+      description: Return latest build of status specified
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: jobName
+        in: path
+        schema:
+          type: string
+          description: Name of the Job
+          example: main
+          maxLength: 110
+          pattern: ^(PR-[0-9]+:)?(([\w-]+)|(?:stage@([\w-]+):(setup|teardown)))$
+        description: Name of the Job
+        required: true
+      - name: status
+        in: query
+        schema:
+          type: string
+          description: Current status of the build
+          example: SUCCESS
+          enum:
+          - ABORTED
+          - CREATED
+          - FAILURE
+          - QUEUED
+          - RUNNING
+          - SUCCESS
+          - BLOCKED
+          - UNSTABLE
+          - COLLAPSED
+          - FROZEN
+        description: Current status of the build
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model24'
+  /v4/pipelines/{id}/openPr:
+    post:
+      summary: Open pull request for repository
+      operationId: postV4PipelinesIdOpenpr
+      description: Open pull request
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Model63'
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/startall:
+    post:
+      summary: Start all child pipelines given a specific pipeline
+      operationId: postV4PipelinesIdStartall
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/sync:
+    post:
+      summary: Sync a pipeline
+      operationId: postV4PipelinesIdSync
+      description: Sync a specific pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/sync/webhooks:
+    post:
+      summary: Add webhooks or update webhooks if already exists
+      operationId: postV4PipelinesIdSyncWebhooks
+      description: Add or update Screwdriver API webhooks
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/sync/pullrequests:
+    post:
+      summary: Add or update pull request of a pipeline
+      operationId: postV4PipelinesIdSyncPullrequests
+      description: Add or update pull request jobs
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/updateAdmins:
+    put:
+      summary: Update admins for a collection of pipelines
+      operationId: putV4PipelinesUpdateadmins
+      description: Update the admins for a collection of pipelines
+      tags:
+      - Pipelines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Model67'
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/buildCluster:
+    put:
+      summary: Update the buildCluster of a pipeline
+      operationId: putV4PipelinesIdBuildcluster
+      description: Update the buildCluster of a specific pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/updateAdmins:
+    put:
+      summary: Update admins of a pipeline
+      operationId: putV4PipelinesIdUpdateadmins
+      description: Update the admins of a specific pipeline
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{pipelineId}/tokens/{tokenId}:
+    put:
+      summary: Update a token for pipeline
+      operationId: putV4PipelinesPipelineidTokensTokenid
+      description: Update a specific token for pipeline
+      parameters:
+      - name: pipelineId
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: tokenId
+        in: path
+        schema:
+          type: integer
+          x-constraint:
+            sign: positive
+        required: true
+      tags:
+      - Pipelines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Update%20token%20metadata'
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      summary: Remove a single token for a specific pipeline
+      operationId: deleteV4PipelinesPipelineidTokensTokenid
+      description: Returns null if successful
+      parameters:
+      - name: pipelineId
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: tokenId
+        in: path
+        schema:
+          type: integer
+          x-constraint:
+            sign: positive
+        required: true
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{pipelineId}/tokens/{tokenId}/refresh:
+    put:
+      summary: Refresh a pipeline token
+      operationId: putV4PipelinesPipelineidTokensTokenidRefresh
+      description: Update the value of a token while preserving its other metadata
+      parameters:
+      - name: pipelineId
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: tokenId
+        in: path
+        schema:
+          type: integer
+          x-constraint:
+            sign: positive
+        required: true
+      tags:
+      - Pipelines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Model76'
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+  /v4/pipelines/{id}/caches:
+    delete:
+      summary: API to delete cache using scope and id
+      operationId: deleteV4PipelinesIdCaches
+      description: Deletes the entire cache folder for pipeline, job or event using its id
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        description: Identifier of this pipeline
+        required: true
+      - name: scope
+        in: query
+        schema:
+          type: string
+          enum:
+          - events
+          - jobs
+          - pipelines
+      - name: cacheId
+        in: query
+        schema:
+          type: integer
+          x-constraint:
+            sign: positive
+      tags:
+      - Pipelines
+      responses:
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: string
+components:
+  schemas:
+    files:
+      type: array
+      minItems: 1
+      items:
+        $ref: '#/components/schemas/Model62'
+    usernames:
+      type: array
+      minItems: 1
+      maxItems: 200
+      items:
+        type: string
+        description: Username
+        example: batman123
+        maxLength: 128
+    Model24:
+      type: object
+    Model63:
+      type: object
+      properties:
+        checkoutUrl:
+          type: string
+          description: Checkout url for the application
+          example: git@github.com:screwdriver-cd/data-schema.git#master
+          pattern: ^(?:(?:https:\/\/(?:[^@/:\s]+@)?)|git@|org-\d+@)+([^/:\s]+)(?:\/|:)([^/:\s]+)\/([^\s]+?)(?:\.git)(#[^:　\s]*　[^:　\s]*|#[^:　\s]+)?(:[^:　\s]*　[^:　\s]*|:[^:　\s]+)?$
+        rootDir:
+          type: string
+          description: Root directory (relative to checkoutUrl)
+          example: src/app/component
+          maxLength: 100
+        files:
+          $ref: '#/components/schemas/files'
+        title:
+          type: string
+        message:
+          type: string
+      required:
+      - checkoutUrl
+      - files
+      - title
+      - message
+    Model66:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        scmContext:
+          type: string
+          description: The SCM in which the repository exists
+          example: github:github.com
+          maxLength: 128
+          pattern: ^([^:]+):([^:]+)$
+        usernames:
+          $ref: '#/components/schemas/usernames'
+      required:
+      - id
+      - scmContext
+      - usernames
+    Model32:
+      type: array
+      items:
+        type: string
+    Model62:
+      type: object
+      properties:
+        name:
+          type: string
+        content:
+          type: string
+      required:
+      - name
+      - content
+    List_of_secrets:
+      type: array
+      items:
+        $ref: '#/components/schemas/Get%20Secret'
+    Model76:
+      type:
+      - object
+      - 'null'
+      default: {}
+      properties:
+        expiresAt:
+          type: string
+          description: Expires Date
+          example: '2030-01-30T09:15:40.000Z'
+          x-format:
+            isoDate: true
+    Model67:
+      type: array
+      minItems: 1
+      items:
+        $ref: '#/components/schemas/Model66'
+    Model30:
+      type: array
+      items:
+        $ref: '#/components/schemas/Get%20tokens'
+    Model33:
+      type: array
+      items:
+        $ref: '#/components/schemas/Model24'
+  securitySchemes:
+    jwt:
+      type: apiKey
+      name: Authorization
+      in: header
+x-alt-definitions:
+  format:
+    type: string
+    description: Format of the Command
+    example: habitat
+    enum:
+    - habitat
+    - docker
+    - binary
+    maxLength: 16
+  mode:
+    type: string
+    description: Mode of the Habitat command
+    example: remote
+    enum:
+    - remote
+    - local
+  habitat:
+    type: object
+    properties:
+      mode:
+        $ref: '#/x-alt-definitions/mode'
+      file:
+        type: string
+        description: File path of the Habitat artifact
+        example: ./foobar.hart
+      package:
+        type: string
+        description: Package of the Habitat command
+        example: core/git/2.14.1
+      command:
+        type: string
+        description: Executable of the Habitat command
+        example: git
+    required:
+    - mode
+    - file
+    - package
+    - command
+  docker:
+    type: object
+    properties:
+      image:
+        type: string
+        description: Image of the Docker command
+        example: chefdk:1.2.3
+      command:
+        type: string
+        description: Executable of the Docker command
+        example: knife
+        default: ''
+    required:
+    - image
+  binary:
+    type: object
+    properties:
+      file:
+        type: string
+        description: File of the Binary command
+        example: ./foobar.sh
+    required:
+    - file
+  clouds:
+    type: array
+    description: A list of cloud that template supports
+    example:
+    - aws
+    - gcp
+    - azure
+    items:
+      type: string
+  architectures:
+    type: array
+    description: A list of architectures that template supports
+    example:
+    - x86
+    - x86_64
+    - arm64
+    items:
+      type: string
+  compatibilities:
+    type: object
+    properties:
+      clouds:
+        $ref: '#/x-alt-definitions/clouds'
+      architectures:
+        $ref: '#/x-alt-definitions/architectures'
+  Get Command:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Identifier of this command
+        example: 123345
+        x-constraint:
+          sign: positive
+      namespace:
+        type: string
+        description: Namespace of the Command
+        example: chefdk
+        maxLength: 64
+        pattern: ^[\w-]+$
+      version:
+        type: string
+        description: Version of the Command
+        example: '1.2'
+        maxLength: 16
+        pattern: ^(\d+)(\.\d+)?(\.\d+)?$
+      description:
+        type: string
+        description: Description of the Command
+        example: Installs npm modules
+        maxLength: 256
+      maintainer:
+        type: string
+        description: Maintainer of the Command
+        example: foo@bar.com
+        maxLength: 64
+        x-format:
+          email: true
+      format:
+        $ref: '#/x-alt-definitions/format'
+      habitat:
+        $ref: '#/x-alt-definitions/habitat'
+      docker:
+        $ref: '#/x-alt-definitions/docker'
+      binary:
+        $ref: '#/x-alt-definitions/binary'
+      name:
+        type: string
+        description: Name of the Command
+        example: knife
+        maxLength: 64
+        pattern: ^[\w-]+$
+      pipelineId:
+        type: integer
+        description: Identifier of this pipeline
+        example: 123345
+        x-constraint:
+          sign: positive
+      createTime:
+        type: string
+        description: When this command was created
+        example: '2038-01-19T03:14:08.131Z'
+        maxLength: 32
+        x-format:
+          isoDate: true
+      usage:
+        type: string
+        description: Usage and arguments of the command
+        example: sd_cmd exec foo/bar@1 -h <host> -d <domain>
+        maxLength: 4096
+      trusted:
+        type: boolean
+        description: Mark whether command is trusted
+      latest:
+        type: boolean
+        description: Whether this is latest version
+      compatibilities:
+        $ref: '#/x-alt-definitions/compatibilities'
+    required:
+    - id
+    - namespace
+    - version
+    - description
+    - maintainer
+    - format
+    - name
+    - pipelineId
+  List of commands:
+    type: array
+    items:
+      $ref: '#/x-alt-definitions/Get%20Command'
+  Model1:
+    type: object
+    properties:
+      namespace:
+        type: string
+        description: Namespace of the Command
+        example: chefdk
+        maxLength: 64
+        pattern: ^[\w-]+$
+  Model2:
+    type: array
+    items:
+      $ref: '#/x-alt-definitions/Model1'
+  Command Count and List of commands:
+    type: object
+    properties:
+      count:
+        type: number
+      rows:
+        $ref: '#/x-alt-definitions/List of commands'
+  any:
+    type: array
+    items:
+      type: string
+  value:
+    type: array
+    items:
+      type: string
+  Model3:
+    type: object
+    properties:
+      value:
+        anyOf:
+        - type: string
+        - $ref: '#/x-alt-definitions/value'
+      description:
+        type: string
+    required:
+    - value
+  Model4:
+    type: string
+    enum:
+    - OK
+  Model5:
+    type: object
+    properties:
+      queue:
+        type: string
+      store:
+        type: string
+      api:
+        type: string
+  labels:
+    type: array
+    description: Labels for template
+    example:
+    - stable
+    - latest
+    - beta
+    items:
+      type: string
+  annotations:
+    type: object
+  blockedBy:
+    type: array
+    items:
+      anyOf:
+      - type: string
+        pattern: ^~([\w-]+)$
+      - type: string
+        pattern: ^~sd@(\d+):(?:([\w-]+)|(stage@([\w-]+):setup))$
+  freezeWindows:
+    type: array
+    items:
+      type: string
+  string:
+    type: array
+    items:
+      type: string
+  order:
+    type: array
+    minItems: 0
+    items:
+      type: string
+      pattern: ^[\w-]+$
+  name:
+    type: string
+    description: Provider name
+    example: aws
+    enum:
+    - aws
+    maxLength: 64
+  List of security group IDs:
+    type: array
+    minItems: 1
+    items:
+      type: string
+      description: Security group ID
+      example: sg-51530134
+      maxLength: 128
+      pattern: ^sg-[\w]+$
+  List of subnet IDs:
+    type: array
+    minItems: 1
+    items:
+      type: string
+      description: Subnet ID
+      example: subnet-01234567890abcdef
+      maxLength: 128
+      pattern: ^subnet-[\w]+$
+  vpc:
+    type: object
+    properties:
+      vpcId:
+        type: string
+        description: VPC ID
+        example: vpc-1a2b3c4d
+        maxLength: 128
+        pattern: ^vpc-[\w]+$
+      securityGroupIds:
+        $ref: '#/x-alt-definitions/List%20of%20security%20group%20IDs'
+      subnetIds:
+        $ref: '#/x-alt-definitions/List%20of%20subnet%20IDs'
+    required:
+    - vpcId
+    - securityGroupIds
+    - subnetIds
+  executor:
+    type: string
+    description: Executor name
+    example: eks
+    enum:
+    - sls
+    - eks
+    maxLength: 64
+  computeType:
+    type: string
+    description: CodeBuild compute type
+    default: BUILD_GENERAL1_SMALL
+    enum:
+    - BUILD_GENERAL1_SMALL
+    - BUILD_GENERAL1_LARGE
+    - BUILD_GENERAL1_MEDIUM
+    - BUILD_GENERAL1_2XLARGE
+  environmentType:
+    type: string
+    description: CodeBuild environment type
+    default: LINUX_CONTAINER
+    enum:
+    - ARM_CONTAINER
+    - LINUX_CONTAINER
+    - LINUX_GPU_CONTAINER
+  provider:
+    type: object
+    properties:
+      name:
+        $ref: '#/x-alt-definitions/name'
+      region:
+        type: string
+        description: Region where service and build will run, build region can be overridden
+        example: us-west-2
+        default: us-west-2
+        maxLength: 64
+        pattern: ^(us(-gov)?|ap|ca|cn|eu|sa|me)-(central|(north|south)?(east|west)?)-\d$
+      buildRegion:
+        type: string
+        description: Region where builds will run if different from service region
+        example: us-east-2
+        default: ''
+        maxLength: 64
+        pattern: ^(us(-gov)?|ap|ca|cn|eu|sa|me)-(central|(north|south)?(east|west)?)-\d$
+      accountId:
+        description: Account ID
+        example: '123456789012'
+        anyOf:
+        - type: string
+          maxLength: 12
+          pattern: ^[0-9]{12}$
+        - type: integer
+          minimum: 12
+      vpc:
+        $ref: '#/x-alt-definitions/vpc'
+      role:
+        type: string
+        description: Role ARN
+        example: arn:aws:iam::123456789012:role/aws-service-role/amazonaws.com/AWSServiceRole
+        maxLength: 512
+        pattern: ^arn:aws:iam::\d{12}:role\/.+
+      executor:
+        $ref: '#/x-alt-definitions/executor'
+      clusterName:
+        type: string
+        description: Cluster name required if executor is eks
+        example: sd-build-eks
+        maxLength: 128
+      cpuLimit:
+        type: string
+        description: CPU Limit for pod in EKS Cluster
+        example: 2Gi
+        maxLength: 4
+      memoryLimit:
+        type: string
+        description: Memory Limit for pod in EKS Cluster
+        example: 4Gi
+        maxLength: 4
+      executorLogs:
+        type: boolean
+        description: Enable debug logs for executor codebuild
+        default: false
+      launcherImage:
+        type: string
+        description: Screwdriver launcher image in user Registry
+        example: 123456789012.dkr.ecr.us-east-2.amazonaws.com/screwdriver-hub:launcherv6.4
+      launcherVersion:
+        type: string
+        description: Screwdriver launcher version
+        example: v6.4
+      privilegedMode:
+        type: boolean
+        description: Enable privileged mode for container
+        default: false
+      computeType:
+        $ref: '#/x-alt-definitions/computeType'
+      environmentType:
+        $ref: '#/x-alt-definitions/environmentType'
+      debugSession:
+        type: boolean
+        description: Enable debug session inside build container
+        default: false
+  requires:
+    type: array
+    items:
+      anyOf:
+      - type: string
+        pattern: ^~([\w-]+)$
+      - type: string
+        maxLength: 100
+        pattern: ^(([\w-]+)|(?:stage@([\w-]+):(setup|teardown)))$
+      - type: string
+      - type: string
+        pattern: ^~?stage@([\w-]+)(?::([\w-]+))?$
+      - type: string
+        pattern: ^~?sd@\d+:(?:([\w-]+)|(stage@([\w-]+):(setup|teardown)))$
+  secrets:
+    type: array
+    minItems: 0
+    items:
+      type: string
+      maxLength: 64
+      pattern: ^[A-Z_][A-Z0-9_]*$
+  settings:
+    type: object
+  sourcePaths:
+    type: array
+    items:
+      type: string
+      maxLength: 1024
+  Model6:
+    type: object
+    properties:
+      command:
+        type: string
+      locked:
+        type: boolean
+    required:
+    - command
+  steps:
+    type: array
+    minItems: 1
+    items:
+      anyOf:
+      - type: string
+      - type: object
+        properties:
+          string:
+            anyOf:
+            - type: string
+            - $ref: '#/x-alt-definitions/Model6'
+  config:
+    type: object
+    default: {}
+    properties:
+      annotations:
+        $ref: '#/x-alt-definitions/annotations'
+      blockedBy:
+        anyOf:
+        - $ref: '#/x-alt-definitions/blockedBy'
+        - anyOf:
+          - type: string
+            pattern: ^~([\w-]+)$
+          - type: string
+            pattern: ^~sd@(\d+):(?:([\w-]+)|(stage@([\w-]+):setup))$
+      cache:
+        type: boolean
+      description:
+        type: string
+        maxLength: 100
+      environment:
+        type: object
+        properties:
+          string:
+            type: string
+      freezeWindows:
+        anyOf:
+        - $ref: '#/x-alt-definitions/freezeWindows'
+        - type: string
+      image:
+        type: string
+        pattern: ^[^;&|><*?`$()!#'" ]+$
+      matrix:
+        type: object
+        properties:
+          string:
+            $ref: '#/x-alt-definitions/string'
+      order:
+        $ref: '#/x-alt-definitions/order'
+      parameters:
+        type: object
+        properties:
+          any:
+            anyOf:
+            - type: string
+            - $ref: '#/x-alt-definitions/any'
+            - $ref: '#/x-alt-definitions/Model3'
+      provider:
+        anyOf:
+        - $ref: '#/x-alt-definitions/provider'
+        - type: string
+          pattern: ^(?:(?:https:\/\/(?:[^@/:\s]+@)?)|git@|org-\d+@)+([^/:\s]+)(?:\/|:)([^/:\s]+)\/([^\s]+?)(?:\.git)(#[^:　\s]*　[^:　\s]*|#[^:　\s]+)?(:[^:　\s]*　[^:　\s]*|:[^:　\s]+)?$
+      requires:
+        anyOf:
+        - $ref: '#/x-alt-definitions/requires'
+        - anyOf:
+          - type: string
+            pattern: ^~([\w-]+)$
+          - type: string
+            maxLength: 100
+            pattern: ^(([\w-]+)|(?:stage@([\w-]+):(setup|teardown)))$
+          - type: string
+          - type: string
+            pattern: ^~?stage@([\w-]+)(?::([\w-]+))?$
+          - type: string
+            pattern: ^~?sd@\d+:(?:([\w-]+)|(stage@([\w-]+):(setup|teardown)))$
+      secrets:
+        $ref: '#/x-alt-definitions/secrets'
+      settings:
+        $ref: '#/x-alt-definitions/settings'
+      sourcePaths:
+        anyOf:
+        - $ref: '#/x-alt-definitions/sourcePaths'
+        - type: string
+          maxLength: 1024
+      template:
+        type: string
+        pattern: ^([\w/-]+)(?:@((?:(?:\d+)(?:\.\d+)?(?:\.\d+)?)|(?:[a-zA-Z][\w-.]+)))?$
+      templateId:
+        type:
+        - integer
+        - 'null'
+        description: Identifier for this job's template
+        example: 123345
+        x-constraint:
+          sign: positive
+      steps:
+        $ref: '#/x-alt-definitions/steps'
+  Get Template:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Identifier of this template
+        example: 123345
+        x-constraint:
+          sign: positive
+      labels:
+        $ref: '#/x-alt-definitions/labels'
+      config:
+        $ref: '#/x-alt-definitions/config'
+      name:
+        type: string
+        description: Template name
+        example: nodejs/lib
+        maxLength: 64
+      version:
+        type: string
+        description: Version of the Template
+        example: '1.2'
+        maxLength: 16
+        pattern: ^(\d+)(\.\d+)?(\.\d+)?$
+      description:
+        type: string
+        description: Description of the Template
+        example: Installs npm modules
+        maxLength: 256
+      maintainer:
+        type: string
+        description: Maintainer of the Template
+        example: foo@bar.com
+        maxLength: 64
+        x-format:
+          email: true
+      pipelineId:
+        type: integer
+        description: Identifier of this pipeline
+        example: 123345
+        x-constraint:
+          sign: positive
+      namespace:
+        type: string
+        description: Namespace of the Template
+        example: node
+        maxLength: 64
+        pattern: ^[\w-]+$
+      images:
+        type: object
+        properties:
+          string:
+            type: string
+            pattern: ^[^;&|><*?`$()!#'" ]+$
+      createTime:
+        type: string
+        description: When this template was created
+        example: '2038-01-19T03:14:08.131Z'
+        maxLength: 32
+        x-format:
+          isoDate: true
+      trusted:
+        type: boolean
+        description: Mark whether template is trusted
+      latest:
+        type: boolean
+        description: Whether this is latest version
+      compatibilities:
+        $ref: '#/x-alt-definitions/compatibilities'
+    required:
+    - id
+    - labels
+    - name
+    - version
+    - description
+    - maintainer
+    - pipelineId
+  List of templates:
+    type: array
+    items:
+      $ref: '#/x-alt-definitions/Get%20Template'
+  Model7:
+    type: object
+    properties:
+      namespace:
+        type: string
+        description: Namespace of the Template
+        example: node
+        maxLength: 64
+        pattern: ^[\w-]+$
+  Model8:
+    type: array
+    items:
+      $ref: '#/x-alt-definitions/Model7'
+  Template Count and List of templates:
+    type: object
+    properties:
+      count:
+        type: number
+      rows:
+        $ref: '#/x-alt-definitions/List of templates'
+  environment:
+    type: array
+    items:
+      type: object
+      properties:
+        string:
+          type: string
+  parentBuildId:
+    type: array
+    description: Identifier(s) of this parent build(s)
+    example:
+    - 111
+    - 222
+    items:
+      type: integer
+      x-constraint:
+        sign: positive
+  templateType:
+    type: string
+    description: Template Type
+    example: PIPELINE
+    default: JOB
+    enum:
+    - JOB
+    - PIPELINE
+    maxLength: 16
+  Model9:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Identifier of this template
+        example: 123345
+        x-constraint:
+          sign: positive
+      pipelineId:
+        type: integer
+        description: Identifier of this pipeline
+        example: 123345
+        x-constraint:
+          sign: positive
+      namespace:
+        type: string
+        description: Namespace of the Template
+        example: node
+        maxLength: 64
+        pattern: ^[\w-]+$
+      name:
+        type: string
+        description: Name of the template
+        example: nodePipeline
+        maxLength: 64
+        pattern: ^[\w-]+$
+      maintainer:
+        type: string
+        description: Maintainer of the Template
+        example: foo@bar.com
+        maxLength: 64
+        x-format:
+          email: true
+      trustedSinceVersion:
+        type: string
+        description: The version since the template is marked as trusted
+        example: 1.2.3
+        maxLength: 16
+        pattern: ^(\d+)\.(\d+)\.(\d+)$
+      latestVersion:
+        type: string
+        description: Latest version of the template
+        example: 1.2.3
+        maxLength: 16
+        pattern: ^(\d+)\.(\d+)\.(\d+)$
+      createTime:
+        type: string
+        description: When this template was created
+        example: '2038-01-19T03:14:08.131Z'
+        maxLength: 32
+        x-format:
+          isoDate: true
+      updateTime:
+        type: string
+        description: When this template was updated
+        example: '2038-01-19T03:14:08.131Z'
+        maxLength: 32
+        x-format:
+          isoDate: true
+      templateType:
+        $ref: '#/x-alt-definitions/templateType'
+    required:
+    - id
+    - pipelineId
+    - namespace
+    - name
+    - maintainer
+    - templateType
+  List of pipeline templates:
+    type: array
+    items:
+      $ref: '#/x-alt-definitions/Model9'
+  Pipeline Template Count and List of templates:
+    type: object
+    properties:
+      count:
+        type: number
+      rows:
+        $ref: '#/x-alt-definitions/List of pipeline templates'
+  Model10:
+    type: object
+    properties:
+      command:
+        type: string
+    required:
+    - command

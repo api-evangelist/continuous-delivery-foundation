@@ -59,15 +59,6 @@ components:
         version:
           type: string
       type: object
-    PluginDependency:
-      properties:
-        optional:
-          type: boolean
-        pluginId:
-          type: string
-        pluginVersionSupport:
-          type: string
-      type: object
     SpinnakerPluginDescriptor:
       properties:
         dependencies:
@@ -95,6 +86,15 @@ components:
           type: string
       required:
       - unsafe
+      type: object
+    PluginDependency:
+      properties:
+        optional:
+          type: boolean
+        pluginId:
+          type: string
+        pluginVersionSupport:
+          type: string
       type: object
 externalDocs:
   description: Spinnaker Documentation
