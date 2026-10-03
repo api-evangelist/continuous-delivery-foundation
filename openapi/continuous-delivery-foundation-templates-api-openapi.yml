@@ -552,95 +552,6 @@ paths:
                 type: string
 components:
   schemas:
-    SCM_Repository:
-      type: object
-      properties:
-        name:
-          type: string
-          example: screwdriver-cd/screwdriver
-        branch:
-          type: string
-          example: master
-        url:
-          type: string
-          example: https://github.com/screwdriver-cd/screwdriver/tree/master
-          x-format:
-            uri: true
-        private:
-          type: boolean
-        rootDir:
-          type: string
-          description: Root directory (relative to checkoutUrl)
-          example: src/app/component
-          maxLength: 100
-      required:
-      - name
-      - branch
-      - url
-    Model34:
-      type: array
-      items:
-        $ref: '#/components/schemas/TemplateTag'
-    Model52:
-      type: array
-      items:
-        $ref: '#/components/schemas/Model51'
-    Model35:
-      type: array
-      items:
-        type: string
-    Model51:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Identifier of this pipeline
-          example: 123345
-          x-constraint:
-            sign: positive
-        name:
-          type: string
-          example: screwdriver-cd/screwdriver
-        scmRepo:
-          $ref: '#/components/schemas/SCM_Repository'
-        lastRun:
-          anyOf:
-          - type: string
-            description: When this event was created
-            example: '2038-01-19T03:14:08.131Z'
-            maxLength: 32
-            x-format:
-              isoDate: true
-          - type:
-            - string
-            - 'null'
-        admins:
-          $ref: '#/components/schemas/admins'
-      required:
-      - id
-      - name
-      - scmRepo
-      - admins
-    Model70:
-      type: object
-      properties:
-        trusted:
-          type: boolean
-          description: Mark whether template is trusted
-    admins:
-      type: object
-      description: Admins of this Pipeline
-      example:
-        myself: true
-    Model73:
-      type: object
-      properties:
-        version:
-          type: string
-          description: Exact version of the Template
-          example: 1.2.3
-          maxLength: 16
-          pattern: ^(\d+)\.(\d+)\.(\d+)$
     templateType:
       type: string
       description: Template Type
@@ -693,6 +604,95 @@ components:
           $ref: '#/components/schemas/templateType'
       required:
       - templateType
+    Model70:
+      type: object
+      properties:
+        trusted:
+          type: boolean
+          description: Mark whether template is trusted
+    Model51:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        name:
+          type: string
+          example: screwdriver-cd/screwdriver
+        scmRepo:
+          $ref: '#/components/schemas/SCM_Repository'
+        lastRun:
+          anyOf:
+          - type: string
+            description: When this event was created
+            example: '2038-01-19T03:14:08.131Z'
+            maxLength: 32
+            x-format:
+              isoDate: true
+          - type:
+            - string
+            - 'null'
+        admins:
+          $ref: '#/components/schemas/admins'
+      required:
+      - id
+      - name
+      - scmRepo
+      - admins
+    admins:
+      type: object
+      description: Admins of this Pipeline
+      example:
+        myself: true
+    Model73:
+      type: object
+      properties:
+        version:
+          type: string
+          description: Exact version of the Template
+          example: 1.2.3
+          maxLength: 16
+          pattern: ^(\d+)\.(\d+)\.(\d+)$
+    SCM_Repository:
+      type: object
+      properties:
+        name:
+          type: string
+          example: screwdriver-cd/screwdriver
+        branch:
+          type: string
+          example: master
+        url:
+          type: string
+          example: https://github.com/screwdriver-cd/screwdriver/tree/master
+          x-format:
+            uri: true
+        private:
+          type: boolean
+        rootDir:
+          type: string
+          description: Root directory (relative to checkoutUrl)
+          example: src/app/component
+          maxLength: 100
+      required:
+      - name
+      - branch
+      - url
+    Model35:
+      type: array
+      items:
+        type: string
+    Model34:
+      type: array
+      items:
+        $ref: '#/components/schemas/TemplateTag'
+    Model52:
+      type: array
+      items:
+        $ref: '#/components/schemas/Model51'
   securitySchemes:
     jwt:
       type: apiKey

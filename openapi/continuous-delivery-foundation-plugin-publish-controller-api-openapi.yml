@@ -46,34 +46,6 @@ paths:
       - plugin-publish-controller
 components:
   schemas:
-    SpinnakerPluginInfo:
-      properties:
-        description:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        projectUrl:
-          type: string
-        provider:
-          type: string
-        releases:
-          items:
-            $ref: '#/components/schemas/SpinnakerPluginRelease'
-          type: array
-        repositoryId:
-          type: string
-      required:
-      - releases
-      type: object
-    RemoteExtensionTransportConfig:
-      properties:
-        http:
-          $ref: '#/components/schemas/Http'
-      required:
-      - http
-      type: object
     Headers:
       properties:
         invokeHeaders:
@@ -92,6 +64,43 @@ components:
       - invokeHeaders
       - readHeaders
       - writeHeaders
+      type: object
+    RemoteExtensionConfig:
+      properties:
+        config:
+          additionalProperties: {}
+          nullable: true
+          type: object
+        id:
+          type: string
+        transport:
+          $ref: '#/components/schemas/RemoteExtensionTransportConfig'
+        type:
+          type: string
+      required:
+      - id
+      - transport
+      - type
+      type: object
+    Http:
+      properties:
+        config:
+          additionalProperties:
+            type: string
+          type: object
+        headers:
+          $ref: '#/components/schemas/Headers'
+        queryParams:
+          additionalProperties:
+            type: string
+          type: object
+        url:
+          type: string
+      required:
+      - config
+      - headers
+      - queryParams
+      - url
       type: object
     SpinnakerPluginRelease:
       properties:
@@ -116,42 +125,33 @@ components:
       - preferred
       - remoteExtensions
       type: object
-    Http:
+    RemoteExtensionTransportConfig:
       properties:
-        config:
-          additionalProperties:
-            type: string
-          type: object
-        headers:
-          $ref: '#/components/schemas/Headers'
-        queryParams:
-          additionalProperties:
-            type: string
-          type: object
-        url:
-          type: string
+        http:
+          $ref: '#/components/schemas/Http'
       required:
-      - config
-      - headers
-      - queryParams
-      - url
+      - http
       type: object
-    RemoteExtensionConfig:
+    SpinnakerPluginInfo:
       properties:
-        config:
-          additionalProperties: {}
-          nullable: true
-          type: object
+        description:
+          type: string
         id:
           type: string
-        transport:
-          $ref: '#/components/schemas/RemoteExtensionTransportConfig'
-        type:
+        name:
+          type: string
+        projectUrl:
+          type: string
+        provider:
+          type: string
+        releases:
+          items:
+            $ref: '#/components/schemas/SpinnakerPluginRelease'
+          type: array
+        repositoryId:
           type: string
       required:
-      - id
-      - transport
-      - type
+      - releases
       type: object
 externalDocs:
   description: Spinnaker Documentation

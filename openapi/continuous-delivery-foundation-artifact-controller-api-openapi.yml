@@ -214,12 +214,12 @@ paths:
       - artifact-controller
 components:
   schemas:
-    StreamingResponseBody: {}
     StoredView:
       properties:
         reference:
           type: string
       type: object
+    StreamingResponseBody: {}
 externalDocs:
   description: Spinnaker Documentation
   url: https://spinnaker.io

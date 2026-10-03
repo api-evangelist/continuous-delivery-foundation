@@ -35,6 +35,15 @@ paths:
       - plugins-installed-controller
 components:
   schemas:
+    PluginDependency:
+      properties:
+        optional:
+          type: boolean
+        pluginId:
+          type: string
+        pluginVersionSupport:
+          type: string
+      type: object
     DefaultPluginDescriptor:
       properties:
         dependencies:
@@ -86,15 +95,6 @@ components:
           type: string
       required:
       - unsafe
-      type: object
-    PluginDependency:
-      properties:
-        optional:
-          type: boolean
-        pluginId:
-          type: string
-        pluginVersionSupport:
-          type: string
       type: object
 externalDocs:
   description: Spinnaker Documentation

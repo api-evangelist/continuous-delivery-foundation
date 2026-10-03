@@ -1415,17 +1415,22 @@ components:
       minItems: 1
       items:
         $ref: '#/components/schemas/Model62'
-    usernames:
+    Model32:
       type: array
-      minItems: 1
-      maxItems: 200
       items:
         type: string
-        description: Username
-        example: batman123
-        maxLength: 128
-    Model24:
-      type: object
+    Model76:
+      type:
+      - object
+      - 'null'
+      default: {}
+      properties:
+        expiresAt:
+          type: string
+          description: Expires Date
+          example: '2030-01-30T09:15:40.000Z'
+          x-format:
+            isoDate: true
     Model63:
       type: object
       properties:
@@ -1450,6 +1455,30 @@ components:
       - files
       - title
       - message
+    Model67:
+      type: array
+      minItems: 1
+      items:
+        $ref: '#/components/schemas/Model66'
+    Model33:
+      type: array
+      items:
+        $ref: '#/components/schemas/Model24'
+    usernames:
+      type: array
+      minItems: 1
+      maxItems: 200
+      items:
+        type: string
+        description: Username
+        example: batman123
+        maxLength: 128
+    List_of_secrets:
+      type: array
+      items:
+        $ref: '#/components/schemas/Get%20Secret'
+    Model24:
+      type: object
     Model66:
       type: object
       properties:
@@ -1471,10 +1500,10 @@ components:
       - id
       - scmContext
       - usernames
-    Model32:
+    Model30:
       type: array
       items:
-        type: string
+        $ref: '#/components/schemas/Get%20tokens'
     Model62:
       type: object
       properties:
@@ -1485,35 +1514,6 @@ components:
       required:
       - name
       - content
-    List_of_secrets:
-      type: array
-      items:
-        $ref: '#/components/schemas/Get%20Secret'
-    Model76:
-      type:
-      - object
-      - 'null'
-      default: {}
-      properties:
-        expiresAt:
-          type: string
-          description: Expires Date
-          example: '2030-01-30T09:15:40.000Z'
-          x-format:
-            isoDate: true
-    Model67:
-      type: array
-      minItems: 1
-      items:
-        $ref: '#/components/schemas/Model66'
-    Model30:
-      type: array
-      items:
-        $ref: '#/components/schemas/Get%20tokens'
-    Model33:
-      type: array
-      items:
-        $ref: '#/components/schemas/Model24'
   securitySchemes:
     jwt:
       type: apiKey

@@ -834,19 +834,6 @@ paths:
       - managed-controller
 components:
   schemas:
-    EnvironmentArtifactPin:
-      properties:
-        comment:
-          type: string
-        pinnedBy:
-          type: string
-        reference:
-          type: string
-        targetEnvironment:
-          type: string
-        version:
-          type: string
-      type: object
     DeliveryConfig:
       properties:
         apiVersion:
@@ -877,6 +864,19 @@ components:
           additionalProperties: {}
           type: object
       type: object
+    ConstraintStatus:
+      properties:
+        artifactReference:
+          type: string
+        artifactVersion:
+          type: string
+        comment:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+      type: object
     RetryVerificationRequest:
       properties:
         artifactReference:
@@ -890,42 +890,18 @@ components:
       - artifactVersion
       - verificationId
       type: object
-    ConstraintState:
+    EnvironmentArtifactPin:
       properties:
-        artifactVersion:
-          type: string
-        attributes:
-          additionalProperties: {}
-          type: object
         comment:
           type: string
-        createdAt:
+        pinnedBy:
           type: string
-        deliveryConfigName:
+        reference:
           type: string
-        environmentName:
+        targetEnvironment:
           type: string
-        judgedAt:
+        version:
           type: string
-        judgedBy:
-          type: string
-        status:
-          type: string
-        type:
-          type: string
-      type: object
-    Resource:
-      properties:
-        apiVersion:
-          type: string
-        kind:
-          type: string
-        metadata:
-          additionalProperties: {}
-          type: object
-        spec:
-          additionalProperties: {}
-          type: object
       type: object
     Environment:
       properties:
@@ -958,6 +934,38 @@ components:
             type: object
           type: array
       type: object
+    OverrideVerificationRequest:
+      properties:
+        artifactReference:
+          type: string
+        artifactVersion:
+          type: string
+        comment:
+          nullable: true
+          type: string
+        status:
+          type: string
+        verificationId:
+          type: string
+      required:
+      - artifactReference
+      - artifactVersion
+      - status
+      - verificationId
+      type: object
+    Resource:
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          additionalProperties: {}
+          type: object
+        spec:
+          additionalProperties: {}
+          type: object
+      type: object
     Notification:
       properties:
         address:
@@ -978,32 +986,24 @@ components:
         version:
           type: string
       type: object
-    OverrideVerificationRequest:
+    ConstraintState:
       properties:
-        artifactReference:
-          type: string
         artifactVersion:
           type: string
+        attributes:
+          additionalProperties: {}
+          type: object
         comment:
-          nullable: true
           type: string
-        status:
+        createdAt:
           type: string
-        verificationId:
+        deliveryConfigName:
           type: string
-      required:
-      - artifactReference
-      - artifactVersion
-      - status
-      - verificationId
-      type: object
-    ConstraintStatus:
-      properties:
-        artifactReference:
+        environmentName:
           type: string
-        artifactVersion:
+        judgedAt:
           type: string
-        comment:
+        judgedBy:
           type: string
         status:
           type: string

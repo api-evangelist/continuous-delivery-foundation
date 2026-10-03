@@ -348,19 +348,6 @@ paths:
                 type: string
 components:
   schemas:
-    Model27:
-      type: array
-      items:
-        $ref: '#/components/schemas/Model24'
-    Model24:
-      type: object
-    Model61:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/status'
-        message:
-          type: string
     status:
       type: string
       description: Current status of the build
@@ -380,6 +367,19 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Get%20Build'
+    Model61:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/status'
+        message:
+          type: string
+    Model24:
+      type: object
+    Model27:
+      type: array
+      items:
+        $ref: '#/components/schemas/Model24'
   securitySchemes:
     jwt:
       type: apiKey

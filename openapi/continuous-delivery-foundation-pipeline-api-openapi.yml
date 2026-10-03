@@ -590,6 +590,58 @@ paths:
                 type: string
 components:
   schemas:
+    templateType:
+      type: string
+      description: Template Type
+      example: PIPELINE
+      default: JOB
+      enum:
+      - JOB
+      - PIPELINE
+      maxLength: 16
+    TemplateTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identifier of this template tag
+          example: 123345
+          x-constraint:
+            sign: positive
+        createTime:
+          type: string
+          description: When this template tag was created
+          example: '2038-01-19T03:14:08.131Z'
+          maxLength: 32
+          x-format:
+            isoDate: true
+        namespace:
+          type: string
+          description: Namespace of the Template
+          example: node
+          maxLength: 64
+          pattern: ^[\w-]+$
+        name:
+          type: string
+          description: Template name
+          example: nodejs/lib
+          maxLength: 64
+        tag:
+          type: string
+          description: Name of the Template Tag
+          example: latest
+          maxLength: 30
+          pattern: ^[a-zA-Z][\w-.]+$
+        version:
+          type: string
+          description: Exact version of the Template
+          example: 1.2.3
+          maxLength: 16
+          pattern: ^(\d+)\.(\d+)\.(\d+)$
+        templateType:
+          $ref: '#/components/schemas/templateType'
+      required:
+      - templateType
     Model28:
       type: object
       properties:
@@ -659,6 +711,12 @@ components:
       - name
       - maintainer
       - templateType
+    Model75:
+      type: object
+      properties:
+        trusted:
+          type: boolean
+          description: Whether pipeline template is trusted
     Model50:
       type: array
       items:
@@ -672,64 +730,6 @@ components:
           example: 1.2.3
           maxLength: 16
           pattern: ^(\d+)\.(\d+)\.(\d+)$
-    Model75:
-      type: object
-      properties:
-        trusted:
-          type: boolean
-          description: Whether pipeline template is trusted
-    templateType:
-      type: string
-      description: Template Type
-      example: PIPELINE
-      default: JOB
-      enum:
-      - JOB
-      - PIPELINE
-      maxLength: 16
-    TemplateTag:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Identifier of this template tag
-          example: 123345
-          x-constraint:
-            sign: positive
-        createTime:
-          type: string
-          description: When this template tag was created
-          example: '2038-01-19T03:14:08.131Z'
-          maxLength: 32
-          x-format:
-            isoDate: true
-        namespace:
-          type: string
-          description: Namespace of the Template
-          example: node
-          maxLength: 64
-          pattern: ^[\w-]+$
-        name:
-          type: string
-          description: Template name
-          example: nodejs/lib
-          maxLength: 64
-        tag:
-          type: string
-          description: Name of the Template Tag
-          example: latest
-          maxLength: 30
-          pattern: ^[a-zA-Z][\w-.]+$
-        version:
-          type: string
-          description: Exact version of the Template
-          example: 1.2.3
-          maxLength: 16
-          pattern: ^(\d+)\.(\d+)\.(\d+)$
-        templateType:
-          $ref: '#/components/schemas/templateType'
-      required:
-      - templateType
   securitySchemes:
     jwt:
       type: apiKey

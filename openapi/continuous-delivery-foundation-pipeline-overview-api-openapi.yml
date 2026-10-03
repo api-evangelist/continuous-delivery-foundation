@@ -269,6 +269,26 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    PipelineGraph:
+      type: object
+      properties:
+        complete:
+          type: boolean
+          description: Whether the pipeline run is complete
+        stages:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineStage'
+    StepList:
+      type: object
+      properties:
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineStep'
+        runIsComplete:
+          type: boolean
+          description: Whether the pipeline run is complete
     RerunResponse:
       type: object
       properties:
@@ -286,6 +306,90 @@ components:
               type: integer
               format: int64
               description: Queue ID of the scheduled rerun
+    NextBuildResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+        data:
+          type: object
+          properties:
+            nextBuildUrl:
+              type: string
+              description: URL of the next build (empty object if not found)
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+        data:
+          type: object
+    PipelineState:
+      type: string
+      enum:
+      - queued
+      - running
+      - paused
+      - skipped
+      - not_built
+      - finished
+      - success
+      - unstable
+      - failure
+      - unknown
+      - aborted
+    PipelineStep:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the step
+        name:
+          type: string
+          description: Display name of the step
+        state:
+          $ref: '#/components/schemas/PipelineState'
+        type:
+          type: string
+          description: Type of the step
+        title:
+          type: string
+          description: Full title/description of the step
+        pauseDurationMillis:
+          type: integer
+          format: int64
+          description: Duration in milliseconds the step was paused
+        startTimeMillis:
+          type: integer
+          format: int64
+          description: Step start time in milliseconds since epoch
+        totalDurationMillis:
+          types:
+          - integer
+          - null
+          format: int64
+          description: Total duration in milliseconds (null if still running)
+        stageId:
+          type: string
+          description: ID of the parent stage
+        inputStep:
+          types:
+          - object
+          - null
+          $ref: '#/components/schemas/InputStep'
+    StepListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+        data:
+          $ref: '#/components/schemas/StepList'
     ErrorResponse:
       type: object
       properties:
@@ -299,33 +403,6 @@ components:
             error:
               type: string
               description: Error message
-    PipelineTreeResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - ok
-        data:
-          $ref: '#/components/schemas/PipelineGraph'
-    InputStep:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Input message displayed to user
-        cancel:
-          type: string
-          description: Cancel button text
-        id:
-          type: string
-          description: Input step ID
-        ok:
-          type: string
-          description: OK button text
-        parameters:
-          type: boolean
-          description: Whether the input step has parameters
     PipelineStage:
       type: object
       properties:
@@ -394,110 +471,33 @@ components:
         url:
           type: string
           description: URL to view this stage in the UI
-    StepList:
+    InputStep:
       type: object
       properties:
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineStep'
-        runIsComplete:
-          type: boolean
-          description: Whether the pipeline run is complete
-    NextBuildResponse:
-      type: object
-      properties:
-        status:
+        message:
           type: string
-          enum:
-          - ok
-        data:
-          type: object
-          properties:
-            nextBuildUrl:
-              type: string
-              description: URL of the next build (empty object if not found)
-    StepListResponse:
-      type: object
-      properties:
-        status:
+          description: Input message displayed to user
+        cancel:
           type: string
-          enum:
-          - ok
-        data:
-          $ref: '#/components/schemas/StepList'
-    PipelineGraph:
-      type: object
-      properties:
-        complete:
-          type: boolean
-          description: Whether the pipeline run is complete
-        stages:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineStage'
-    SuccessResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - ok
-        data:
-          type: object
-    PipelineState:
-      type: string
-      enum:
-      - queued
-      - running
-      - paused
-      - skipped
-      - not_built
-      - finished
-      - success
-      - unstable
-      - failure
-      - unknown
-      - aborted
-    PipelineStep:
-      type: object
-      properties:
+          description: Cancel button text
         id:
           type: string
-          description: Unique identifier for the step
-        name:
+          description: Input step ID
+        ok:
           type: string
-          description: Display name of the step
-        state:
-          $ref: '#/components/schemas/PipelineState'
-        type:
+          description: OK button text
+        parameters:
+          type: boolean
+          description: Whether the input step has parameters
+    PipelineTreeResponse:
+      type: object
+      properties:
+        status:
           type: string
-          description: Type of the step
-        title:
-          type: string
-          description: Full title/description of the step
-        pauseDurationMillis:
-          type: integer
-          format: int64
-          description: Duration in milliseconds the step was paused
-        startTimeMillis:
-          type: integer
-          format: int64
-          description: Step start time in milliseconds since epoch
-        totalDurationMillis:
-          types:
-          - integer
-          - null
-          format: int64
-          description: Total duration in milliseconds (null if still running)
-        stageId:
-          type: string
-          description: ID of the parent stage
-        inputStep:
-          types:
-          - object
-          - null
-          $ref: '#/components/schemas/InputStep'
+          enum:
+          - ok
+        data:
+          $ref: '#/components/schemas/PipelineGraph'
   securitySchemes:
     jenkins_auth:
       type: http
