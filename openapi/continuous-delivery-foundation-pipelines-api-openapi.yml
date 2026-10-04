@@ -1410,15 +1410,15 @@ paths:
                 type: string
 components:
   schemas:
-    files:
+    usernames:
       type: array
       minItems: 1
-      items:
-        $ref: '#/components/schemas/Model62'
-    Model32:
-      type: array
+      maxItems: 200
       items:
         type: string
+        description: Username
+        example: batman123
+        maxLength: 128
     Model76:
       type:
       - object
@@ -1431,6 +1431,32 @@ components:
           example: '2030-01-30T09:15:40.000Z'
           x-format:
             isoDate: true
+    Model66:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        scmContext:
+          type: string
+          description: The SCM in which the repository exists
+          example: github:github.com
+          maxLength: 128
+          pattern: ^([^:]+):([^:]+)$
+        usernames:
+          $ref: '#/components/schemas/usernames'
+      required:
+      - id
+      - scmContext
+      - usernames
+    files:
+      type: array
+      minItems: 1
+      items:
+        $ref: '#/components/schemas/Model62'
     Model63:
       type: object
       properties:
@@ -1455,6 +1481,16 @@ components:
       - files
       - title
       - message
+    Model24:
+      type: object
+    List_of_secrets:
+      type: array
+      items:
+        $ref: '#/components/schemas/Get%20Secret'
+    Model32:
+      type: array
+      items:
+        type: string
     Model67:
       type: array
       minItems: 1
@@ -1464,42 +1500,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Model24'
-    usernames:
-      type: array
-      minItems: 1
-      maxItems: 200
-      items:
-        type: string
-        description: Username
-        example: batman123
-        maxLength: 128
-    List_of_secrets:
-      type: array
-      items:
-        $ref: '#/components/schemas/Get%20Secret'
-    Model24:
-      type: object
-    Model66:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Identifier of this pipeline
-          example: 123345
-          x-constraint:
-            sign: positive
-        scmContext:
-          type: string
-          description: The SCM in which the repository exists
-          example: github:github.com
-          maxLength: 128
-          pattern: ^([^:]+):([^:]+)$
-        usernames:
-          $ref: '#/components/schemas/usernames'
-      required:
-      - id
-      - scmContext
-      - usernames
     Model30:
       type: array
       items:

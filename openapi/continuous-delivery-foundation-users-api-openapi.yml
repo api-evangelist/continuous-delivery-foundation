@@ -92,6 +92,13 @@ paths:
                 type: string
 components:
   schemas:
+    timestampFormat:
+      type: string
+      description: User preferred timestamp
+      default: LOCAL_TIMEZONE
+      enum:
+      - UTC
+      - LOCAL_TIMEZONE
     Model23:
       type: object
       default: {}
@@ -109,13 +116,6 @@ components:
           type: boolean
           description: Allow Browser Notification
           default: false
-    timestampFormat:
-      type: string
-      description: User preferred timestamp
-      default: LOCAL_TIMEZONE
-      enum:
-      - UTC
-      - LOCAL_TIMEZONE
   securitySchemes:
     jwt:
       type: apiKey

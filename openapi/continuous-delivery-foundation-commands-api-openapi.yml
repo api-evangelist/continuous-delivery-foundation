@@ -526,12 +526,6 @@ paths:
                 type: string
 components:
   schemas:
-    Model72:
-      type: object
-      properties:
-        trusted:
-          type: boolean
-          description: Mark whether command is trusted
     Model74:
       type: object
       properties:
@@ -547,6 +541,12 @@ components:
             example: latest
             maxLength: 30
             pattern: ^[a-zA-Z][\w-.]+$
+    Model72:
+      type: object
+      properties:
+        trusted:
+          type: boolean
+          description: Mark whether command is trusted
   securitySchemes:
     jwt:
       type: apiKey

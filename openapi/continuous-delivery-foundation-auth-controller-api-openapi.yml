@@ -84,11 +84,6 @@ paths:
       - auth-controller
 components:
   schemas:
-    Authority:
-      properties:
-        authority:
-          type: string
-      type: object
     User:
       properties:
         accountNonExpired:
@@ -118,11 +113,6 @@ components:
             type: string
           type: array
         username:
-          type: string
-      type: object
-    GrantedAuthority:
-      properties:
-        authority:
           type: string
       type: object
     AuthUserResponse:
@@ -164,6 +154,16 @@ components:
             type: string
           type: array
         username:
+          type: string
+      type: object
+    Authority:
+      properties:
+        authority:
+          type: string
+      type: object
+    GrantedAuthority:
+      properties:
+        authority:
           type: string
       type: object
 externalDocs:

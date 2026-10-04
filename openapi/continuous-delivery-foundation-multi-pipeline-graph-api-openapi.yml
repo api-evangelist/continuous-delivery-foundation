@@ -73,6 +73,20 @@ paths:
           description: Not modified (ETag match)
 components:
   schemas:
+    PipelineState:
+      type: string
+      enum:
+      - queued
+      - running
+      - paused
+      - skipped
+      - not_built
+      - finished
+      - success
+      - unstable
+      - failure
+      - unknown
+      - aborted
     PipelineRun:
       type: object
       properties:
@@ -106,20 +120,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PipelineRun'
-    PipelineState:
-      type: string
-      enum:
-      - queued
-      - running
-      - paused
-      - skipped
-      - not_built
-      - finished
-      - success
-      - unstable
-      - failure
-      - unknown
-      - aborted
   securitySchemes:
     jenkins_auth:
       type: http

@@ -590,15 +590,6 @@ paths:
                 type: string
 components:
   schemas:
-    templateType:
-      type: string
-      description: Template Type
-      example: PIPELINE
-      default: JOB
-      enum:
-      - JOB
-      - PIPELINE
-      maxLength: 16
     TemplateTag:
       type: object
       properties:
@@ -711,12 +702,6 @@ components:
       - name
       - maintainer
       - templateType
-    Model75:
-      type: object
-      properties:
-        trusted:
-          type: boolean
-          description: Whether pipeline template is trusted
     Model50:
       type: array
       items:
@@ -730,6 +715,21 @@ components:
           example: 1.2.3
           maxLength: 16
           pattern: ^(\d+)\.(\d+)\.(\d+)$
+    templateType:
+      type: string
+      description: Template Type
+      example: PIPELINE
+      default: JOB
+      enum:
+      - JOB
+      - PIPELINE
+      maxLength: 16
+    Model75:
+      type: object
+      properties:
+        trusted:
+          type: boolean
+          description: Whether pipeline template is trusted
   securitySchemes:
     jwt:
       type: apiKey

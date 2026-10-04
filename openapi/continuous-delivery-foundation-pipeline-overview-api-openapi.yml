@@ -269,6 +269,24 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+        data:
+          type: object
+    PipelineTreeResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+        data:
+          $ref: '#/components/schemas/PipelineGraph'
     PipelineGraph:
       type: object
       properties:
@@ -289,6 +307,20 @@ components:
         runIsComplete:
           type: boolean
           description: Whether the pipeline run is complete
+    PipelineState:
+      type: string
+      enum:
+      - queued
+      - running
+      - paused
+      - skipped
+      - not_built
+      - finished
+      - success
+      - unstable
+      - failure
+      - unknown
+      - aborted
     RerunResponse:
       type: object
       properties:
@@ -306,42 +338,6 @@ components:
               type: integer
               format: int64
               description: Queue ID of the scheduled rerun
-    NextBuildResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - ok
-        data:
-          type: object
-          properties:
-            nextBuildUrl:
-              type: string
-              description: URL of the next build (empty object if not found)
-    SuccessResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - ok
-        data:
-          type: object
-    PipelineState:
-      type: string
-      enum:
-      - queued
-      - running
-      - paused
-      - skipped
-      - not_built
-      - finished
-      - success
-      - unstable
-      - failure
-      - unknown
-      - aborted
     PipelineStep:
       type: object
       properties:
@@ -381,28 +377,6 @@ components:
           - object
           - null
           $ref: '#/components/schemas/InputStep'
-    StepListResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - ok
-        data:
-          $ref: '#/components/schemas/StepList'
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - error
-        data:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Error message
     PipelineStage:
       type: object
       properties:
@@ -471,6 +445,28 @@ components:
         url:
           type: string
           description: URL to view this stage in the UI
+    StepListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+        data:
+          $ref: '#/components/schemas/StepList'
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - error
+        data:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
     InputStep:
       type: object
       properties:
@@ -489,7 +485,7 @@ components:
         parameters:
           type: boolean
           description: Whether the input step has parameters
-    PipelineTreeResponse:
+    NextBuildResponse:
       type: object
       properties:
         status:
@@ -497,7 +493,11 @@ components:
           enum:
           - ok
         data:
-          $ref: '#/components/schemas/PipelineGraph'
+          type: object
+          properties:
+            nextBuildUrl:
+              type: string
+              description: URL of the next build (empty object if not found)
   securitySchemes:
     jenkins_auth:
       type: http

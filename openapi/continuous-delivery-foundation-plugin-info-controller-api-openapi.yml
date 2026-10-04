@@ -90,24 +90,26 @@ paths:
       - plugin-info-controller
 components:
   schemas:
-    Headers:
+    SpinnakerPluginInfo:
       properties:
-        invokeHeaders:
-          additionalProperties:
-            type: string
-          type: object
-        readHeaders:
-          additionalProperties:
-            type: string
-          type: object
-        writeHeaders:
-          additionalProperties:
-            type: string
-          type: object
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        projectUrl:
+          type: string
+        provider:
+          type: string
+        releases:
+          items:
+            $ref: '#/components/schemas/SpinnakerPluginRelease'
+          type: array
+        repositoryId:
+          type: string
       required:
-      - invokeHeaders
-      - readHeaders
-      - writeHeaders
+      - releases
       type: object
     RemoteExtensionConfig:
       properties:
@@ -125,6 +127,13 @@ components:
       - id
       - transport
       - type
+      type: object
+    RemoteExtensionTransportConfig:
+      properties:
+        http:
+          $ref: '#/components/schemas/Http'
+      required:
+      - http
       type: object
     Http:
       properties:
@@ -145,6 +154,25 @@ components:
       - headers
       - queryParams
       - url
+      type: object
+    Headers:
+      properties:
+        invokeHeaders:
+          additionalProperties:
+            type: string
+          type: object
+        readHeaders:
+          additionalProperties:
+            type: string
+          type: object
+        writeHeaders:
+          additionalProperties:
+            type: string
+          type: object
+      required:
+      - invokeHeaders
+      - readHeaders
+      - writeHeaders
       type: object
     SpinnakerPluginRelease:
       properties:
@@ -168,34 +196,6 @@ components:
       required:
       - preferred
       - remoteExtensions
-      type: object
-    RemoteExtensionTransportConfig:
-      properties:
-        http:
-          $ref: '#/components/schemas/Http'
-      required:
-      - http
-      type: object
-    SpinnakerPluginInfo:
-      properties:
-        description:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        projectUrl:
-          type: string
-        provider:
-          type: string
-        releases:
-          items:
-            $ref: '#/components/schemas/SpinnakerPluginRelease'
-          type: array
-        repositoryId:
-          type: string
-      required:
-      - releases
       type: object
 externalDocs:
   description: Spinnaker Documentation

@@ -502,10 +502,6 @@ paths:
                 type: string
 components:
   schemas:
-    meta:
-      type: object
-      description: Key=>Value information from the build itself
-      default: {}
     Model53:
       type: object
       properties:
@@ -521,10 +517,6 @@ components:
           $ref: '#/components/schemas/stats'
       required:
       - jobId
-    Model25:
-      type: array
-      items:
-        $ref: '#/components/schemas/Model24'
     Model24:
       type: object
     stats:
@@ -549,10 +541,18 @@ components:
         hostname:
           type: string
           description: Where this build is run
+    meta:
+      type: object
+      description: Key=>Value information from the build itself
+      default: {}
     Model8:
       type: array
       items:
         type: string
+    Model25:
+      type: array
+      items:
+        $ref: '#/components/schemas/Model24'
   securitySchemes:
     jwt:
       type: apiKey
