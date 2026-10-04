@@ -4193,6 +4193,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -4411,6 +4413,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -4573,6 +4577,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -4681,6 +4687,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -4789,6 +4797,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - Pipelines
+  tags_raw:
   - Pipeline
   properties:
   - type: OpenAPI
@@ -4952,6 +4962,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - Releases
+  tags_raw:
   - Release
   properties:
   - type: OpenAPI
@@ -5222,6 +5234,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - Templates
+  tags_raw:
   - Template
   properties:
   - type: OpenAPI
@@ -5384,6 +5398,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -5546,6 +5562,8 @@ apis:
   humanURL: https://cdevents.dev/
   baseURL: https://api.screwdriver.cd/
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
@@ -5595,6 +5613,9 @@ apis:
   - type: CLI
     url: https://jayex.io/v3/develop/reference/jx/
 common:
+  - type: CapabilityMap
+    url: capabilities/continuous-delivery-foundation-capability-edges.yml
+    name: Continuous Delivery Foundation Business Capability Map
   - type: Overlay
     url: overlays/continuous-delivery-foundation-jenkins-pipeline-graph-view-overlay.yaml
   - type: Overlay
