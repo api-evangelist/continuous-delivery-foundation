@@ -1,0 +1,247 @@
+slug: continuous-delivery-foundation
+provider: Continuous Delivery Foundation
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 23
+edges:
+- tag: Builds
+  spec_file: continuous-delivery-foundation-builds-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.9
+  evidence: POST /v4/builds  Create and start a build; GET /v4/builds/{id}/artifacts  Get a zipped file
+    including all build artifacts
+  reason: Screwdriver build execution, steps, logs and artefacts — exactly continuous integration build
+    pipelines and artefact production.
+- tag: Jobs
+  spec_file: continuous-delivery-foundation-jobs-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.85
+  evidence: GET /v4/jobs/{id}/builds — Get builds for a given job; PUT /v4/jobs/{id}/buildCluster — Update
+    the buildCluster of a job
+  reason: Screwdriver jobs are CI build jobs; operations manage builds, build metrics and build clusters,
+    which is continuous integration pipeline/build management.
+- tag: Pipeline Overview
+  spec_file: continuous-delivery-foundation-pipeline-overview-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.85
+  evidence: GET /consoleBuildOutput — Get full build console output; POST /doRerun — Rerun the pipeline;
+    POST /doCancel — Cancel the running pipeline
+  reason: Inspection and control of individual Jenkins pipeline builds (stages, steps, console logs, rerun/cancel)
+    — core CI build pipeline operation.
+- tag: Pipelines
+  spec_file: continuous-delivery-foundation-pipelines-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.85
+  evidence: POST /v4/pipelines — Create a new pipeline; GET /v4/pipelines/{id}/triggers — Get all triggers
+    for a given pipeline
+  reason: CRUD and trigger/event management for Screwdriver CI pipelines — build pipeline definition and
+    execution, i.e. continuous integration management.
+- tag: Secrets
+  spec_file: continuous-delivery-foundation-secrets-api-openapi.yml
+  capability_id: BC-4210.60
+  capability_id_l1: BC-4210
+  capability_name: Configuration & Secrets Management
+  confidence: 0.85
+  evidence: POST /v4/secrets — Create a new secret; PUT /v4/secrets/{id} — Update a secret
+  reason: CRUD lifecycle over secrets consumed by Screwdriver pipeline builds, matching Configuration
+    & Secrets Management.
+- tag: build-controller
+  spec_file: continuous-delivery-foundation-build-controller-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.85
+  evidence: GET /v2/builds/{buildMaster}/builds/**  Get builds for build master; GET /v2/builds/{buildMaster}/jobs  Get
+    jobs for build master
+  reason: Exposes CI build masters, build jobs and build results — continuous integration build pipeline
+    management.
+- tag: Events
+  spec_file: continuous-delivery-foundation-events-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.8
+  evidence: POST /v4/events  Create and start a event; GET /v4/events/{id}/builds  Get builds for a given
+    event
+  reason: Screwdriver 'events' are pipeline runs that trigger and group builds — CI pipeline execution,
+    not business event management.
+- tag: Multi-Pipeline Graph
+  spec_file: continuous-delivery-foundation-multi-pipeline-graph-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.8
+  evidence: 'GET /runs — Get recent pipeline runs; ''Multi-Pipeline Graph APIs: For viewing multiple pipeline
+    runs in aggregate'''
+  reason: Jenkins pipeline run aggregation and visualisation — observation of CI build pipeline executions,
+    so continuous integration management.
+- tag: Pipeline
+  spec_file: continuous-delivery-foundation-pipeline-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.8
+  evidence: POST /v4/pipeline/template — Create a new pipeline template; POST /v4/pipeline/template/validate
+    — Validate a given sd-template.yaml
+  reason: Authoring, versioning, tagging and validation of CI pipeline templates — build pipeline definition
+    and pipeline policy, i.e. continuous integration management.
+- tag: ci-controller
+  spec_file: continuous-delivery-foundation-ci-controller-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.8
+  evidence: GET /ci/builds  Get builds 1; GET /ci/builds/{buildId}/output  Get build output by id
+  reason: Explicit continuous-integration build listing and build output retrieval.
+- tag: executions-controller
+  spec_file: continuous-delivery-foundation-executions-controller-api-openapi.yml
+  capability_id: BC-4210
+  capability_id_l1: BC-4210
+  capability_name: Software Release & Deployment Management
+  confidence: 0.8
+  evidence: GET /applications/{application}/executions/search 'Search for pipeline executions using a
+    combination of criteria'; 'Retrieves the subset of pipeline stages in a failed state'
+  reason: Spinnaker delivery-pipeline execution query surface — part of release/deployment pipeline management.
+    Kept at L1 since the operations do not distinguish CI builds from deployment orchestration.
+- tag: managed-controller
+  spec_file: continuous-delivery-foundation-managed-controller-api-openapi.yml
+  capability_id: BC-4210.40
+  capability_id_l1: BC-4210
+  capability_name: Deployment Orchestration
+  confidence: 0.8
+  evidence: '''Get the delivery config associated with an application''; ''Create a pin for an artifact
+    in an environment''; ''Veto an artifact version in an environment''; ''Pause management of an entire
+    application''; schemas DeliveryConfig, EnvironmentArtifactPin, ConstraintState'
+  reason: 'Spinnaker Managed Delivery: declarative delivery config, environment promotion constraints,
+    artifact pinning/vetoing and pausing of automated delivery — deployment orchestration to environments
+    with controlled promotion.'
+- tag: pipeline-controller
+  spec_file: continuous-delivery-foundation-pipeline-controller-api-openapi.yml
+  capability_id: BC-4210.40
+  capability_id_l1: BC-4210
+  capability_name: Deployment Orchestration
+  confidence: 0.8
+  evidence: POST /pipelines/start — 'Initiate a pipeline execution'; PUT /pipelines/{id}/cancel — 'Cancel
+    a pipeline execution'; POST /pipelines — 'Save a pipeline definition'
+  reason: Creation, triggering, cancellation and inspection of Spinnaker delivery pipeline executions
+    — the core deployment orchestration surface of a CD platform.
+- tag: application controller
+  spec_file: continuous-delivery-foundation-application-controller-api-openapi.yml
+  capability_id: BC-4210.40
+  capability_id_l1: BC-4210
+  capability_name: Deployment Orchestration
+  confidence: 0.75
+  evidence: GET /applications/{application}/pipelineConfigs  Retrieve a list of an application's pipeline
+    configurations; POST ... invokePipelineConfig  Invoke pipeline config; PUT .../pipelines/{id}/cancel  Cancel
+    pipeline
+  reason: Spinnaker application controller manages deployment pipeline configurations and executions per
+    application — core continuous-delivery deployment orchestration, not business application portfolio
+    management.
+- tag: v-2-canary-config-controller
+  spec_file: continuous-delivery-foundation-v-2-canary-config-controller-api-openapi.yml
+  capability_id: BC-4210.40
+  capability_id_l1: BC-4210
+  capability_name: Deployment Orchestration
+  confidence: 0.75
+  evidence: POST /v2/canaryConfig "Create a canary configuration"; GET /v2/canaryConfig "Retrieve a list
+    of canary configurations"
+  reason: Canary configurations in Spinnaker/Kayenta define automated canary analysis used when rolling
+    changes to production, which is a progressive-delivery strategy with controlled blast radius — Deployment
+    Orchestration. Some ambiguity with quality engineering, hence 0.75.
+- tag: v-2-canary-controller
+  spec_file: continuous-delivery-foundation-v-2-canary-controller-api-openapi.yml
+  capability_id: BC-4210.40
+  capability_id_l1: BC-4210
+  capability_name: Deployment Orchestration
+  confidence: 0.75
+  evidence: POST /v2/canaries/canary/{canaryConfigId} "Start a canary execution"; GET /v2/canaries/judges
+    "Retrieve a list of all configured canary judges"
+  reason: Executing canary runs and retrieving canary judgement results is the automated canary-analysis
+    step of progressive deployment in a continuous-delivery tool, mapping to Deployment Orchestration
+    rather than any generic monitoring capability.
+- tag: Buildclusters
+  spec_file: continuous-delivery-foundation-buildclusters-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.7
+  evidence: POST /v4/buildclusters  Create a build cluster
+  reason: Management of build clusters that execute CI builds — infrastructure for continuous integration
+    pipelines. Could alternatively read as IT infrastructure; CI context dominates.
+- tag: Stages
+  spec_file: continuous-delivery-foundation-stages-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.7
+  evidence: GET /v4/stages/{id}/stageBuilds — Get stage builds for a stage
+  reason: Read access to CI pipeline stages and their builds; clearly part of the build pipeline surface,
+    though the thin operation set leaves some ambiguity over sub-capability.
+- tag: Templates
+  spec_file: continuous-delivery-foundation-templates-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.7
+  evidence: Get information for the pipelines that are being used by a specific template
+  reason: Full CRUD plus versioning/tagging of build-pipeline templates and their usage by pipelines —
+    stewardship of CI build pipeline definitions in the Screwdriver CD platform.
+- tag: amazon-infrastructure-controller
+  spec_file: continuous-delivery-foundation-amazon-infrastructure-controller-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: GET /vpcs  vpcs  Get VPCs; GET /subnets  subnets  Get subnets; GET /instanceTypes  instanceTypes  Get
+    instance types
+  reason: Read operations enumerating AWS cloud infrastructure resources (VPCs, subnets, instance types,
+    key pairs) used as deployment targets — cloud infrastructure inventory management.
+- tag: concourse-controller
+  spec_file: continuous-delivery-foundation-concourse-controller-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.7
+  evidence: POST /concourse/stage/start  stageExecution  Inform Spinnaker of the Concourse build running
+    connected to a particular…
+  reason: Operations integrate an external CI system (Concourse) — enumerating its teams, pipelines, jobs
+    and resources as trigger sources and reporting build execution — which is continuous integration /
+    build pipeline management rather than any business capability.
+- tag: pipeline-config-controller
+  spec_file: continuous-delivery-foundation-pipeline-config-controller-api-openapi.yml
+  capability_id: BC-4210.40
+  capability_id_l1: BC-4210
+  capability_name: Deployment Orchestration
+  confidence: 0.7
+  evidence: GET /pipelineConfigs — 'Get all pipeline configs'; GET /pipelineConfigs/{pipelineConfigId}/convertToTemplate
+  reason: Spinnaker is a continuous delivery tool; these operations manage the definitions of deployment
+    pipelines, which realises release/deployment orchestration. Some ambiguity between CI pipeline management
+    and deployment orchestration sub-capabilities.
+- tag: v-2-pipeline-templates-controller
+  spec_file: continuous-delivery-foundation-v-2-pipeline-templates-controller-api-openapi.yml
+  capability_id: BC-4210
+  capability_id_l1: BC-4210
+  capability_name: Software Release & Deployment Management
+  confidence: 0.7
+  evidence: POST /v2/pipelineTemplates/create "(ALPHA) Create a pipeline template"; GET /v2/pipelineTemplates/{id}/dependents
+    "List all pipelines that implement a pipeline template"
+  reason: Managing reusable delivery-pipeline templates in Spinnaker belongs to software release & deployment
+    management; the evidence does not distinguish clearly between CI pipeline policy and deployment orchestration,
+    so only L1 is asserted.
