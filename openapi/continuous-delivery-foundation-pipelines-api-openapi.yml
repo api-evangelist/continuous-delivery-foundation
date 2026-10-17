@@ -1410,27 +1410,6 @@ paths:
                 type: string
 components:
   schemas:
-    usernames:
-      type: array
-      minItems: 1
-      maxItems: 200
-      items:
-        type: string
-        description: Username
-        example: batman123
-        maxLength: 128
-    Model76:
-      type:
-      - object
-      - 'null'
-      default: {}
-      properties:
-        expiresAt:
-          type: string
-          description: Expires Date
-          example: '2030-01-30T09:15:40.000Z'
-          x-format:
-            isoDate: true
     Model66:
       type: object
       properties:
@@ -1452,11 +1431,6 @@ components:
       - id
       - scmContext
       - usernames
-    files:
-      type: array
-      minItems: 1
-      items:
-        $ref: '#/components/schemas/Model62'
     Model63:
       type: object
       properties:
@@ -1481,29 +1455,45 @@ components:
       - files
       - title
       - message
-    Model24:
-      type: object
-    List_of_secrets:
+    files:
       type: array
+      minItems: 1
       items:
-        $ref: '#/components/schemas/Get%20Secret'
+        $ref: '#/components/schemas/Model62'
+    Model76:
+      type:
+      - object
+      - 'null'
+      default: {}
+      properties:
+        expiresAt:
+          type: string
+          description: Expires Date
+          example: '2030-01-30T09:15:40.000Z'
+          x-format:
+            isoDate: true
     Model32:
       type: array
       items:
         type: string
+    usernames:
+      type: array
+      minItems: 1
+      maxItems: 200
+      items:
+        type: string
+        description: Username
+        example: batman123
+        maxLength: 128
+    Model33:
+      type: array
+      items:
+        $ref: '#/components/schemas/Model24'
     Model67:
       type: array
       minItems: 1
       items:
         $ref: '#/components/schemas/Model66'
-    Model33:
-      type: array
-      items:
-        $ref: '#/components/schemas/Model24'
-    Model30:
-      type: array
-      items:
-        $ref: '#/components/schemas/Get%20tokens'
     Model62:
       type: object
       properties:
@@ -1514,6 +1504,16 @@ components:
       required:
       - name
       - content
+    List_of_secrets:
+      type: array
+      items:
+        $ref: '#/components/schemas/Get%20Secret'
+    Model24:
+      type: object
+    Model30:
+      type: array
+      items:
+        $ref: '#/components/schemas/Get%20tokens'
   securitySchemes:
     jwt:
       type: apiKey

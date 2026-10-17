@@ -552,6 +552,43 @@ paths:
                 type: string
 components:
   schemas:
+    Model52:
+      type: array
+      items:
+        $ref: '#/components/schemas/Model51'
+    Model73:
+      type: object
+      properties:
+        version:
+          type: string
+          description: Exact version of the Template
+          example: 1.2.3
+          maxLength: 16
+          pattern: ^(\d+)\.(\d+)\.(\d+)$
+    Model70:
+      type: object
+      properties:
+        trusted:
+          type: boolean
+          description: Mark whether template is trusted
+    templateType:
+      type: string
+      description: Template Type
+      example: PIPELINE
+      default: JOB
+      enum:
+      - JOB
+      - PIPELINE
+      maxLength: 16
+    Model35:
+      type: array
+      items:
+        type: string
+    admins:
+      type: object
+      description: Admins of this Pipeline
+      example:
+        myself: true
     SCM_Repository:
       type: object
       properties:
@@ -577,30 +614,38 @@ components:
       - name
       - branch
       - url
-    Model52:
-      type: array
-      items:
-        $ref: '#/components/schemas/Model51'
-    Model73:
+    Model51:
       type: object
       properties:
-        version:
+        id:
+          type: integer
+          description: Identifier of this pipeline
+          example: 123345
+          x-constraint:
+            sign: positive
+        name:
           type: string
-          description: Exact version of the Template
-          example: 1.2.3
-          maxLength: 16
-          pattern: ^(\d+)\.(\d+)\.(\d+)$
-    admins:
-      type: object
-      description: Admins of this Pipeline
-      example:
-        myself: true
-    Model70:
-      type: object
-      properties:
-        trusted:
-          type: boolean
-          description: Mark whether template is trusted
+          example: screwdriver-cd/screwdriver
+        scmRepo:
+          $ref: '#/components/schemas/SCM_Repository'
+        lastRun:
+          anyOf:
+          - type: string
+            description: When this event was created
+            example: '2038-01-19T03:14:08.131Z'
+            maxLength: 32
+            x-format:
+              isoDate: true
+          - type:
+            - string
+            - 'null'
+        admins:
+          $ref: '#/components/schemas/admins'
+      required:
+      - id
+      - name
+      - scmRepo
+      - admins
     TemplateTag:
       type: object
       properties:
@@ -644,51 +689,6 @@ components:
           $ref: '#/components/schemas/templateType'
       required:
       - templateType
-    Model35:
-      type: array
-      items:
-        type: string
-    Model51:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Identifier of this pipeline
-          example: 123345
-          x-constraint:
-            sign: positive
-        name:
-          type: string
-          example: screwdriver-cd/screwdriver
-        scmRepo:
-          $ref: '#/components/schemas/SCM_Repository'
-        lastRun:
-          anyOf:
-          - type: string
-            description: When this event was created
-            example: '2038-01-19T03:14:08.131Z'
-            maxLength: 32
-            x-format:
-              isoDate: true
-          - type:
-            - string
-            - 'null'
-        admins:
-          $ref: '#/components/schemas/admins'
-      required:
-      - id
-      - name
-      - scmRepo
-      - admins
-    templateType:
-      type: string
-      description: Template Type
-      example: PIPELINE
-      default: JOB
-      enum:
-      - JOB
-      - PIPELINE
-      maxLength: 16
     Model34:
       type: array
       items:

@@ -73,20 +73,6 @@ paths:
           description: Not modified (ETag match)
 components:
   schemas:
-    PipelineState:
-      type: string
-      enum:
-      - queued
-      - running
-      - paused
-      - skipped
-      - not_built
-      - finished
-      - success
-      - unstable
-      - failure
-      - unknown
-      - aborted
     PipelineRun:
       type: object
       properties:
@@ -109,6 +95,20 @@ components:
           description: Number of changes in this run
         result:
           $ref: '#/components/schemas/PipelineState'
+    PipelineState:
+      type: string
+      enum:
+      - queued
+      - running
+      - paused
+      - skipped
+      - not_built
+      - finished
+      - success
+      - unstable
+      - failure
+      - unknown
+      - aborted
     PipelineRunsResponse:
       type: object
       properties:

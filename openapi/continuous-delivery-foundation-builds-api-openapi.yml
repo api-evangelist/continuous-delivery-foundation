@@ -517,8 +517,10 @@ components:
           $ref: '#/components/schemas/stats'
       required:
       - jobId
-    Model24:
-      type: object
+    Model8:
+      type: array
+      items:
+        type: string
     stats:
       type: object
       description: Stats for this build
@@ -541,18 +543,16 @@ components:
         hostname:
           type: string
           description: Where this build is run
-    meta:
-      type: object
-      description: Key=>Value information from the build itself
-      default: {}
-    Model8:
-      type: array
-      items:
-        type: string
     Model25:
       type: array
       items:
         $ref: '#/components/schemas/Model24'
+    Model24:
+      type: object
+    meta:
+      type: object
+      description: Key=>Value information from the build itself
+      default: {}
   securitySchemes:
     jwt:
       type: apiKey

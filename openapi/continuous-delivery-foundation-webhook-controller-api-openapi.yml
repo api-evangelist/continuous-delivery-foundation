@@ -88,6 +88,8 @@ paths:
       - webhook controller
 components:
   schemas:
+    CloudEventData:
+      type: object
     CloudEvent:
       properties:
         attributeNames:
@@ -128,8 +130,6 @@ components:
           type: string
         type:
           type: string
-      type: object
-    CloudEventData:
       type: object
 externalDocs:
   description: Spinnaker Documentation

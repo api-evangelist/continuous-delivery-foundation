@@ -374,12 +374,12 @@ components:
           $ref: '#/components/schemas/status'
         message:
           type: string
-    Model24:
-      type: object
     Model27:
       type: array
       items:
         $ref: '#/components/schemas/Model24'
+    Model24:
+      type: object
   securitySchemes:
     jwt:
       type: apiKey

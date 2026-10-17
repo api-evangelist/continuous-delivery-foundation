@@ -834,42 +834,28 @@ paths:
       - managed-controller
 components:
   schemas:
-    RetryVerificationRequest:
+    Resource:
       properties:
-        artifactReference:
+        apiVersion:
           type: string
-        artifactVersion:
+        kind:
           type: string
-        verificationId:
-          type: string
-      required:
-      - artifactReference
-      - artifactVersion
-      - verificationId
+        metadata:
+          additionalProperties: {}
+          type: object
+        spec:
+          additionalProperties: {}
+          type: object
       type: object
-    EnvironmentArtifactVeto:
+    GraphQLRequest:
       properties:
-        comment:
+        operationName:
           type: string
-        reference:
+        query:
           type: string
-        targetEnvironment:
-          type: string
-        version:
-          type: string
-      type: object
-    ConstraintStatus:
-      properties:
-        artifactReference:
-          type: string
-        artifactVersion:
-          type: string
-        comment:
-          type: string
-        status:
-          type: string
-        type:
-          type: string
+        variables:
+          additionalProperties: {}
+          type: object
       type: object
     EnvironmentArtifactPin:
       properties:
@@ -882,40 +868,6 @@ components:
         targetEnvironment:
           type: string
         version:
-          type: string
-      type: object
-    GraphQLRequest:
-      properties:
-        operationName:
-          type: string
-        query:
-          type: string
-        variables:
-          additionalProperties: {}
-          type: object
-      type: object
-    ConstraintState:
-      properties:
-        artifactVersion:
-          type: string
-        attributes:
-          additionalProperties: {}
-          type: object
-        comment:
-          type: string
-        createdAt:
-          type: string
-        deliveryConfigName:
-          type: string
-        environmentName:
-          type: string
-        judgedAt:
-          type: string
-        judgedBy:
-          type: string
-        status:
-          type: string
-        type:
           type: string
       type: object
     Environment:
@@ -949,18 +901,18 @@ components:
             type: object
           type: array
       type: object
-    Resource:
+    RetryVerificationRequest:
       properties:
-        apiVersion:
+        artifactReference:
           type: string
-        kind:
+        artifactVersion:
           type: string
-        metadata:
-          additionalProperties: {}
-          type: object
-        spec:
-          additionalProperties: {}
-          type: object
+        verificationId:
+          type: string
+      required:
+      - artifactReference
+      - artifactVersion
+      - verificationId
       type: object
     OverrideVerificationRequest:
       properties:
@@ -980,6 +932,50 @@ components:
       - artifactVersion
       - status
       - verificationId
+      type: object
+    Notification:
+      properties:
+        address:
+          type: string
+        frequency:
+          type: string
+        type:
+          type: string
+      type: object
+    ConstraintState:
+      properties:
+        artifactVersion:
+          type: string
+        attributes:
+          additionalProperties: {}
+          type: object
+        comment:
+          type: string
+        createdAt:
+          type: string
+        deliveryConfigName:
+          type: string
+        environmentName:
+          type: string
+        judgedAt:
+          type: string
+        judgedBy:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+      type: object
+    EnvironmentArtifactVeto:
+      properties:
+        comment:
+          type: string
+        reference:
+          type: string
+        targetEnvironment:
+          type: string
+        version:
+          type: string
       type: object
     DeliveryConfig:
       properties:
@@ -1001,11 +997,15 @@ components:
         serviceAccount:
           type: string
       type: object
-    Notification:
+    ConstraintStatus:
       properties:
-        address:
+        artifactReference:
           type: string
-        frequency:
+        artifactVersion:
+          type: string
+        comment:
+          type: string
+        status:
           type: string
         type:
           type: string

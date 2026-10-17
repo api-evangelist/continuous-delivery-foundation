@@ -90,6 +90,13 @@ paths:
       - plugin-info-controller
 components:
   schemas:
+    RemoteExtensionTransportConfig:
+      properties:
+        http:
+          $ref: '#/components/schemas/Http'
+      required:
+      - http
+      type: object
     SpinnakerPluginInfo:
       properties:
         description:
@@ -111,30 +118,6 @@ components:
       required:
       - releases
       type: object
-    RemoteExtensionConfig:
-      properties:
-        config:
-          additionalProperties: {}
-          nullable: true
-          type: object
-        id:
-          type: string
-        transport:
-          $ref: '#/components/schemas/RemoteExtensionTransportConfig'
-        type:
-          type: string
-      required:
-      - id
-      - transport
-      - type
-      type: object
-    RemoteExtensionTransportConfig:
-      properties:
-        http:
-          $ref: '#/components/schemas/Http'
-      required:
-      - http
-      type: object
     Http:
       properties:
         config:
@@ -154,6 +137,23 @@ components:
       - headers
       - queryParams
       - url
+      type: object
+    RemoteExtensionConfig:
+      properties:
+        config:
+          additionalProperties: {}
+          nullable: true
+          type: object
+        id:
+          type: string
+        transport:
+          $ref: '#/components/schemas/RemoteExtensionTransportConfig'
+        type:
+          type: string
+      required:
+      - id
+      - transport
+      - type
       type: object
     Headers:
       properties:
