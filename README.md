@@ -1,4 +1,4 @@
-# Continuous Delivery Foundation (continuous-delivery-foundation)
+# Continuous Delivery Foundation
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,146 +66,232 @@
 
 The Continuous Delivery Foundation (CDF) is a Linux Foundation project that hosts vendor-neutral open source projects for continuous integration, continuous delivery, and DevOps. It is the home of CDEvents, Jenkins, Spinnaker, Screwdriver, Ortelius, JayeX, and was previously the home of Tekton (now a CNCF graduated project) and other CD-focused tooling.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/continuous-delivery-foundation/refs/heads/main/apis.yml)
+**Areas:** Automation · CI/CD · DevOps · Linux Foundation · Open Source
 
-## Scope
+## Continuous Delivery Foundation on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Continuous Delivery Foundation is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/continuous-delivery-foundation/](https://apis.io/providers/continuous-delivery-foundation/)** — or go straight to one of the APIs or properties below.
 
-## Tags:
+### APIs (103)
 
- - Automation, CI/CD, DevOps, Linux Foundation, Open Source
+- [CDEvents Specification](https://apis.io/apis/continuous-delivery-foundation/cdevents/) — CDEvents is a common specification for Continuous Delivery events that enables interoperability across CI/CD systems. It extends the CloudEvents…
+- [Ortelius](https://apis.io/apis/continuous-delivery-foundation/ortelius/) — Ortelius is an open source supply chain evidence store that aggregates continuous security intelligence across the software delivery lifecycle. It exposes…
+- [Continuous Delivery Foundation Website (WordPress REST)](https://apis.io/apis/continuous-delivery-foundation/cd-foundation-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the Continuous Delivery Foundation website at cd.foundation: the route index of the site's content management…
+- [Tekton](https://apis.io/apis/continuous-delivery-foundation/tekton/) — Tekton is a Kubernetes-native open source framework for creating CI/CD systems. It defines Custom Resource Definitions for Pipelines, Tasks, PipelineRuns,…
+- [Continuous Delivery Foundation Admin Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-admin-controller-api/) — The admin-controller API from Continuous Delivery Foundation — 3 operation(s) for admin-controller.
+- [Continuous Delivery Foundation Amazon Infrastructure Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-amazon-infrastructure-controller-api/) — The amazon-infrastructure-controller API from Continuous Delivery Foundation — 6 operation(s) for amazon-infrastructure-controller.
+- [Continuous Delivery Foundation API Extension Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-api-extension-controller-api/) — The api-extension-controller API from Continuous Delivery Foundation — 1 operation(s) for api-extension-controller.
+- [Continuous Delivery Foundation Application Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-application-controller-api/) — The application-controller API from Continuous Delivery Foundation — 13 operation(s) for application-controller.
+- [Continuous Delivery Foundation Artifact Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-artifact-controller-api/) — The artifact-controller API from Continuous Delivery Foundation — 7 operation(s) for artifact-controller.
+- [Continuous Delivery Foundation Artifactory Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-artifactory-controller-api/) — The artifactory-controller API from Continuous Delivery Foundation — 1 operation(s) for artifactory-controller.
+- [Continuous Delivery Foundation Auth Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-auth-controller-api/) — The auth-controller API from Continuous Delivery Foundation — 6 operation(s) for auth-controller.
+- [Continuous Delivery Foundation Bake Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-bake-controller-api/) — The bake-controller API from Continuous Delivery Foundation — 3 operation(s) for bake-controller.
+- [Continuous Delivery Foundation Batch Entity Tags Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-batch-entity-tags-controller-api/) — The batch-entity-tags-controller API from Continuous Delivery Foundation — 1 operation(s) for batch-entity-tags-controller.
+- [Continuous Delivery Foundation Build Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-build-controller-api/) — The build-controller API from Continuous Delivery Foundation — 10 operation(s) for build-controller.
+- [Continuous Delivery Foundation Capabilities Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-capabilities-controller-api/) — The capabilities-controller API from Continuous Delivery Foundation — 3 operation(s) for capabilities-controller.
+- [Continuous Delivery Foundation Certificate Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-certificate-controller-api/) — The certificate-controller API from Continuous Delivery Foundation — 2 operation(s) for certificate-controller.
+- [Continuous Delivery Foundation Chart Image Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-chart-image-controller-api/) — The chart-image-controller API from Continuous Delivery Foundation — 3 operation(s) for chart-image-controller.
+- [Continuous Delivery Foundation Ci Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-ci-controller-api/) — The ci-controller API from Continuous Delivery Foundation — 2 operation(s) for ci-controller.
+- [Continuous Delivery Foundation Cleanup Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-cleanup-controller-api/) — The cleanup-controller API from Continuous Delivery Foundation — 4 operation(s) for cleanup-controller.
+- [Continuous Delivery Foundation Cloud Metric Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-cloud-metric-controller-api/) — The cloud-metric-controller API from Continuous Delivery Foundation — 2 operation(s) for cloud-metric-controller.
+- [Continuous Delivery Foundation Cluster Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-cluster-controller-api/) — The cluster-controller API from Continuous Delivery Foundation — 8 operation(s) for cluster-controller.
+- [Continuous Delivery Foundation Concourse Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-concourse-controller-api/) — The concourse-controller API from Continuous Delivery Foundation — 5 operation(s) for concourse-controller.
+- [Continuous Delivery Foundation Credentials Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-credentials-controller-api/) — The credentials-controller API from Continuous Delivery Foundation — 4 operation(s) for credentials-controller.
+- [Continuous Delivery Foundation Cron Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-cron-controller-api/) — The cron-controller API from Continuous Delivery Foundation — 1 operation(s) for cron-controller.
+- [Continuous Delivery Foundation Data Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-data-controller-api/) — The data-controller API from Continuous Delivery Foundation — 2 operation(s) for data-controller.
+- [Continuous Delivery Foundation Deck Plugins Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-deck-plugins-controller-api/) — The deck-plugins-controller API from Continuous Delivery Foundation — 2 operation(s) for deck-plugins-controller.
+- [Continuous Delivery Foundation Ecs Cloud Metric Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-ecs-cloud-metric-controller-api/) — The ecs-cloud-metric-controller API from Continuous Delivery Foundation — 1 operation(s) for ecs-cloud-metric-controller.
+- [Continuous Delivery Foundation Ecs Cluster Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-ecs-cluster-controller-api/) — The ecs-cluster-controller API from Continuous Delivery Foundation — 2 operation(s) for ecs-cluster-controller.
+- [Continuous Delivery Foundation Ecs Secret Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-ecs-secret-controller-api/) — The ecs-secret-controller API from Continuous Delivery Foundation — 1 operation(s) for ecs-secret-controller.
+- [Continuous Delivery Foundation Ecs Server Group Events Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-ecs-server-group-events-controller-api/) — The ecs-server-group-events-controller API from Continuous Delivery Foundation — 1 operation(s) for ecs-server-group-events-controller.
+- [Continuous Delivery Foundation Ecs Service Discovery Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-ecs-service-discovery-controller-api/) — The ecs-service-discovery-controller API from Continuous Delivery Foundation — 1 operation(s) for ecs-service-discovery-controller.
+- [Continuous Delivery Foundation Entity Tags Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-entity-tags-controller-api/) — The entity-tags-controller API from Continuous Delivery Foundation — 3 operation(s) for entity-tags-controller.
+- [Continuous Delivery Foundation Executions Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-executions-controller-api/) — The executions-controller API from Continuous Delivery Foundation — 3 operation(s) for executions-controller.
+- [Continuous Delivery Foundation Firewall Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-firewall-controller-api/) — The firewall-controller API from Continuous Delivery Foundation — 4 operation(s) for firewall-controller.
+- [Continuous Delivery Foundation Generic Error Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-generic-error-controller-api/) — The generic-error-controller API from Continuous Delivery Foundation — 1 operation(s) for generic-error-controller.
+- [Continuous Delivery Foundation History Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-history-controller-api/) — The history-controller API from Continuous Delivery Foundation — 1 operation(s) for history-controller.
+- [Continuous Delivery Foundation Image Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-image-controller-api/) — The image-controller API from Continuous Delivery Foundation — 3 operation(s) for image-controller.
+- [Continuous Delivery Foundation Instance Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-instance-controller-api/) — The instance-controller API from Continuous Delivery Foundation — 2 operation(s) for instance-controller.
+- [Continuous Delivery Foundation Job Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-job-controller-api/) — The job-controller API from Continuous Delivery Foundation — 2 operation(s) for job-controller.
+- [Continuous Delivery Foundation Load Balancer Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-load-balancer-controller-api/) — The load-balancer-controller API from Continuous Delivery Foundation — 4 operation(s) for load-balancer-controller.
+- [Continuous Delivery Foundation Managed Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-managed-controller-api/) — The managed-controller API from Continuous Delivery Foundation — 32 operation(s) for managed-controller.
+- [Continuous Delivery Foundation Manifest Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-manifest-controller-api/) — The manifest-controller API from Continuous Delivery Foundation — 1 operation(s) for manifest-controller.
+- [Continuous Delivery Foundation Multi-Pipeline Graph API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-multi-pipeline-graph-api/) — APIs for viewing multiple pipeline runs
+- [Continuous Delivery Foundation Network Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-network-controller-api/) — The network-controller API from Continuous Delivery Foundation — 2 operation(s) for network-controller.
+- [Continuous Delivery Foundation Nexus Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-nexus-controller-api/) — The nexus-controller API from Continuous Delivery Foundation — 1 operation(s) for nexus-controller.
+- [Continuous Delivery Foundation Notification Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-notification-controller-api/) — The notification-controller API from Continuous Delivery Foundation — 3 operation(s) for notification-controller.
+- [Continuous Delivery Foundation Pipeline Config Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-pipeline-config-controller-api/) — The pipeline-config-controller API from Continuous Delivery Foundation — 3 operation(s) for pipeline-config-controller.
+- [Continuous Delivery Foundation Pipeline Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-pipeline-controller-api/) — The pipeline-controller API from Continuous Delivery Foundation — 16 operation(s) for pipeline-controller.
+- [Continuous Delivery Foundation Pipeline Overview API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-pipeline-overview-api/) — APIs for individual pipeline run visualization and control
+- [Continuous Delivery Foundation Pipeline Templates Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-pipeline-templates-controller-api/) — The pipeline-templates-controller API from Continuous Delivery Foundation — 4 operation(s) for pipeline-templates-controller.
+- [Continuous Delivery Foundation Plugin Info Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-plugin-info-controller-api/) — The plugin-info-controller API from Continuous Delivery Foundation — 2 operation(s) for plugin-info-controller.
+- [Continuous Delivery Foundation Plugin Publish Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-plugin-publish-controller-api/) — The plugin-publish-controller API from Continuous Delivery Foundation — 1 operation(s) for plugin-publish-controller.
+- [Continuous Delivery Foundation Plugins Installed Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-plugins-installed-controller-api/) — The plugins-installed-controller API from Continuous Delivery Foundation — 1 operation(s) for plugins-installed-controller.
+- [Continuous Delivery Foundation Project Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-project-controller-api/) — The project-controller API from Continuous Delivery Foundation — 4 operation(s) for project-controller.
+- [Continuous Delivery Foundation Proxy Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-proxy-controller-api/) — The proxy-controller API from Continuous Delivery Foundation — 2 operation(s) for proxy-controller.
+- [Continuous Delivery Foundation Pubsub Subscription Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-pubsub-subscription-controller-api/) — The pubsub-subscription-controller API from Continuous Delivery Foundation — 1 operation(s) for pubsub-subscription-controller.
+- [Continuous Delivery Foundation Raw Resource Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-raw-resource-controller-api/) — The raw-resource-controller API from Continuous Delivery Foundation — 1 operation(s) for raw-resource-controller.
+- [Continuous Delivery Foundation Reorder Pipelines Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-reorder-pipelines-controller-api/) — The reorder-pipelines-controller API from Continuous Delivery Foundation — 2 operation(s) for reorder-pipelines-controller.
+- [Continuous Delivery Foundation Role Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-role-controller-api/) — The role-controller API from Continuous Delivery Foundation — 1 operation(s) for role-controller.
+- [Continuous Delivery Foundation Root Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-root-controller-api/) — The root-controller API from Continuous Delivery Foundation — 1 operation(s) for root-controller.
+- [Continuous Delivery Foundation Search Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-search-controller-api/) — The search-controller API from Continuous Delivery Foundation — 1 operation(s) for search-controller.
+- [Continuous Delivery Foundation Security Group Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-security-group-controller-api/) — The security-group-controller API from Continuous Delivery Foundation — 3 operation(s) for security-group-controller.
+- [Continuous Delivery Foundation Server Group Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-server-group-controller-api/) — The server-group-controller API from Continuous Delivery Foundation — 3 operation(s) for server-group-controller.
+- [Continuous Delivery Foundation Server Group Manager Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-server-group-manager-controller-api/) — The server-group-manager-controller API from Continuous Delivery Foundation — 1 operation(s) for server-group-manager-controller.
+- [Continuous Delivery Foundation Service Broker Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-service-broker-controller-api/) — The service-broker-controller API from Continuous Delivery Foundation — 2 operation(s) for service-broker-controller.
+- [Continuous Delivery Foundation Snapshot Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-snapshot-controller-api/) — The snapshot-controller API from Continuous Delivery Foundation — 2 operation(s) for snapshot-controller.
+- [Continuous Delivery Foundation Storage Account Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-storage-account-controller-api/) — The storage-account-controller API from Continuous Delivery Foundation — 1 operation(s) for storage-account-controller.
+- [Continuous Delivery Foundation Strategy Config Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-strategy-config-controller-api/) — The strategy-config-controller API from Continuous Delivery Foundation — 2 operation(s) for strategy-config-controller.
+- [Continuous Delivery Foundation Strategy Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-strategy-controller-api/) — The strategy-controller API from Continuous Delivery Foundation — 4 operation(s) for strategy-controller.
+- [Continuous Delivery Foundation Subnet Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-subnet-controller-api/) — The subnet-controller API from Continuous Delivery Foundation — 1 operation(s) for subnet-controller.
+- [Continuous Delivery Foundation Task Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-task-controller-api/) — The task-controller API from Continuous Delivery Foundation — 5 operation(s) for task-controller.
+- [Continuous Delivery Foundation Test Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-test-controller-api/) — The test-controller API from Continuous Delivery Foundation — 2 operation(s) for test-controller.
+- [Continuous Delivery Foundation V 2 Canary Config Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-v-2-canary-config-controller-api/) — The v-2-canary-config-controller API from Continuous Delivery Foundation — 2 operation(s) for v-2-canary-config-controller.
+- [Continuous Delivery Foundation V 2 Canary Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-v-2-canary-controller-api/) — The v-2-canary-controller API from Continuous Delivery Foundation — 9 operation(s) for v-2-canary-controller.
+- [Continuous Delivery Foundation V 2 Pipeline Templates Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-v-2-pipeline-templates-controller-api/) — The v-2-pipeline-templates-controller API from Continuous Delivery Foundation — 7 operation(s) for v-2-pipeline-templates-controller.
+- [Continuous Delivery Foundation Version Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-version-controller-api/) — The version-controller API from Continuous Delivery Foundation — 1 operation(s) for version-controller.
+- [Continuous Delivery Foundation Webhook Controller API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-webhook-controller-api/) — The webhook-controller API from Continuous Delivery Foundation — 3 operation(s) for webhook-controller.
+- [Continuous Delivery Foundation Auth API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-auth-api/) — The Auth API from Continuous Delivery Foundation — 7 operation(s) for auth.
+- [Continuous Delivery Foundation Banners API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-banners-api/) — The Banners API from Continuous Delivery Foundation — 2 operation(s) for banners.
+- [Continuous Delivery Foundation Buildclusters API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-buildclusters-api/) — The Buildclusters API from Continuous Delivery Foundation — 2 operation(s) for buildclusters.
+- [Continuous Delivery Foundation Builds API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-builds-api/) — The Builds API from Continuous Delivery Foundation — 12 operation(s) for builds.
+- [Continuous Delivery Foundation Collections API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-collections-api/) — The Collections API from Continuous Delivery Foundation — 3 operation(s) for collections.
+- [Continuous Delivery Foundation Commands API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-commands-api/) — The Commands API from Continuous Delivery Foundation — 7 operation(s) for commands.
+- [Continuous Delivery Foundation Coverage API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-coverage-api/) — The Coverage API from Continuous Delivery Foundation — 2 operation(s) for coverage.
+- [Continuous Delivery Foundation Events API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-events-api/) — The Events API from Continuous Delivery Foundation — 6 operation(s) for events.
+- [Continuous Delivery Foundation Is Admin API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-isadmin-api/) — The IsAdmin API from Continuous Delivery Foundation — 1 operation(s) for isadmin.
+- [Continuous Delivery Foundation Jobs API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-jobs-api/) — The Jobs API from Continuous Delivery Foundation — 7 operation(s) for jobs.
+- [Continuous Delivery Foundation Metrics API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-metrics-api/) — The Metrics API from Continuous Delivery Foundation — 1 operation(s) for metrics.
+- [Continuous Delivery Foundation Pipeline API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-pipeline-api/) — The Pipeline API from Continuous Delivery Foundation — 13 operation(s) for pipeline.
+- [Continuous Delivery Foundation Pipelines API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-pipelines-api/) — The Pipelines API from Continuous Delivery Foundation — 28 operation(s) for pipelines.
+- [Continuous Delivery Foundation Process Hooks API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-processhooks-api/) — The ProcessHooks API from Continuous Delivery Foundation — 1 operation(s) for processhooks.
+- [Continuous Delivery Foundation Release API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-release-api/) — The Release API from Continuous Delivery Foundation — 1 operation(s) for release.
+- [Continuous Delivery Foundation Secrets API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-secrets-api/) — The Secrets API from Continuous Delivery Foundation — 2 operation(s) for secrets.
+- [Continuous Delivery Foundation Stages API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-stages-api/) — The Stages API from Continuous Delivery Foundation — 2 operation(s) for stages.
+- [Continuous Delivery Foundation Stats API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-stats-api/) — The Stats API from Continuous Delivery Foundation — 1 operation(s) for stats.
+- [Continuous Delivery Foundation Status API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-status-api/) — The Status API from Continuous Delivery Foundation — 1 operation(s) for status.
+- [Continuous Delivery Foundation Template API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-template-api/) — The Template API from Continuous Delivery Foundation — 1 operation(s) for template.
+- [Continuous Delivery Foundation Templates API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-templates-api/) — The Templates API from Continuous Delivery Foundation — 9 operation(s) for templates.
+- [Continuous Delivery Foundation Tokens API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-tokens-api/) — The Tokens API from Continuous Delivery Foundation — 3 operation(s) for tokens.
+- [Continuous Delivery Foundation Users API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-users-api/) — The Users API from Continuous Delivery Foundation — 2 operation(s) for users.
+- [Continuous Delivery Foundation Validator API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-validator-api/) — The Validator API from Continuous Delivery Foundation — 3 operation(s) for validator.
+- [Continuous Delivery Foundation Versions API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-versions-api/) — The Versions API from Continuous Delivery Foundation — 1 operation(s) for versions.
+- [Continuous Delivery Foundation Webhooks API](https://apis.io/apis/continuous-delivery-foundation/continuous-delivery-foundation-webhooks-api/) — The Webhooks API from Continuous Delivery Foundation — 1 operation(s) for webhooks.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-04-28
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### CDEvents Specification
-CDEvents is a common specification for Continuous Delivery events that enables interoperability across CI/CD systems. It extends the CloudEvents specification and defines event vocabularies for source code control, continuous integration, testing, continuous deployment, continuous operations, and core lifecycle events.
+Event-driven and webhook contracts.
 
-**Human URL:** [https://cdevents.dev/](https://cdevents.dev/)
+- [Continuous Delivery Foundation Cdevents Events](https://apis.io/asyncapis/continuous-delivery-foundation/continuous-delivery-foundation-cdevents-events/)
 
-#### Tags:
+#### MCP servers (1)
 
- - CDEvents, CI/CD, CloudEvents, Events, Specification
+Model Context Protocol servers that expose the API to agents.
 
-#### Properties
+- [jenkins](https://apis.io/servers/continuous-delivery-foundation/jenkins/)
 
-- [Documentation](https://cdevents.dev/docs/)
-- [Specification](https://github.com/cdevents/spec)
-- [GitHubOrg](https://github.com/cdevents)
-- [Community](https://cdevents.dev/community/)
+#### Overlays (4)
 
-### Jenkins
-Jenkins is the leading open source automation server, providing hundreds of plugins for building, deploying, and automating software projects. Jenkins exposes a remote access REST API that supports XML, JSON, and Python representations.
+OpenAPI overlays, including conversational phrasing for each operation.
 
-**Human URL:** [https://www.jenkins.io/](https://www.jenkins.io/)
+- [Continuous Delivery Foundation Jayex Jx Api Overlay](https://apis.io/overlays/continuous-delivery-foundation/continuous-delivery-foundation-jayex-jx-api-overlay/)
+- [Continuous Delivery Foundation Jenkins Pipeline Graph View Overlay](https://apis.io/overlays/continuous-delivery-foundation/continuous-delivery-foundation-jenkins-pipeline-graph-view-overlay/)
+- [Continuous Delivery Foundation Screwdriver Overlay](https://apis.io/overlays/continuous-delivery-foundation/continuous-delivery-foundation-screwdriver-overlay/)
+- [Continuous Delivery Foundation Spinnaker Overlay](https://apis.io/overlays/continuous-delivery-foundation/continuous-delivery-foundation-spinnaker-overlay/)
 
-#### Tags:
+#### Security (3)
 
- - Automation, CI/CD, Jenkins, Pipelines, REST
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Continuous Delivery Foundation Authentication](https://apis.io/security/continuous-delivery-foundation/continuous-delivery-foundation-authentication/)
+- [Continuous Delivery Foundation Domain Security](https://apis.io/security/continuous-delivery-foundation/continuous-delivery-foundation-domain-security/)
+- [Continuous Delivery Foundation Vulnerability Disclosure](https://apis.io/security/continuous-delivery-foundation/continuous-delivery-foundation-vulnerability-disclosure/)
 
-- [Documentation](https://www.jenkins.io/doc/)
-- [APIDocumentation](https://www.jenkins.io/doc/book/using/remote-access-api/)
-- [GettingStarted](https://www.jenkins.io/doc/pipeline/tour/getting-started/)
-- [GitHubOrg](https://github.com/jenkinsci)
+#### Plans and pricing (1)
 
-### Spinnaker
-Spinnaker is an open-source, multi-cloud continuous delivery platform originally built at Netflix and Google. Spinnaker exposes a Gate REST API that drives pipelines, applications, and deployment workflows across AWS, GCP, Azure, Kubernetes, and other cloud targets.
+Published plans, tiers and prices.
 
-**Human URL:** [https://spinnaker.io/](https://spinnaker.io/)
+- [Continuous Delivery Foundation Plans Pricing](https://apis.io/plans/continuous-delivery-foundation/continuous-delivery-foundation-plans-pricing/)
 
-#### Tags:
+#### Rate limits (1)
 
- - CD, Cloud, Deployment, Multi-cloud, Spinnaker
+Published request limits.
 
-#### Properties
+- [Continuous Delivery Foundation Rate Limits](https://apis.io/rate-limits/continuous-delivery-foundation/continuous-delivery-foundation-rate-limits/)
 
-- [Documentation](https://spinnaker.io/docs/)
-- [APIDocumentation](https://spinnaker.io/docs/reference/api/)
-- [Community](https://spinnaker.io/docs/community/)
-- [GitHubOrg](https://github.com/spinnaker)
+#### FinOps (1)
 
-### Screwdriver
-Screwdriver is an open-source build platform designed for Continuous Delivery, originally built at Yahoo. It provides a REST API for managing pipelines, builds, jobs, and webhooks.
+What the API costs to run, by operation.
 
-**Human URL:** [https://screwdriver.cd/](https://screwdriver.cd/)
+- [Continuous Delivery Foundation Finops](https://apis.io/finops/continuous-delivery-foundation/continuous-delivery-foundation-finops/)
 
-#### Tags:
+## Where to find this API
 
- - Build, CD, CI/CD, Pipelines, Screwdriver
-
-#### Properties
-
-- [Documentation](https://docs.screwdriver.cd/)
-- [APIDocumentation](https://docs.screwdriver.cd/api/)
-- [GettingStarted](https://docs.screwdriver.cd/user-guide/quickstart)
-- [GitHubOrg](https://github.com/screwdriver-cd)
-
-### Ortelius
-Ortelius is an open source supply chain evidence store that aggregates continuous security intelligence across the software delivery lifecycle, with APIs for tracking microservice components, SBOMs, vulnerabilities, and deployment evidence.
-
-**Human URL:** [https://ortelius.io/](https://ortelius.io/)
-
-#### Tags:
-
- - Evidence Store, SBOM, Supply Chain, Security
-
-#### Properties
-
-- [Documentation](https://docs.ortelius.io/)
-- [GettingStarted](https://docs.ortelius.io/guides/)
-- [GitHubOrg](https://github.com/ortelius)
-
-### JayeX
-JayeX is a customizable cloud developer tool suite hosted by the Continuous Delivery Foundation that provides built-in CI/CD capabilities and developer self-service tooling for cloud-native teams.
-
-**Human URL:** [https://jayex.io/](https://jayex.io/)
-
-#### Tags:
-
- - CI/CD, Cloud Native, Developer Tools, Platform
-
-#### Properties
-
-- [Documentation](https://jayex.io/v3/)
-- [Community](https://jayex.io/community/)
-
-### Tekton
-Tekton is a Kubernetes-native open source framework for creating CI/CD systems. It defines Custom Resource Definitions for Pipelines, Tasks, PipelineRuns, and TaskRuns. Originally hosted at CDF, Tekton has since moved to the CNCF and is included here for historical context.
-
-**Human URL:** [https://tekton.dev/](https://tekton.dev/)
-
-#### Tags:
-
- - CI/CD, Kubernetes, Pipelines, Tekton
-
-#### Properties
-
-- [Documentation](https://tekton.dev/docs/)
-- [APIDocumentation](https://tekton.dev/docs/pipelines/api/)
-- [GitHubOrg](https://github.com/tektoncd)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://cd.foundation/)
-- [Projects](https://cd.foundation/projects/)
 - [Documentation](https://cd.foundation/projects/)
 - [Blog](https://cd.foundation/blog/)
-- [Newsroom](https://cd.foundation/news/)
-- [GitHubOrg](https://github.com/cdfoundation)
-- [Community](https://cd.foundation/community/)
-- [Events](https://cd.foundation/events/)
+- [Security](https://www.jenkins.io/security/reporting/)
+- [Terms of service](https://www.linuxfoundation.org/legal/terms)
+- [Privacy policy](https://www.linuxfoundation.org/legal/privacy-policy)
+- [Status](https://status.jenkins.io/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
+**Kin Score 50.6** — developing · rubric 0.25.0 · scored 2026-10-23
 
-**Email:** kin@apievangelist.com
+| Facet | Score |
+|---|---|
+| Discoverability | 57.5 |
+| Contract quality | 56.2 |
+| Contract governance | 18.2 |
+| Operational transparency | 55.3 |
+| Developer ergonomics | 61.3 |
+| Access clarity | 21.1 |
+
+**Agent readiness 42.8** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | templated |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | yes |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | mostly |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/continuous-delivery-foundation/](https://apis.io/providers/continuous-delivery-foundation/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Continuous Delivery Foundation: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/continuous-delivery-foundation/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
